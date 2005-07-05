@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://orquesta.watson.ibm.com/eclipse/updates/sefari">
+      This Eclipse update site hosts the distribution for the SEFARI analysis and refactoring framework.
+   </description>
+   <feature url="features/com.ibm.watson.sefari.feature_0.1.0.jar" id="com.ibm.watson.sefari.feature" version="0.1.0" os="win32" ws="carbon,gtk,motif,photon,win32" arch="x86"/>
+</site>
