@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description url="http://orquesta.watson.ibm.com/eclipse/updates/sefari">
-      This Eclipse update site hosts the distribution for the SEFARI analysis and refactoring framework.
+   <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
+      This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
-   <feature url="features/com.ibm.watson.safari.feature_0.1.1.jar" id="com.ibm.watson.safari.feature" version="0.1.1" os="win32" ws="carbon,gtk,motif,photon,win32" arch="x86"/>
+   <feature url="features/com.ibm.watson.safari.feature_0.1.1.jar" id="com.ibm.watson.safari.feature" version="0.1.1" os="win32" ws="carbon,gtk,motif,photon,win32" arch="x86">
+      <category name="languageTools"/>
+   </feature>
+   <category-def name="languageTools" label="Language Development Tools"/>
 </site>
