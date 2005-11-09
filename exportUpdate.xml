@@ -16,7 +16,7 @@
 		<delete dir="${update.temp.folder}"/>
 	</target>
 
-	<target name="copy.feature">
+	<target name="copy.feature" depends="export.feature">
 		<echo message="Feature directory is ${feature.dir}"/>
 
 		<mkdir dir="${update.temp.folder}/features"/>
@@ -37,5 +37,9 @@
 			<fileset dir="${basedir}/web" includes="site.css"/>
 			<fileset dir="${basedir}/web" includes="site.xsl"/>
 		</copy>
+	</target>
+
+	<target name="export.feature">
+		<ant antfile="../com.ibm.watson.safari.feature/exportFeature.xml" target="build.update.jar" dir="../com.ibm.watson.safari.feature"/>
 	</target>
 </project>
