@@ -8,35 +8,34 @@
 		<delete dir="${update.temp.folder}"/>
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="copy.feature">
-			<param name="feature.dir"     value="../com.ibm.watson.sefari.feature"/>
+			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 			<param name="feature.name"    value="com.ibm.watson.safari.feature"/>
 			<param name="feature.version" value="0.1.1"/>
 		</antcall>
 		<zip destfile="${update.destination}/com.ibm.watson.safari.update_${version}.zip" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
-<!--		<delete dir="${update.temp.folder}"/> -->
+		<delete dir="${update.temp.folder}"/>
 	</target>
 
-    <target name="copy.feature">
-    	<echo message="Feature directory is ${feature.dir}"/>
+	<target name="copy.feature">
+		<echo message="Feature directory is ${feature.dir}"/>
 
-    	<mkdir dir="${update.temp.folder}/features"/>
+		<mkdir dir="${update.temp.folder}/features"/>
 		<copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
 			<fileset dir="${feature.dir}" includes="${feature.name}_${feature.version}.jar"/>
 		</copy>
 
-    	<mkdir dir="${update.temp.folder}/plugins"/>
+		<mkdir dir="${update.temp.folder}/plugins"/>
 		<copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
 			<fileset dir="${feature.dir}/plugins" includes="*.jar"/>
 		</copy>
 
-    	<copy file="site.xml" todir="${update.temp.folder}" failonerror="true" overwrite="false"/>
+		<copy file="site.xml" todir="${update.temp.folder}" failonerror="true" overwrite="false"/>
 		<copy file="index.html" todir="${update.temp.folder}" failonerror="true" overwrite="false"/>
 
-    	<mkdir dir="${update.temp.folder}/web"/>
+		<mkdir dir="${update.temp.folder}/web"/>
 		<copy todir="${update.temp.folder}/web" failonerror="true" overwrite="false">
 			<fileset dir="${basedir}/web" includes="site.css"/>
 			<fileset dir="${basedir}/web" includes="site.xsl"/>
 		</copy>
-    </target>
-
+	</target>
 </project>
