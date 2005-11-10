@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="com.ibm.watson.safari.update" default="build.update.zip" basedir=".">
-	<property name="version" value="0.1.1"/>
+	<property name="update.name"        value="com.ibm.watson.safari.update"/>
+	<property name="update.version"     value="0.1.1"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 
@@ -8,11 +9,11 @@
 		<delete dir="${update.temp.folder}"/>
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="copy.feature">
-			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 			<param name="feature.name"    value="com.ibm.watson.safari.feature"/>
 			<param name="feature.version" value="0.1.1"/>
+			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 		</antcall>
-		<zip destfile="${update.destination}/com.ibm.watson.safari.update_${version}.zip" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
+		<zip destfile="${update.destination}/${update.name}_${update.version}.zip" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${update.temp.folder}"/>
 	</target>
 
@@ -40,6 +41,8 @@
 	</target>
 
 	<target name="export.feature">
-		<ant antfile="../com.ibm.watson.safari.feature/exportFeature.xml" target="build.update.jar" dir="../com.ibm.watson.safari.feature"/>
+		<echo message="Building feature jar..."/>
+		<ant antfile="../com.ibm.watson.safari.feature/exportFeature.xml" target="build.feature.jar" dir="../com.ibm.watson.safari.feature"/>
+		<echo message="Done building feature jar."/>
 	</target>
 </project>
