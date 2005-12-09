@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="com.ibm.watson.safari.update" default="build.update.zip" basedir=".">
 	<property name="update.name"        value="com.ibm.watson.safari.update"/>
-	<property name="update.version"     value="0.1.1"/>
+	<property name="update.version"     value="1.0.3"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 
@@ -10,7 +10,7 @@
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="copy.feature">
 			<param name="feature.name"    value="com.ibm.watson.safari.feature"/>
-			<param name="feature.version" value="0.1.1"/>
+			<param name="feature.version" value="${update.version}"/>
 			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 		</antcall>
 		<zip destfile="${update.destination}/${update.name}_${update.version}.zip" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
