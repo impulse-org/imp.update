@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="com.ibm.watson.safari.update" default="build.update.zip" basedir=".">
+	<import file="../com.ibm.watson.safari.feature/buildCommon.xml"/>
+
 	<property name="update.name"        value="com.ibm.watson.safari.update"/>
-	<property name="update.version"     value="1.0.3"/>
+	<property name="update.version"     value="${safari.version}"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
+	<property name="update.server"      value="orquesta.watson.ibm.com"/>
+	<property name="update.server.dir"  value="/usr/src/safari"/>
+	<property name= "zip.file"          value="${update.destination}/${update.name}_${update.version}.zip"/>
+
+	<target name="deploy.zip" description="Copies the update archive to the update server.">
+		<echo message="Copying update zip file to update server ${update.server}"/>
+		<scp file="${zip.file}" keyfile="${user.home}/ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
+	</target>
 
 	<target name="build.update.zip">
 		<delete dir="${update.temp.folder}"/>
@@ -13,7 +23,7 @@
 			<param name="feature.version" value="${update.version}"/>
 			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 		</antcall>
-		<zip destfile="${update.destination}/${update.name}_${update.version}.zip" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
+		<zip destfile="${zip.file}" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${update.temp.folder}"/>
 	</target>
 
