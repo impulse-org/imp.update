@@ -10,16 +10,16 @@
 	<property name="update.server.dir"  value="/usr/src/safari"/>
 	<property name= "zip.file"          value="${update.destination}/${update.name}_${update.version}.zip"/>
 
-	<target name="deploy.zip" description="Copies the update archive to the update server.">
+	<target name="deploy.zip" depends="build.update.zip" description="Copies the update archive to the update server.">
 		<echo message="Copying update zip file to update server ${update.server}"/>
-		<scp file="${zip.file}" keyfile="${user.home}/ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
+		<scp file="${zip.file}" keyfile="${user.home}/.ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
 	</target>
 
 	<target name="build.update.zip">
 		<delete dir="${update.temp.folder}"/>
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="com.ibm.watson.safari.feature"/>
+			<param name="feature.name"    value="com.ibm.watson.safari"/>
 			<param name="feature.version" value="${update.version}"/>
 			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 		</antcall>
