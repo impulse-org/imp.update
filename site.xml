@@ -6,5 +6,14 @@
    <feature url="features/com.ibm.watson.safari_1.0.6.jar" id="com.ibm.watson.safari" version="1.0.6" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.7.jar" id="com.ibm.watson.safari" version="1.0.7" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.8.jar" id="com.ibm.watson.safari" version="1.0.8" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.9.jar" id="com.ibm.watson.safari" version="1.0.9" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
