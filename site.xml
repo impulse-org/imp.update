@@ -39,5 +39,8 @@
    <feature url="features/com.ibm.watson.safari_1.0.17.jar" id="com.ibm.watson.safari" version="1.0.17" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.18.jar" id="com.ibm.watson.safari" version="1.0.18" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
