@@ -18,16 +18,32 @@
 	<target name="build.update.zip">
 		<delete dir="${update.temp.folder}"/>
 		<mkdir dir="${update.temp.folder}"/>
+		<antcall target="export.features"/>
+		<antcall target="copy.feature">
+			<param name="feature.name"    value="org.eclipse.safari.runtime"/>
+			<param name="feature.version" value="${update.version}"/>
+			<param name="feature.dir"     value="../org.eclipse.safari.runtime.feature"/>
+		</antcall>
+		<antcall target="copy.feature">
+			<param name="feature.name"    value="org.eclipse.safari.jikespg"/>
+			<param name="feature.version" value="${update.version}"/>
+			<param name="feature.dir"     value="../org.eclipse.safari.jikespg.feature"/>
+		</antcall>
 		<antcall target="copy.feature">
 			<param name="feature.name"    value="com.ibm.watson.safari"/>
 			<param name="feature.version" value="${update.version}"/>
 			<param name="feature.dir"     value="../com.ibm.watson.safari.feature"/>
 		</antcall>
+		<antcall target="copy.feature">
+			<param name="feature.name"    value="org.eclipse.safari.x10dt"/>
+			<param name="feature.version" value="${update.version}"/>
+			<param name="feature.dir"     value="../org.eclipse.safari.x10dt.feature"/>
+		</antcall>
 		<zip destfile="${zip.file}" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${update.temp.folder}"/>
 	</target>
 
-	<target name="copy.feature" depends="export.feature">
+	<target name="copy.feature">
 		<echo message="Feature directory is ${feature.dir}"/>
 
 		<mkdir dir="${update.temp.folder}/features"/>
@@ -50,8 +66,11 @@
 		</copy>
 	</target>
 
-	<target name="export.feature">
-		<echo message="Building feature jar..."/>
+	<target name="export.features">
+		<echo message="Building feature jars..."/>
+		<ant antfile="../org.eclipse.safari.runtime.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.runtime.feature"/>
+		<ant antfile="../org.eclipse.safari.jikespg.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.jikespg.feature"/>
+		<ant antfile="../org.eclipse.safari.x10dt.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.x10dt.feature"/>
 		<ant antfile="../com.ibm.watson.safari.feature/exportFeature.xml" target="build.feature.jar" dir="../com.ibm.watson.safari.feature"/>
 		<echo message="Done building feature jar."/>
 	</target>
