@@ -3,45 +3,6 @@
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
       This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
-   <feature url="features/com.ibm.watson.safari_1.0.6.jar" id="com.ibm.watson.safari" version="1.0.6" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.7.jar" id="com.ibm.watson.safari" version="1.0.7" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.8.jar" id="com.ibm.watson.safari" version="1.0.8" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.9.jar" id="com.ibm.watson.safari" version="1.0.9" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.10.jar" id="com.ibm.watson.safari" version="1.0.10" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.11.jar" id="com.ibm.watson.safari" version="1.0.11" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.12.jar" id="com.ibm.watson.safari" version="1.0.12" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.13.jar" id="com.ibm.watson.safari" version="1.0.13" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.14.jar" id="com.ibm.watson.safari" version="1.0.14" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.15.jar" id="com.ibm.watson.safari" version="1.0.15" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.16.jar" id="com.ibm.watson.safari" version="1.0.16" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.17.jar" id="com.ibm.watson.safari" version="1.0.17" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.18.jar" id="com.ibm.watson.safari" version="1.0.18" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
    <feature url="features/com.ibm.watson.safari_1.0.19.jar" id="com.ibm.watson.safari" version="1.0.19" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -49,6 +10,30 @@
       <category name="Language Meta-Tools"/>
    </feature>
    <feature url="features/com.ibm.watson.safari_1.0.21.jar" id="com.ibm.watson.safari" version="1.0.21" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.22.jar" id="org.eclipse.safari.jikespg" version="1.0.22">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.22.jar" id="org.eclipse.safari.runtime" version="1.0.22">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.22.jar" id="org.eclipse.safari.x10dt" version="1.0.22">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.22.jar" id="com.ibm.watson.safari" version="1.0.22" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/com.ibm.watson.safari_1.0.23.jar" id="com.ibm.watson.safari" version="1.0.23" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.23.jar" id="org.eclipse.safari.jikespg" version="1.0.23">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.23.jar" id="org.eclipse.safari.runtime" version="1.0.23">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.23.jar" id="org.eclipse.safari.x10dt" version="1.0.23">
       <category name="Language Meta-Tools"/>
    </feature>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
