@@ -98,8 +98,6 @@ echo '######################################################'
 echo "All checks succeeded; proceeding to increment version."
 echo '######################################################'
 
-exit 0
-
 for feature in ${features}; do
     echo "######################"
     echo "Processing ${feature}:"
