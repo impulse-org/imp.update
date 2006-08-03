@@ -1,160 +1,258 @@
 #!/bin/bash
 
-[ ! -r features.list ] && (echo "Can't find features.list!"; exit 1)
+usage() {
+    echo "Usage: $0 [-h | --help] [--checkOnly] [--features <feature-list>]"
+    echo "       [--featureFile <feature-file>] [--exclude <plugin-list>]"
+    echo "       [--incrementBy <version-spec>]"
+    echo ""
+    echo "where:"
+    echo "  <feature-list> is a space-separated list of feature ID's to be processed"
+    echo "  <feature-file> is a file containing a whitespace-separated list of feature"
+    echo "                 ID's to be processed"
+    echo "  <plugin-list>  is a space-separated list of plugin ID's to be excluded"
+    echo "                 from processing"
+    echo "  <version-spec> is a dot-separated list of 0's and 1's, such as \"0.0.1\" that"
+    echo "                 specifies which component(s) of the versions to increment"
+    echo ""
+    echo "If <feature-list> is not specified, the file \"features.list\" is read for the"
+    echo "list of features to process."
+    echo "If <version-spec> is not specified, all versions is incremented by 0.0.1"
+    echo ""
+    echo "This tool checks that plugin versions are currently all the same as their"
+    echo "owning features, and if not, will not modify any files."
+}
 
-features=$(cat features.list)
+getArgs() {
+    while [[ $# -gt 0 ]]; do
+	if [[ "$1" = "--help" || "$1" = "-h" ]]; then
+	    usage
+	    exit 0
+	elif [[ "$1" = "--features" && $# -ge 2 ]]; then
+	    features="$2"
+	    shift
+	elif [[ "$1" = "--featureFile" && $# -ge 2 ]]; then
+	    readFeatures "$2"
+	    shift
+	elif [[ "$1" = "--checkOnly" ]]; then
+	    checkOnly=1
+	elif [[ "$1" = "--exclude" && $# -ge 2 ]]; then
+	    excludePlugins="$1"
+	    shift
+	elif [[ "$1" = "--increment" && $# -ge 2 ]]; then
+	    processIncr "$2"
+	    shift
+	elif [[ "$1" = -* ]]; then
+	    echo "Invalid option: $1, or missing argument"
+	    usage
+	    exit 1
+	else
+	    echo "Invalid argument: $1"
+	    usage
+	    exit 1
+	fi
+	shift
+    done
+}
 
-echo "#########"
-echo "Features:"
-echo "#########"
-for feature in ${features}; do echo "  ${feature}"; done
+processIncr() {
+    local incrementBy="$1"
+    # For now, just assumes that 'incrementBy' matches [01].[01].[01]
+    # Should check this, though...
+    incrMajor=$(echo $incrementBy | sed -e 's/\([01]\)\.[01]\.[01]/\1/')
+    incrMinor=$(echo $incrementBy | sed -e 's/[01]\.\([01]\)\.[01]/\1/')
+    incrRelease=$(echo $incrementBy | sed -e 's/[01]\.[01]\.\([01]\)/\1/')
+}
 
-incrMajor=0
-incrMinor=0
-incrRelease=1
+readFeatures() {
+    local featureFile="$1"
+    if [[ ! -r "${featureFile}" ]]; then
+	echo "Can't find/read feature file ${featureFile}!"
+	exit 1
+    fi
+    features=$(cat ${featureFile})
+}
 
-excludePlugins="com.ibm.shrike org.eclipse.pde.core"
+setDefaults() {
+    features="com.ibm.watson.safari org.eclipse.safari.runtime org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
+    excludePlugins="com.ibm.shrike org.eclipse.pde.core"
+    processIncr "0.0.1"
+}
 
+listFeatures() {
+    echo "#########"
+    echo "Features:"
+    echo "#########"
+    for feature in ${features}; do echo "  ${feature}"; done
+}
+
+checkAll() {
 # Pre-flight check w/ no modifications
-for feature in ${features}; do
-    echo "######################################"
-    echo "Checking ${feature}:"
-    echo "######################################"
+    for feature in ${features}; do
+	echo ""
+	echo "######################################"
+	echo "Checking ${feature}:"
+	echo "######################################"
 
-    featureXML=../${feature}.feature/feature.xml
+	featureXML=../${feature}.feature/feature.xml
 
-    oldVersion=$(grep 'version=' ${featureXML} | tail +2 | head -1)
+	# N.B.: Skip over the version number of the xml header
+	oldVersion=$(grep 'version=' ${featureXML} | tail +2 | head -1)
 
-    oldVersion=$(echo $oldVersion | sed -e 's/version="\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/')
-#   echo "${feature} => ${oldVersion}"
+	oldVersion=$(echo $oldVersion | sed -e 's/version="\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/')
+#       echo "${feature} => ${oldVersion}"
 
-    oldMajor=$(echo $oldVersion | sed -e 's/\([0-9]\+\)\.[0-9]\+\.[0-9]\+/\1/')
-    oldMinor=$(echo $oldVersion | sed -e 's/[0-9]\+\.\([0-9]\+\)\.[0-9]\+/\1/')
-    oldRelease=$(echo $oldVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
+	oldMajor=$(echo $oldVersion | sed -e 's/\([0-9]\+\)\.[0-9]\+\.[0-9]\+/\1/')
+	oldMinor=$(echo $oldVersion | sed -e 's/[0-9]\+\.\([0-9]\+\)\.[0-9]\+/\1/')
+	oldRelease=$(echo $oldVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
 
-    echo "Old version = ${oldMajor}.${oldMinor}.${oldRelease}"
+	echo "Old version = ${oldMajor}.${oldMinor}.${oldRelease}"
 
-    newMajor=${oldMajor}
-    newMinor=${oldMinor}
-    newRelease=${oldRelease}
+	newMajor=${oldMajor}
+	newMinor=${oldMinor}
+	newRelease=${oldRelease}
 
-    [ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
-    [ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
-    [ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
+	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
+	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
+	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
 
-    newVersion="${newMajor}.${newMinor}.${newRelease}"
+	newVersion="${newMajor}.${newMinor}.${newRelease}"
 
-    echo "New version = ${newVersion}"
+	echo "New version = ${newVersion}"
 
-    # Need to check versions of plugins referenced in the feature.xml.
-    pluginVersions=($(grep 'version=' ${featureXML} | grep -v '<import' | tail +3 | sed -e 's/version="\(.\+\)"\(\/>\)\?/\1/'))
+	# Need to check versions of plugins referenced in the feature.xml.
+	# N.B.: Filter out any "import" directives (they can have versions too),
+	#       and skip both the xml header version and the feature version
+	#       (which was obtained above).
+	pluginVersions=($(grep 'version=' ${featureXML} | grep -v '<import' | tail +3 | sed -e 's/version="\(.\+\)"\(\/>\)\?/\1/'))
 
-    # Discard the first "ID"; it will be the feature itself
-    plugins=($(sed -e 's/id="\(.\+\)"/\1/p
+	# Discard the first "ID"; it will be the feature itself
+	plugins=($(sed -e 's/id="\(.\+\)"/\1/p
 1,$d' < ${featureXML} | tail +2))
 
-    echo Feature ${feature} contains plugins:
-    for plugin in ${plugins[*]}; do echo "   ${plugin}"; done
-    echo ""
+	echo Feature ${feature} contains plugins:
+	for plugin in ${plugins[*]}; do echo "   ${plugin}"; done
+	echo ""
 
-    errors=""
+	errors=""
 
-    N=${#plugins[*]}
-    for((i=0; i < ${N}; i++)); do
-	plugin=${plugins[$i]}
-	pluginVersion=${pluginVersions[$i]}
+	local N=${#plugins[*]}
+	for((i=0; i < ${N}; i++)); do
+	    plugin=${plugins[$i]}
+	    pluginVersion=${pluginVersions[$i]}
 
-#	echo ${plugin}
-#	echo ${pluginVersion}
+#	    echo ${plugin}
+#	    echo ${pluginVersion}
 
-	# Is this an excluded plugin? If so, skip it
-        found=""
-	for excPlug in ${excludePlugins}; do
-            [ ${excPlug} = ${plugin} ] && found=1
-	done
-	if [ -n "${found}" ]; then echo "Skipping plugin ${plugin}"; continue; fi
+	    # Is this an excluded plugin? If so, skip it
+	    found=""
+	    for excPlug in ${excludePlugins}; do
+		[ ${excPlug} = ${plugin} ] && found=1
+	    done
+	    if [ -n "${found}" ]; then echo "Skipping plugin ${plugin}"; continue; fi
 	
-	echo Checking plugin ${plugin} version ${pluginVersion} ...
+	    echo Checking plugin ${plugin} version ${pluginVersion} ...
 
-	[ ${pluginVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in feature.xml"; errors="1")
+	    [ ${pluginVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in feature.xml"; errors="1")
 
-	manifest=../${plugin}/META-INF/MANIFEST.MF
+	    manifest=../${plugin}/META-INF/MANIFEST.MF
 
-	manifestVersion=$(sed -e 's/Bundle-Version: \(.\+\)/\1/p
+	    manifestVersion=$(sed -e 's/Bundle-Version: \(.\+\)/\1/p
 1,$d' ${manifest})
-	[ ${manifestVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in manifest"; errors="1")
+	    [ ${manifestVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in manifest"; errors="1")
+	done
+
+#       echo "Checking version of feature ${feature} in site.xml..."
+#       siteXML=site.xml
+#       featureVersion=$(grep "id=\"${feature}\"" ${siteXML} | grep "version=\"${oldVersion}\"")
+#       echo ${featureVersion}
+#       [ -n "${featureVersion}" ] || (echo "Feature version mismatch in feature.xml"; errors="1")
     done
 
-#    echo "Checking version of feature ${feature} in site.xml..."
-#    siteXML=site.xml
-#    featureVersion=$(grep "id=\"${feature}\"" ${siteXML} | grep "version=\"${oldVersion}\"")
-#    echo ${featureVersion}
-#    [ -n "${featureVersion}" ] || (echo "Feature version mismatch in feature.xml"; errors="1")
-done
+    [ -n "${errors}" ] && (echo "Checking failed; aborting."; exit 1)
+}
 
-[ -n "${errors}" ] && (echo "Checking failed; aborting."; exit 1)
+incrAll() {
+    for feature in ${features}; do
+	echo ""
+	echo "######################"
+	echo "Processing ${feature}:"
+	echo "######################"
 
-echo '######################################################'
-echo "All checks succeeded; proceeding to increment version."
-echo '######################################################'
+	featureXML=../${feature}.feature/feature.xml
 
-for feature in ${features}; do
-    echo "######################"
-    echo "Processing ${feature}:"
-    echo "######################"
+	oldVersion=$(grep 'version=' ${featureXML} | tail +2 | head -1)
+	oldVersion=$(echo $oldVersion | sed -e 's/version="\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/')
 
-    featureXML=../${feature}.feature/feature.xml
+	oldMajor=$(echo $oldVersion | sed -e 's/\([0-9]\+\)\.[0-9]\+\.[0-9]\+/\1/')
+	oldMinor=$(echo $oldVersion | sed -e 's/[0-9]\+\.\([0-9]\+\)\.[0-9]\+/\1/')
+	oldRelease=$(echo $oldVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
 
-    oldVersion=$(grep 'version=' ${featureXML} | tail +2 | head -1)
-    oldVersion=$(echo $oldVersion | sed -e 's/version="\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/')
+	newMajor=${oldMajor}
+	newMinor=${oldMinor}
+	newRelease=${oldRelease}
 
-    oldMajor=$(echo $oldVersion | sed -e 's/\([0-9]\+\)\.[0-9]\+\.[0-9]\+/\1/')
-    oldMinor=$(echo $oldVersion | sed -e 's/[0-9]\+\.\([0-9]\+\)\.[0-9]\+/\1/')
-    oldRelease=$(echo $oldVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
+	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
+	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
+	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
 
-    newMajor=${oldMajor}
-    newMinor=${oldMinor}
-    newRelease=${oldRelease}
+	newVersion="${newMajor}.${newMinor}.${newRelease}"
 
-    [ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
-    [ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
-    [ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
+        # Bump version number in feature.xml
+        # N.B. Need to bump versions of plugins referenced in the feature.xml too.
+        # This actually makes the task easier, since all matching "version" attributes
+        # must be rewritten.
+	sed -i -e "s/version=\"${oldVersion}\"/version=\"${newVersion}\"/" ${featureXML}
 
-    newVersion="${newMajor}.${newMinor}.${newRelease}"
-
-    # Bump version number in feature.xml
-    # N.B. Need to bump versions of plugins referenced in the feature.xml too.
-    # This actually makes the task easier, since all matching "version" attributes
-    # must be rewritten.
-    sed -i -e "s/version=\"${oldVersion}\"/version=\"${newVersion}\"/" ${featureXML}
-
-    # Discard the first "ID"; it will be the feature itself
-    plugins=$(sed -e 's/id="\(.\+\)"/\1/p
+        # Discard the first "ID"; it will be the feature itself
+	plugins=$(sed -e 's/id="\(.\+\)"/\1/p
 1,$d' < ${featureXML} | tail +2)
 
-    echo Feature ${feature} contains plugins:
-    for plugin in ${plugins}; do echo "   ${plugin}"; done
+	echo Feature ${feature} contains plugins:
+	for plugin in ${plugins}; do echo "   ${plugin}"; done
 
-    for plugin in ${plugins}; do
-        found=""
-	for excPlug in ${excludePlugins}; do
-            [ ${excPlug} = ${plugin} ] && found=1
+	for plugin in ${plugins}; do
+	    found=""
+	    for excPlug in ${excludePlugins}; do
+		[ ${excPlug} = ${plugin} ] && found=1
+	    done
+	    if [ -n "${found}" ]; then continue; fi
+	    echo "  Incrementing version of plugin ${plugin}..."
+
+	    manifest=../${plugin}/META-INF/MANIFEST.MF
+
+            # Bump version number in manifest
+	    sed -i -e "s/Bundle-Version: \(.\+\)/Bundle-Version: ${newVersion}/" ${manifest}
 	done
-	if [ -n "${found}" ]; then continue; fi
-	echo "  Incrementing version of plugin ${plugin}..."
 
-	manifest=../${plugin}/META-INF/MANIFEST.MF
-
-        # Bump version number in manifest
-	sed -i -e "s/Bundle-Version: \(.\+\)/Bundle-Version: ${newVersion}/" ${manifest}
+	echo "Adding new feature version to site.xml..."
+	echo "   <feature url=\"features/${feature}_${newVersion}.jar\" id=\"${feature}\" version=\"${newVersion}\"/>" >> site.xml
     done
 
-    echo "Adding new feature version to site.xml..."
-    echo "   <feature url=\"features/${feature}_${newVersion}.jar\" id=\"${feature}\" version=\"${newVersion}\"/>" >> site.xml
-done
+    sed -i -e 's/<\/site>//' site.xml
+    echo "</site>" >> site.xml
+}
 
-sed -i -e 's/<\/site>//' site.xml
-echo "</site>" >> site.xml
+main() {
+    setDefaults
+    getArgs "$@"
+    checkAll
 
-echo ""
-echo "Done with all features."
+    echo ""
+    echo '######################'
+    echo "All checks succeeded."
+    echo '######################'
+
+    [ -n "${checkOnly}" ] && exit 0
+
+    echo '#################################################'
+    echo "Proceeding to increment feature/plugin versions."
+    echo '#################################################'
+
+    incrAll
+
+    echo ""
+    echo "Done with all features."
+}
+
+main "$@"
+exit 0
