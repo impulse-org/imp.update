@@ -51,4 +51,9 @@
    <feature url="features/org.eclipse.safari.runtime_1.0.26.jar" id="org.eclipse.safari.runtime" version="1.0.26"/>
    <feature url="features/org.eclipse.safari.jikespg_1.0.26.jar" id="org.eclipse.safari.jikespg" version="1.0.26"/>
    <feature url="features/org.eclipse.safari.x10dt_1.0.26.jar" id="org.eclipse.safari.x10dt" version="1.0.26"/>
+
+   <feature url="features/com.ibm.watson.safari_1.0.27.jar" id="com.ibm.watson.safari" version="1.0.27"/>
+   <feature url="features/org.eclipse.safari.runtime_1.0.27.jar" id="org.eclipse.safari.runtime" version="1.0.27"/>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.27.jar" id="org.eclipse.safari.jikespg" version="1.0.27"/>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.27.jar" id="org.eclipse.safari.x10dt" version="1.0.27"/>
 </site>
