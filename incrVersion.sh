@@ -16,7 +16,7 @@ usage() {
     echo ""
     echo "If <feature-list> is not specified, the file \"features.list\" is read for the"
     echo "list of features to process."
-    echo "If <version-spec> is not specified, all versions is incremented by 0.0.1"
+    echo "If <version-spec> is not specified, all versions are incremented by 0.0.1"
     echo ""
     echo "This tool checks that plugin versions are currently all the same as their"
     echo "owning features, and if not, will not modify any files."
