@@ -12,6 +12,10 @@
 		<antcall target="plugin.jar"/>
 	</target>
 
+	<target name="publish" depends="init">
+		<copy todir="../../artifacts" file="${plugin.name}_${plugin.version}.jar"/>
+	</target>
+
 	<target name="build.sources" depends="init">
 		<available property="${plugin.src.zip}" file="${build.result.folder}/${plugin.src.zip}"/>
 		<antcall target="pluginsrc.zip"/>

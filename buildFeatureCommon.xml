@@ -24,6 +24,10 @@
 		</copy>
 	</target>
 
+	<target name="publish" depends="init">
+		<copy todir="../../artifacts" file="${feature.name}_${feature.version}.jar"/>
+	</target>
+
 	<!-- ========================================================================================= -->
 
 	<target name="build.child">
