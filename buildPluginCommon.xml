@@ -4,6 +4,7 @@
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
+<!--		<antcall target="build.sources"/> -->
 		<delete dir="${temp.folder}"/>
 	</target>
 
