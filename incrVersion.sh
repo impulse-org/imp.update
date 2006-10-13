@@ -73,7 +73,7 @@ readFeatures() {
 }
 
 setDefaults() {
-    features="com.ibm.watson.safari org.eclipse.safari.runtime org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
+    features="org.eclipse.safari.runtime org.eclipse.safari org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
     excludePlugins="com.ibm.shrike org.eclipse.pde.core"
     processIncr "0.0.1"
 }
@@ -172,6 +172,8 @@ checkAll() {
 }
 
 incrAll() {
+    [ -w site.xml ] || chmod u+w site.xml
+
     for feature in ${features}; do
 	echo ""
 	echo "######################"
@@ -225,9 +227,12 @@ incrAll() {
 	done
 
 	echo "Adding new feature version to site.xml..."
-	echo "   <feature url=\"features/${feature}_${newVersion}.jar\" id=\"${feature}\" version=\"${newVersion}\"/>" >> site.xml
+	echo "   <feature url=\"features/${feature}_${newVersion}.jar\" id=\"${feature}\" version=\"${newVersion}\">" >> site.xml
+	echo "      <category name=\"Language Meta-Tools\"/>" >> site.xml
+	echo "   </feature>" >> site.xml
     done
 
+    # Now remove the old closing "</site>" (which is now in the middle of the file) and add a new one at the end.
     sed -i -e 's/<\/site>//' site.xml
     echo "</site>" >> site.xml
 }
