@@ -30,7 +30,7 @@
 			<param name="feature.dir"     value="../org.eclipse.safari.jikespg.feature"/>
 		</antcall>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.safari"/>
+			<param name="feature.name"    value="com.ibm.watson.safari"/>
 			<param name="feature.version" value="${update.version}"/>
 			<param name="feature.dir"     value="../org.eclipse.safari.feature"/>
 		</antcall>
