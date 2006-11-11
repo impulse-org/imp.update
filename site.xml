@@ -3,15 +3,6 @@
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
       This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
-   <feature url="features/com.ibm.watson.safari_1.0.19.jar" id="com.ibm.watson.safari" version="1.0.19" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.20.jar" id="com.ibm.watson.safari" version="1.0.20" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.21.jar" id="com.ibm.watson.safari" version="1.0.21" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
    <feature url="features/org.eclipse.safari.jikespg_1.0.22.jar" id="org.eclipse.safari.jikespg" version="1.0.22">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -19,12 +10,6 @@
       <category name="Language Meta-Tools"/>
    </feature>
    <feature url="features/org.eclipse.safari.x10dt_1.0.22.jar" id="org.eclipse.safari.x10dt" version="1.0.22">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.22.jar" id="com.ibm.watson.safari" version="1.0.22" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.23.jar" id="com.ibm.watson.safari" version="1.0.23" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
       <category name="Language Meta-Tools"/>
    </feature>
    <feature url="features/org.eclipse.safari.jikespg_1.0.23.jar" id="org.eclipse.safari.jikespg" version="1.0.23">
@@ -36,23 +21,40 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.23.jar" id="org.eclipse.safari.x10dt" version="1.0.23">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.24.jar" id="com.ibm.watson.safari" version="1.0.24" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64"/>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.24.jar" id="org.eclipse.safari.jikespg" version="1.0.24"/>
-   <feature url="features/org.eclipse.safari.runtime_1.0.24.jar" id="org.eclipse.safari.runtime" version="1.0.24"/>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.24.jar" id="org.eclipse.safari.x10dt" version="1.0.24"/>
-   <feature url="features/com.ibm.watson.safari_1.0.25.jar" id="com.ibm.watson.safari" version="1.0.25"/>
-   <feature url="features/org.eclipse.safari.runtime_1.0.25.jar" id="org.eclipse.safari.runtime" version="1.0.25"/>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.25.jar" id="org.eclipse.safari.jikespg" version="1.0.25"/>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.25.jar" id="org.eclipse.safari.x10dt" version="1.0.25"/>
-   <feature url="features/com.ibm.watson.safari_1.0.26.jar" id="com.ibm.watson.safari" version="1.0.26"/>
-   <feature url="features/org.eclipse.safari.runtime_1.0.26.jar" id="org.eclipse.safari.runtime" version="1.0.26"/>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.26.jar" id="org.eclipse.safari.jikespg" version="1.0.26"/>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.26.jar" id="org.eclipse.safari.x10dt" version="1.0.26"/>
-   <feature url="features/com.ibm.watson.safari_1.0.27.jar" id="com.ibm.watson.safari" version="1.0.27"/>
-   <feature url="features/org.eclipse.safari.runtime_1.0.27.jar" id="org.eclipse.safari.runtime" version="1.0.27"/>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.27.jar" id="org.eclipse.safari.jikespg" version="1.0.27"/>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.27.jar" id="org.eclipse.safari.x10dt" version="1.0.27"/>
-   <feature url="features/com.ibm.watson.safari_1.0.28.jar" id="com.ibm.watson.safari" version="1.0.28" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
+   <feature url="features/org.eclipse.safari.jikespg_1.0.24.jar" id="org.eclipse.safari.jikespg" version="1.0.24">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.24.jar" id="org.eclipse.safari.runtime" version="1.0.24">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.24.jar" id="org.eclipse.safari.x10dt" version="1.0.24">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.25.jar" id="org.eclipse.safari.runtime" version="1.0.25">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.25.jar" id="org.eclipse.safari.jikespg" version="1.0.25">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.25.jar" id="org.eclipse.safari.x10dt" version="1.0.25">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.26.jar" id="org.eclipse.safari.runtime" version="1.0.26">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.26.jar" id="org.eclipse.safari.jikespg" version="1.0.26">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.26.jar" id="org.eclipse.safari.x10dt" version="1.0.26">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.27.jar" id="org.eclipse.safari.runtime" version="1.0.27">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.27.jar" id="org.eclipse.safari.jikespg" version="1.0.27">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.27.jar" id="org.eclipse.safari.x10dt" version="1.0.27">
       <category name="Language Meta-Tools"/>
    </feature>
    <feature url="features/org.eclipse.safari.jikespg_1.0.28.jar" id="org.eclipse.safari.jikespg" version="1.0.28">
@@ -64,9 +66,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.28.jar" id="org.eclipse.safari.x10dt" version="1.0.28">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/com.ibm.watson.safari_1.0.29.jar" id="com.ibm.watson.safari" version="1.0.29" os="aix,hpux,linux,macosx,qnx,solaris,win32" ws="carbon,gtk,motif,photon,win32" arch="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64">
-      <category name="Language Meta-Tools"/>
-   </feature>
    <feature url="features/org.eclipse.safari.jikespg_1.0.29.jar" id="org.eclipse.safari.jikespg" version="1.0.29">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -76,8 +75,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.29.jar" id="org.eclipse.safari.x10dt" version="1.0.29">
       <category name="Language Meta-Tools"/>
    </feature>
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.30.jar" id="org.eclipse.safari.runtime" version="1.0.30">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -90,7 +87,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.30.jar" id="org.eclipse.safari.x10dt" version="1.0.30">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.31.jar" id="org.eclipse.safari.runtime" version="1.0.31">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -103,7 +99,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.31.jar" id="org.eclipse.safari.x10dt" version="1.0.31">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.32.jar" id="org.eclipse.safari.runtime" version="1.0.32">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -116,7 +111,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.32.jar" id="org.eclipse.safari.x10dt" version="1.0.32">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.33.jar" id="org.eclipse.safari.runtime" version="1.0.33">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -129,7 +123,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.33.jar" id="org.eclipse.safari.x10dt" version="1.0.33">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.34.jar" id="org.eclipse.safari.runtime" version="1.0.34">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -142,7 +135,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.34.jar" id="org.eclipse.safari.x10dt" version="1.0.34">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.35.jar" id="org.eclipse.safari.runtime" version="1.0.35">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -155,7 +147,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.35.jar" id="org.eclipse.safari.x10dt" version="1.0.35">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.36.jar" id="org.eclipse.safari.runtime" version="1.0.36">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -168,7 +159,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.36.jar" id="org.eclipse.safari.x10dt" version="1.0.36">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.37.jar" id="org.eclipse.safari.runtime" version="1.0.37">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -181,4 +171,17 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.37.jar" id="org.eclipse.safari.x10dt" version="1.0.37">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/org.eclipse.safari.runtime_1.0.38.jar" id="org.eclipse.safari.runtime" version="1.0.38">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari_1.0.38.jar" id="org.eclipse.safari" version="1.0.38">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.38.jar" id="org.eclipse.safari.jikespg" version="1.0.38">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.38.jar" id="org.eclipse.safari.x10dt" version="1.0.38">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
