@@ -74,7 +74,7 @@ readFeatures() {
 
 setDefaults() {
     features="org.eclipse.safari.runtime org.eclipse.safari org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
-    excludePlugins="com.ibm.shrike org.eclipse.pde.core"
+    excludePlugins="com.ibm.shrike org.eclipse.pde.core polyglot2"
     processIncr "0.0.1"
 }
 
