@@ -27,11 +27,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.41.jar" id="org.eclipse.safari.x10dt" version="1.0.41">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="http://orquesta.watson.ibm.com/eclipse/updates/polyglot/features/polyglot2_2.0.0.jar" id="polyglot2" version="2.0.0">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.42.jar" id="org.eclipse.safari.runtime" version="1.0.42">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -44,7 +39,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.42.jar" id="org.eclipse.safari.x10dt" version="1.0.42">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.43.jar" id="org.eclipse.safari.runtime" version="1.0.43">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -57,7 +51,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.43.jar" id="org.eclipse.safari.x10dt" version="1.0.43">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.44.jar" id="org.eclipse.safari.runtime" version="1.0.44">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -70,4 +63,5 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.44.jar" id="org.eclipse.safari.x10dt" version="1.0.44">
       <category name="Language Meta-Tools"/>
    </feature>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
