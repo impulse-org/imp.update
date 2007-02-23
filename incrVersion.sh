@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage() {
+function usage() {
     echo "Usage: $0 [-h | --help] [--checkOnly] [--features <feature-list>]"
     echo "       [--featureFile <feature-file>] [--exclude <plugin-list>]"
     echo "       [--incrementBy <version-spec>]"
@@ -74,7 +74,7 @@ readFeatures() {
 
 setDefaults() {
     features="org.eclipse.safari.runtime org.eclipse.safari org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
-    excludePlugins="com.ibm.shrike org.eclipse.pde.core polyglot2"
+    excludePlugins="com.ibm.shrike org.eclipse.pde.core polyglot lpg.runtime.java"
     processIncr "0.0.1"
 }
 
