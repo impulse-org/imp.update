@@ -64,4 +64,17 @@
       <category name="Language Meta-Tools"/>
    </feature>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
+
+   <feature url="features/org.eclipse.safari.runtime_1.0.45.jar" id="org.eclipse.safari.runtime" version="1.0.45">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari_1.0.45.jar" id="org.eclipse.safari" version="1.0.45">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_1.0.45.jar" id="org.eclipse.safari.jikespg" version="1.0.45">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_1.0.45.jar" id="org.eclipse.safari.x10dt" version="1.0.45">
+      <category name="Language Meta-Tools"/>
+   </feature>
 </site>
