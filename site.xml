@@ -3,14 +3,9 @@
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
       This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
-
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
-   <category-def name="Parser Generator Tools" label="Parser Generator Tools"/>
-
    <feature url="features/lpg.runtime.feature_2.0.1.jar" id="lpg.runtime.feature" version="2.0.1">
       <category name="Parser Generator Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.40.jar" id="org.eclipse.safari.runtime" version="1.0.40">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -107,7 +102,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.47.jar" id="org.eclipse.safari.x10dt" version="1.0.47">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.48.jar" id="org.eclipse.safari.runtime" version="1.0.48">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -120,4 +114,9 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.48.jar" id="org.eclipse.safari.x10dt" version="1.0.48">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/lpg.runtime.feature_2.0.2.jar" id="lpg.runtime.feature" version="2.0.2">
+      <category name="Parser Generator Tools"/>
+   </feature>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
+   <category-def name="Parser Generator Tools" label="Parser Generator Tools"/>
 </site>
