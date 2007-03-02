@@ -117,9 +117,6 @@
    <feature url="features/lpg.runtime.feature_2.0.2.jar" id="lpg.runtime.feature" version="2.0.2">
       <category name="Parser Generator Tools"/>
    </feature>
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
-   <category-def name="Parser Generator Tools" label="Parser Generator Tools"/>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.49.jar" id="org.eclipse.safari.runtime" version="1.0.49">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -132,7 +129,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.49.jar" id="org.eclipse.safari.x10dt" version="1.0.49">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.50.jar" id="org.eclipse.safari.runtime" version="1.0.50">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -145,7 +141,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.50.jar" id="org.eclipse.safari.x10dt" version="1.0.50">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.51.jar" id="org.eclipse.safari.runtime" version="1.0.51">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -158,7 +153,6 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.51.jar" id="org.eclipse.safari.x10dt" version="1.0.51">
       <category name="Language Meta-Tools"/>
    </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.52.jar" id="org.eclipse.safari.runtime" version="1.0.52">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -171,4 +165,9 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.52.jar" id="org.eclipse.safari.x10dt" version="1.0.52">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/lpg.runtime_2.0.3.jar" id="lpg.runtime" version="2.0.3">
+      <category name="Parser Generator Tools"/>
+   </feature>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
+   <category-def name="Parser Generator Tools" label="Parser Generator Tools"/>
 </site>
