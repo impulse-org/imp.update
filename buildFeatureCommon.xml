@@ -20,7 +20,12 @@
 	<target name="gather.bin.parts" depends="init" if="feature.base">
 		<mkdir dir="${feature.base}/features/${feature.name}_${feature.version}"/>
 		<copy todir="${feature.base}/features/${feature.name}_${feature.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="feature.xml"/>
+			<fileset dir="${basedir}">
+				<include name="feature.xml"/>
+				<include name="feature.properties"/>
+				<include name="cpl-v10.html"/>
+				<include name="eclipse_update_120.jpg"/>
+			</fileset>
 		</copy>
 	</target>
 
