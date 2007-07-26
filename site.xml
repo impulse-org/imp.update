@@ -3,92 +3,6 @@
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
       This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
-   <feature url="features/lpg.runtime.feature_2.0.1.jar" id="lpg.runtime.feature" version="2.0.1">
-      <category name="Parser Generator Tools"/>
-   </feature>
-   <feature url="features/lpg.runtime.feature_2.0.2.jar" id="lpg.runtime.feature" version="2.0.2">
-      <category name="Parser Generator Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.runtime_1.0.50.jar" id="org.eclipse.safari.runtime" version="1.0.50">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.50.jar" id="org.eclipse.safari" version="1.0.50">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.50.jar" id="org.eclipse.safari.jikespg" version="1.0.50">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.50.jar" id="org.eclipse.safari.x10dt" version="1.0.50">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.runtime_1.0.51.jar" id="org.eclipse.safari.runtime" version="1.0.51">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.51.jar" id="org.eclipse.safari" version="1.0.51">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.51.jar" id="org.eclipse.safari.jikespg" version="1.0.51">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.51.jar" id="org.eclipse.safari.x10dt" version="1.0.51">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.runtime_1.0.52.jar" id="org.eclipse.safari.runtime" version="1.0.52">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.52.jar" id="org.eclipse.safari" version="1.0.52">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.52.jar" id="org.eclipse.safari.jikespg" version="1.0.52">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.52.jar" id="org.eclipse.safari.x10dt" version="1.0.52">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/lpg.runtime_2.0.3.jar" id="lpg.runtime" version="2.0.3">
-      <category name="Parser Generator Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.runtime_1.0.53.jar" id="org.eclipse.safari.runtime" version="1.0.53">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.53.jar" id="org.eclipse.safari" version="1.0.53">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.53.jar" id="org.eclipse.safari.jikespg" version="1.0.53">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.53.jar" id="org.eclipse.safari.x10dt" version="1.0.53">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
-   <category-def name="Parser Generator Tools" label="Parser Generator Tools"/>
-
-   <feature url="features/org.eclipse.safari.runtime_1.0.54.jar" id="org.eclipse.safari.runtime" version="1.0.54">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.54.jar" id="org.eclipse.safari" version="1.0.54">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.54.jar" id="org.eclipse.safari.jikespg" version="1.0.54">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.54.jar" id="org.eclipse.safari.x10dt" version="1.0.54">
-      <category name="Language Meta-Tools"/>
-   </feature>
-
-   <feature url="features/org.eclipse.safari.runtime_1.0.55.jar" id="org.eclipse.safari.runtime" version="1.0.55">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari_1.0.55.jar" id="org.eclipse.safari" version="1.0.55">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.jikespg_1.0.55.jar" id="org.eclipse.safari.jikespg" version="1.0.55">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.safari.x10dt_1.0.55.jar" id="org.eclipse.safari.x10dt" version="1.0.55">
-      <category name="Language Meta-Tools"/>
-   </feature>
-
    <feature url="features/org.eclipse.safari.runtime_1.0.56.jar" id="org.eclipse.safari.runtime" version="1.0.56">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -101,4 +15,17 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.56.jar" id="org.eclipse.safari.x10dt" version="1.0.56">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/org.eclipse.safari.runtime_3.2.57.jar" id="org.eclipse.safari.runtime" version="3.2.57">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari_3.2.57.jar" id="org.eclipse.safari" version="3.2.57">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.jikespg_3.2.57.jar" id="org.eclipse.safari.jikespg" version="3.2.57">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.safari.x10dt_3.2.57.jar" id="org.eclipse.safari.x10dt" version="3.2.57">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
