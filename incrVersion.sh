@@ -38,7 +38,7 @@ getArgs() {
 	elif [[ "$1" = "--exclude" && $# -ge 2 ]]; then
 	    excludePlugins="$1"
 	    shift
-	elif [[ "$1" = "--increment" && $# -ge 2 ]]; then
+	elif [[ "$1" = "--incrementBy" && $# -ge 2 ]]; then
 	    processIncr "$2"
 	    shift
 	elif [[ "$1" = -* ]]; then
@@ -56,11 +56,14 @@ getArgs() {
 
 processIncr() {
     local incrementBy="$1"
-    # For now, just assumes that 'incrementBy' matches [01].[01].[01]
+    # For now, just assumes that 'incrementBy' matches [0-9].[0-9].[0-9]
     # Should check this, though...
-    incrMajor=$(echo $incrementBy | sed -e 's/\([01]\)\.[01]\.[01]/\1/')
-    incrMinor=$(echo $incrementBy | sed -e 's/[01]\.\([01]\)\.[01]/\1/')
-    incrRelease=$(echo $incrementBy | sed -e 's/[01]\.[01]\.\([01]\)/\1/')
+    incrMajor=$(echo $incrementBy | sed -e 's/\([0-9]\)\.[0-9]\.[0-9]/\1/')
+    incrMinor=$(echo $incrementBy | sed -e 's/[0-9]\.\([0-9]\)\.[0-9]/\1/')
+    incrRelease=$(echo $incrementBy | sed -e 's/[0-9]\.[0-9]\.\([0-9]\)/\1/')
+    echo "Major version increment: $incrMajor"
+    echo "Minor version increment: $incrMinor"
+    echo "Release version increment: $incrRelease"
 }
 
 readFeatures() {
@@ -74,7 +77,7 @@ readFeatures() {
 
 setDefaults() {
     features="org.eclipse.safari.runtime org.eclipse.safari org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
-    excludePlugins="com.ibm.shrike org.eclipse.pde.core polyglot lpg.runtime.java"
+    excludePlugins="com.ibm.wala.shrike org.eclipse.pde.core polyglot lpg.runtime.java"
     processIncr "0.0.1"
 }
 
@@ -111,9 +114,9 @@ checkAll() {
 	newMinor=${oldMinor}
 	newRelease=${oldRelease}
 
-	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
-	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
-	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
+	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+${incrMajor}
+	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+${incrMinor}
+	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+${incrRelease}
 
 	newVersion="${newMajor}.${newMinor}.${newRelease}"
 
