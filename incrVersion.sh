@@ -76,8 +76,8 @@ readFeatures() {
 }
 
 setDefaults() {
-    features="org.eclipse.safari.runtime org.eclipse.safari org.eclipse.safari.jikespg org.eclipse.safari.x10dt"
-    excludePlugins="com.ibm.wala.shrike org.eclipse.pde.core polyglot lpg.runtime.java"
+    features="org.eclipse.imp.runtime org.eclipse.imp org.eclipse.imp.lpg org.eclipse.imp.x10dt"
+    excludePlugins="com.ibm.wala.shrike polyglot lpg.runtime.java"
     processIncr "0.0.1"
 }
 
