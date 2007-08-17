@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="featureCommon" basedir=".">
-	<target name="build.feature.jar" depends="init" description="Build the feature jar for SAFARI for an update site.">
+	<target name="build.feature.jar" depends="init" description="Build the feature jar for IMP for an update site.">
 		<property name="feature.base" value="${feature.temp.folder}"/>
 		<delete dir="${feature.temp.folder}"/>
 		<mkdir dir="${feature.temp.folder}"/>

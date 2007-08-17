@@ -27,5 +27,17 @@
    <feature url="features/org.eclipse.safari.x10dt_3.2.57.jar" id="org.eclipse.safari.x10dt" version="3.2.57">
       <category name="Language Meta-Tools"/>
    </feature>
+   <feature url="features/org.eclipse.imp_3.2.58.jar" id="org.eclipse.imp" version="3.2.58">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_3.2.58.jar" id="org.eclipse.imp.lpg" version="3.2.58">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime_3.2.58.jar" id="org.eclipse.imp.runtime" version="3.2.58">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.x10dt_3.2.58.jar" id="org.eclipse.imp.x10dt" version="3.2.58">
+      <category name="Language Meta-Tools"/>
+   </feature>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>

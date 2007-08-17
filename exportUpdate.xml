@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="com.ibm.watson.safari.update" default="build.update.zip" basedir=".">
-	<import file="../org.eclipse.safari.feature/buildCommon.xml"/>
+<project name="org.eclipse.imp.update" default="build.update.zip" basedir=".">
+	<import file="../org.eclipse.imp.feature/buildCommon.xml"/>
 
-	<property name="update.name"        value="org.eclipse.safari.update"/>
-	<property name="update.version"     value="${safari.version}"/>
+	<property name="update.name"        value="org.eclipse.imp.update"/>
+	<property name="update.version"     value="${imp.version}"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 	<property name="update.server"      value="orquesta.watson.ibm.com"/>
@@ -20,24 +20,24 @@
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="export.features"/>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.safari.runtime"/>
+			<param name="feature.name"    value="org.eclipse.imp.runtime"/>
 			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.safari.runtime.feature"/>
+			<param name="feature.dir"     value="../org.eclipse.imp.runtime.feature"/>
 		</antcall>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.safari.jikespg"/>
+			<param name="feature.name"    value="org.eclipse.imp.lpg"/>
 			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.safari.jikespg.feature"/>
+			<param name="feature.dir"     value="../org.eclipse.imp.lpg.feature"/>
 		</antcall>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.safari"/>
+			<param name="feature.name"    value="org.eclipse.imp"/>
 			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.safari.feature"/>
+			<param name="feature.dir"     value="../org.eclipse.imp.feature"/>
 		</antcall>
 		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.safari.x10dt"/>
+			<param name="feature.name"    value="org.eclipse.imp.x10dt"/>
 			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.safari.x10dt.feature"/>
+			<param name="feature.dir"     value="../org.eclipse.imp.x10dt.feature"/>
 		</antcall>
 		<zip destfile="${zip.file}" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${update.temp.folder}"/>
@@ -68,10 +68,10 @@
 
 	<target name="export.features">
 		<echo message="Building feature jars..."/>
-		<ant antfile="../org.eclipse.safari.runtime.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.runtime.feature"/>
-		<ant antfile="../org.eclipse.safari.x10dt.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.x10dt.feature"/>
-		<ant antfile="../org.eclipse.safari.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.feature"/>
-		<ant antfile="../org.eclipse.safari.jikespg.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.safari.jikespg.feature"/>
+		<ant antfile="../org.eclipse.imp.runtime.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.runtime.feature"/>
+		<ant antfile="../org.eclipse.imp.x10dt.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.x10dt.feature"/>
+		<ant antfile="../org.eclipse.imp.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.feature"/>
+		<ant antfile="../org.eclipse.imp.lpg.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.lpg.feature"/>
 		<echo message="Done building feature jars."/>
 	</target>
 </project>
