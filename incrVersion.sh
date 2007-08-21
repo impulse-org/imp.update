@@ -155,13 +155,16 @@ checkAll() {
 	
 	    echo Checking plugin ${plugin} version ${pluginVersion} ...
 
-	    [ ${pluginVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in feature.xml"; errors="1")
+	    pluginRelease=$(echo $pluginVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
+
+	    [ ${pluginRelease} = ${oldRelease} ] || (echo "  Plugin version mismatch in feature.xml: expected $oldRelease"; errors="1")
 
 	    manifest=../${plugin}/META-INF/MANIFEST.MF
 
 	    manifestVersion=$(sed -e 's/Bundle-Version: \(.\+\)/\1/p
 1,$d' ${manifest})
-	    [ ${manifestVersion} = ${oldVersion} ] || (echo "  Plugin version mismatch in manifest"; errors="1")
+	    manifestRelease=$(echo $manifestVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
+	    [ ${manifestRelease} = ${oldRelease} ] || (echo "  Plugin version mismatch in manifest: expected $oldRelease"; errors="1")
 	done
 
 #       echo "Checking version of feature ${feature} in site.xml..."
@@ -196,9 +199,9 @@ incrAll() {
 	newMinor=${oldMinor}
 	newRelease=${oldRelease}
 
-	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+1
-	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+1
-	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+1
+	[ ${incrMajor} -gt 0 ] && let newMajor=oldMajor+${incrMajor}
+	[ ${incrMinor} -gt 0 ] && let newMinor=oldMinor+${incrMinor}
+	[ ${incrRelease} -gt 0 ] && let newRelease=oldRelease+${incrRelease}
 
 	newVersion="${newMajor}.${newMinor}.${newRelease}"
 
