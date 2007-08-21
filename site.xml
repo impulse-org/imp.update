@@ -3,6 +3,8 @@
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
       This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
    </description>
+   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
+
    <feature url="features/org.eclipse.safari.runtime_1.0.56.jar" id="org.eclipse.safari.runtime" version="1.0.56">
       <category name="Language Meta-Tools"/>
    </feature>
@@ -15,29 +17,17 @@
    <feature url="features/org.eclipse.safari.x10dt_1.0.56.jar" id="org.eclipse.safari.x10dt" version="1.0.56">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.safari.runtime_3.2.57.jar" id="org.eclipse.safari.runtime" version="3.2.57">
+
+   <feature url="features/org.eclipse.imp.runtime_3.2.59.jar" id="org.eclipse.imp.runtime" version="3.2.59">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.safari_3.2.57.jar" id="org.eclipse.safari" version="3.2.57">
+   <feature url="features/org.eclipse.imp_3.2.59.jar" id="org.eclipse.imp" version="3.2.59">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.safari.jikespg_3.2.57.jar" id="org.eclipse.safari.jikespg" version="3.2.57">
+   <feature url="features/org.eclipse.imp.lpg_3.2.59.jar" id="org.eclipse.imp.lpg" version="3.2.59">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.safari.x10dt_3.2.57.jar" id="org.eclipse.safari.x10dt" version="3.2.57">
+   <feature url="features/org.eclipse.imp.x10dt_3.2.59.jar" id="org.eclipse.imp.x10dt" version="3.2.59">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp_3.2.58.jar" id="org.eclipse.imp" version="3.2.58">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_3.2.58.jar" id="org.eclipse.imp.lpg" version="3.2.58">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_3.2.58.jar" id="org.eclipse.imp.runtime" version="3.2.58">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.58.jar" id="org.eclipse.imp.x10dt" version="3.2.58">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 </site>
