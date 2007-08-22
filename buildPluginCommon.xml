@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="pluginCommon" basedir=".">
+	<property name="plugin.version.prefix31" value="1.0"/>
+	<property name="plugin.version.prefix32" value="3.2"/>
+	<property name="plugin.version.suffix" value="61"/>
+	<property name="plugins.version.31" value="${plugin.version.prefix31}.${plugin.version.suffix}"/>
+	<property name="plugins.version.32" value="${plugin.version.prefix32}.${plugin.version.suffix}"/>
+
 	<target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin.name} for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
