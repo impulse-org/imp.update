@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <description url="http://orquesta.watson.ibm.com/eclipse/updates/SAFARI/">
-      This Eclipse update site hosts the distribution for the SAFARI analysis and refactoring framework.
+      This Eclipse update site hosts the distribution for the IMP IDE, analysis and refactoring framework.
    </description>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 
@@ -18,16 +18,16 @@
       <category name="Language Meta-Tools"/>
    </feature>
 
-   <feature url="features/org.eclipse.imp.runtime_3.2.59.jar" id="org.eclipse.imp.runtime" version="3.2.59">
+   <feature url="features/org.eclipse.imp.runtime_3.2.61.jar" id="org.eclipse.imp.runtime" version="3.2.61">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp_3.2.59.jar" id="org.eclipse.imp" version="3.2.59">
+   <feature url="features/org.eclipse.imp_3.2.61.jar" id="org.eclipse.imp" version="3.2.61">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp.lpg_3.2.59.jar" id="org.eclipse.imp.lpg" version="3.2.59">
+   <feature url="features/org.eclipse.imp.lpg_3.2.61.jar" id="org.eclipse.imp.lpg" version="3.2.61">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.59.jar" id="org.eclipse.imp.x10dt" version="3.2.59">
+   <feature url="features/org.eclipse.imp.x10dt_3.2.61.jar" id="org.eclipse.imp.x10dt" version="3.2.61">
       <category name="Language Meta-Tools"/>
    </feature>
 </site>
