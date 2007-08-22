@@ -228,8 +228,25 @@ incrAll() {
 
 	    manifest=../${plugin}/META-INF/MANIFEST.MF
 
+	    oldPluginVersion=$(grep 'Bundle-Version: ' ${manifest})
+	    oldPluginVersion=$(echo $oldPluginVersion | sed -e 's/Bundle-Version: \([0-9]\+\.[0-9]\+\.[0-9]\+\)/\1/')
+
+	    oldPluginMajor=$(echo $oldPluginVersion | sed -e 's/\([0-9]\+\)\.[0-9]\+\.[0-9]\+/\1/')
+	    oldPluginMinor=$(echo $oldPluginVersion | sed -e 's/[0-9]\+\.\([0-9]\+\)\.[0-9]\+/\1/')
+	    oldPluginRelease=$(echo $oldPluginVersion | sed -e 's/[0-9]\+\.[0-9]\+\.\([0-9]\+\)/\1/')
+
+	    newPluginMajor=${oldPluginMajor}
+	    newPluginMinor=${oldPluginMinor}
+	    newPluginRelease=${oldPluginRelease}
+
+	    [ ${incrMajor} -gt 0 ] && let newPluginMajor=oldPluginMajor+${incrMajor}
+	    [ ${incrMinor} -gt 0 ] && let newPluginMinor=oldPluginMinor+${incrMinor}
+	    [ ${incrRelease} -gt 0 ] && let newPluginRelease=oldPluginRelease+${incrRelease}
+
+	    newPluginVersion="${newPluginMajor}.${newPluginMinor}.${newPluginRelease}"
+
             # Bump version number in manifest
-	    sed -i -e "s/Bundle-Version: \(.\+\)/Bundle-Version: ${newVersion}/" ${manifest}
+	    sed -i -e "s/Bundle-Version: \(.\+\)/Bundle-Version: ${newPluginVersion}/" ${manifest}
 	done
 
 	echo "Adding new feature version to site.xml..."
