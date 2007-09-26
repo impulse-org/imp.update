@@ -5,32 +5,6 @@
    </description>
    <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 
-   <feature url="features/org.eclipse.imp.runtime_3.2.62.jar" id="org.eclipse.imp.runtime" version="3.2.62">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp_3.2.62.jar" id="org.eclipse.imp" version="3.2.62">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_3.2.62.jar" id="org.eclipse.imp.lpg" version="3.2.62">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.62.jar" id="org.eclipse.imp.x10dt" version="3.2.62">
-      <category name="Language Meta-Tools"/>
-   </feature>
-
-   <feature url="features/org.eclipse.imp.runtime_3.2.63.jar" id="org.eclipse.imp.runtime" version="3.2.63">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp_3.2.63.jar" id="org.eclipse.imp" version="3.2.63">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_3.2.63.jar" id="org.eclipse.imp.lpg" version="3.2.63">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.63.jar" id="org.eclipse.imp.x10dt" version="3.2.63">
-      <category name="Language Meta-Tools"/>
-   </feature>
-
    <feature url="features/org.eclipse.imp.runtime_3.2.64.jar" id="org.eclipse.imp.runtime" version="3.2.64">
       <category name="Language Meta-Tools"/>
    </feature>
