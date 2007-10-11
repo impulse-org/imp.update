@@ -30,4 +30,17 @@
    <feature url="features/org.eclipse.imp.x10dt_3.2.65.jar" id="org.eclipse.imp.x10dt" version="3.2.65">
       <category name="Language Meta-Tools"/>
    </feature>
+
+   <feature url="features/org.eclipse.imp.runtime_3.2.66.jar" id="org.eclipse.imp.runtime" version="3.2.66">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp_3.2.66.jar" id="org.eclipse.imp" version="3.2.66">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_3.2.66.jar" id="org.eclipse.imp.lpg" version="3.2.66">
+      <category name="Language Meta-Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.x10dt_3.2.66.jar" id="org.eclipse.imp.x10dt" version="3.2.66">
+      <category name="Language Meta-Tools"/>
+   </feature>
 </site>
