@@ -35,7 +35,7 @@ setDefaults() {
     updateProject="org.eclipse.safari.update"
     featureProjects="org.eclipse.safari org.eclipse.safari.feature org.eclipse.safari.runtime org.eclipse.safari.runtime.feature org.eclipse.safari.jikespg org.eclipse.safari.jikespg.feature org.eclipse.safari.x10dt org.eclipse.safari.x10dt.feature"
     # TODO read feature manifests to determine set of plugins
-    pluginProjects="com.ibm.watson.safari.cheatsheets com.ibm.watson.safari.x10 com.ibm.watson.safari.xform com.ibm.watson.smapi com.ibm.watson.smapifier org.eclipse.safari.analysis org.eclipse.safari.jikespg.runtime org.eclipse.uide.runtime org.eclipse.uide org.jikespg.uide x10.uide"
+    pluginProjects="com.ibm.watson.safari.cheatsheets com.ibm.watson.safari.x10 com.ibm.watson.safari.xform org.eclipse.imp.smapi org.eclipse.imp.smapifier org.eclipse.safari.analysis org.eclipse.safari.jikespg.runtime org.eclipse.uide.runtime org.eclipse.uide org.jikespg.uide x10.uide"
     safariProjects="$updateProject $featureProjects $pluginProjects"
 
     # TODO Extract this info from a CVS repo descriptor (e.g. ":ext:user@host:path")

@@ -36,7 +36,7 @@ setDefaults() {
     extraFeatures="lpg.runtime polyglot"
     featureNames="org.eclipse.safari.jikespg org.eclipse.safari.runtime org.eclipse.safari.x10dt org.eclipse.safari"
     # TODO read feature manifests to determine set of plugins
-    pluginNames="com.ibm.shrike com.ibm.watson.safari.cheatsheets com.ibm.watson.safari.x10 com.ibm.watson.safari.xform com.ibm.watson.smapi com.ibm.watson.smapifier lpg.runtime org.eclipse.safari.analysis org.eclipse.safari.jikespg.runtime org.eclipse.safari.jikespg org.eclipse.safari.runtime org.eclipse.safari.x10dt org.eclipse.safari org.eclipse.uide.runtime org.eclipse.uide org.jikespg.uide polyglot x10.compiler x10.runtime x10.uide"
+    pluginNames="com.ibm.shrike com.ibm.watson.safari.cheatsheets com.ibm.watson.safari.x10 com.ibm.watson.safari.xform org.eclipse.imp.smapi org.eclipse.imp.smapifier lpg.runtime org.eclipse.safari.analysis org.eclipse.safari.jikespg.runtime org.eclipse.safari.jikespg org.eclipse.safari.runtime org.eclipse.safari.x10dt org.eclipse.safari org.eclipse.uide.runtime org.eclipse.uide org.jikespg.uide polyglot x10.compiler x10.runtime x10.uide"
 }
 
 checkSettings() {
