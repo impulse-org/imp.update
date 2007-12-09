@@ -9,13 +9,9 @@
     <property name="javacFailOnError" value="true"/>
     <property name="javacDebugInfo" value="on"/>
     <property name="javacVerbose" value="false"/>
-    <property name="javacSource" value="1.5"/>
-    <property name="javacTarget" value="1.5"/>
-    <property name="compilerArg" value=""/>
 
     <echo message="java.home = ${java.home}"/>
     <echo message="ant.home = ${ant.home}"/>
-    <echo message="eclipse.home = ${eclipse.home}"/>
 
     <path id="path_bootclasspath">
         <fileset dir="${java.home}/lib">
@@ -45,6 +41,8 @@
             <os family="windows"/>
 	</and>
     </condition>
+
+    <echo message="eclipse.home = ${eclipse.home}"/>
 
     <path id="path_eclipse.build.path">
         <fileset dir="${eclipse.home}/plugins">
