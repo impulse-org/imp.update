@@ -7,6 +7,101 @@
 	<property name="plugins.version.31" value="${plugin.version.prefix31}.${plugin.version.suffix}"/>
 	<property name="plugins.version.32" value="${plugin.version.prefix32}.${plugin.version.suffix}"/>
 
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	</target>
+
+	<target name="init" depends="properties">
+		<loadfile property="plugin.id" srcfile="META-INF/MANIFEST.MF">
+			<filterchain>
+				<containsregex pattern="Bundle-SymbolicName:"/>
+				<replaceregex pattern="Bundle-SymbolicName: ([^;]*)(;.*)?" replace="\1"/>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>
+		<!-- <echo message="Plugin ID = ${plugin.id}"/> -->
+
+		<loadfile property="plugin.version" srcfile="META-INF/MANIFEST.MF">
+			<filterchain>
+				<containsregex pattern="Bundle-Version:"/>
+				<replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>
+		<!-- <echo message="Plugin version = ${plugin.version}"/> -->
+
+		<property name="plugin.jar.name" value="${plugin.id}_${plugin.version}.jar"/>
+		<property name="plugin.zip.name" value="${plugin.id}_${plugin.version}.zip"/>
+		<property name="plugin.src.zip" value="${plugin.id}src.zip"/>
+		<property name="plugin.destination" value="${basedir}"/>
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/${plugin.id}">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+
+		<!-- LPG-related properties for plugins with grammar files -->
+		<property name="lpg.location" value="../lpg.runtime.java"/>
+		<property name="lpg.executable" location="../lpg.generator.${baseos}_${os.arch}/lpgexe/lpg-${baseos}_${os.arch}"/>
+		<property name="lpg.templates" location="${lpg.location}/templates"/>
+		<property name="lpg.metatooling.location" value="../org.eclipse.imp.lpg.metatooling"/>
+		<property name="lpg.metatooling.templates" location="${lpg.metatooling.location}/templates"/>
+	</target>
+
+	<target name="javaInit" description="Initializes compiler settings from bundle meta-data">
+		<loadfile property="javacSource" srcfile=".settings/org.eclipse.jdt.core.prefs">
+			<filterchain>
+				<containsregex pattern="org.eclipse.jdt.core.compiler.source"/>
+				<replaceregex pattern="org.eclipse.jdt.core.compiler.source=(.*)" replace="\1"/>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>
+		<echo message="Java source compatibility = ${javacSource}"/>
+
+		<loadfile property="javacTarget" srcfile=".settings/org.eclipse.jdt.core.prefs">
+			<filterchain>
+				<containsregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform"/>
+				<replaceregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform=(.*)" replace="\1"/>
+				<striplinebreaks/>
+			</filterchain>
+		</loadfile>
+		<echo message="Java target compatibility = ${javacTarget}"/>
+
+		<property name="compilerArg" value=""/>
+
+		<loadfile property="plugin.dependencies" srcfile="META-INF/MANIFEST.MF">
+			<filterchain>
+				<tokenfilter>
+					<filetokenizer/>
+					<replaceregex pattern=",[\r\n]* *" replace="," flags="gs"/>
+				</tokenfilter>
+				<containsregex pattern="Require-Bundle: "/>
+				<replaceregex pattern="Require-Bundle: (.*)" replace="\1"/>
+				<!-- Filter out Eclipse plugins that are handled by eclipse.build.path -->
+				<replaceregex pattern="org\.eclipse\.compare[^,]*,?" replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.core[^,]*,?"    replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.jdt[^,]*,?"     replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.jface[^,]*,?"   replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.ltk[^,]*,?"     replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.pde[^,]*,?"     replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.search[^,]*,?"  replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.team[^,]*,?"    replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.text[^,]*,?"    replace="" flags="g"/>
+				<replaceregex pattern="org\.eclipse\.ui[^,]*,?"      replace="" flags="g"/>
+				<replaceregex pattern="org\.junit[^,]*,?"            replace="" flags="g"/>
+				<!-- Make dependencies on "local" (non-Eclipse) plugins use a relative path -->
+				<replaceregex pattern="lpg.runtime,?" replace="lpg.runtime.java,"/>
+				<replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
+			</filterchain>
+		</loadfile>
+		<echo message="Non-Eclipse Plugin dependencies:"/>
+		<echo message="${plugin.dependencies}"/>
+	</target>
+
 	<target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin.name} for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
