@@ -34,9 +34,9 @@ setDefaults() {
     eclipseDir=""
     archiveFile=""
     extraFeatures="lpg.runtime polyglot"
-    featureNames="org.eclipse.imp.lpg org.eclipse.imp.runtime org.eclipse.imp.x10dt org.eclipse.imp"
+    featureNames="org.eclipse.imp.x10dt"
     # TODO read feature manifests to determine set of plugins
-    pluginNames="com.ibm.wala.shrike org.eclipse.imp.cheatsheets org.eclipse.imp.xform org.eclipse.imp.smapi org.eclipse.imp.smapifier lpg.runtime org.eclipse.imp.analysis org.eclipse.imp.lpg.runtime org.eclipse.imp.lpg org.eclipse.imp.runtime org.eclipse.imp.x10dt.core org.eclipse.imp.runtime org.eclipse.imp org.jikespg.uide polyglot x10.compiler x10.runtime org.eclipse.imp.x10dt.ui"
+    pluginNames="polyglot x10.runtime x10.compiler org.eclipse.imp.x10dt.core org.eclipse.imp.x10dt.ui"
 }
 
 checkSettings() {

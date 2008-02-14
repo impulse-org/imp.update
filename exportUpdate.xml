@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="org.eclipse.imp.update" default="build.update.zip" basedir=".">
-	<import file="../org.eclipse.imp.feature/buildCommon.xml"/>
+	<import file="../org.eclipse.imp.x10dt.feature/buildCommon.xml"/>
 
-	<property name="update.name"        value="org.eclipse.imp.update"/>
-	<property name="update.version"     value="${imp.version}"/>
+	<property name="update.name"        value="org.eclipse.imp.x10dt.update"/>
+	<property name="update.version"     value="${x10dt.version}"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 	<property name="update.server"      value="orquesta.watson.ibm.com"/>
@@ -19,21 +19,6 @@
 		<delete dir="${update.temp.folder}"/>
 		<mkdir dir="${update.temp.folder}"/>
 		<antcall target="export.features"/>
-		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.imp.runtime"/>
-			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.imp.runtime.feature"/>
-		</antcall>
-		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.imp.lpg"/>
-			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.imp.lpg.feature"/>
-		</antcall>
-		<antcall target="copy.feature">
-			<param name="feature.name"    value="org.eclipse.imp"/>
-			<param name="feature.version" value="${update.version}"/>
-			<param name="feature.dir"     value="../org.eclipse.imp.feature"/>
-		</antcall>
 		<antcall target="copy.feature">
 			<param name="feature.name"    value="org.eclipse.imp.x10dt"/>
 			<param name="feature.version" value="${update.version}"/>
@@ -68,10 +53,7 @@
 
 	<target name="export.features">
 		<echo message="Building feature jars..."/>
-		<ant antfile="../org.eclipse.imp.runtime.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.runtime.feature"/>
 		<ant antfile="../org.eclipse.imp.x10dt.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.x10dt.feature"/>
-		<ant antfile="../org.eclipse.imp.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.feature"/>
-		<ant antfile="../org.eclipse.imp.lpg.feature/exportFeature.xml" target="build.feature.jar" dir="../org.eclipse.imp.lpg.feature"/>
 		<echo message="Done building feature jars."/>
 	</target>
 </project>
