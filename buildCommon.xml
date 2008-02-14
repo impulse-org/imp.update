@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="x10dt.update.common" basedir=".">
+<project name="updcommon" basedir=".">
     <property name="basews" value="${ws}"/>
     <property name="baseos" value="${os}"/>
     <property name="basearch" value="${arch}"/>

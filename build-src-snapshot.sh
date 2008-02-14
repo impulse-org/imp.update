@@ -32,10 +32,10 @@ setDefaults() {
     safariRepoPath="/usr/src/cvs/safari"
     safariUser="rfuhrer"
 
-    updateProject="org.eclipse.imp.x10dt.update"
-    featureProjects="org.eclipse.imp.x10dt.feature"
+    updateProject="org.eclipse.imp.update"
+    featureProjects="org.eclipse.imp.runtime.feature org.eclipse.imp.feature org.eclipse.imp.lpg.feature"
     # TODO read feature manifests to determine set of plugins
-    pluginProjects="org.eclipse.imp.x10dt.core org.eclipse.imp.x10dt.ui"
+    pluginProjects="org.eclipse.imp.cheatsheets org.eclipse.imp.xform org.eclipse.imp.smapi org.eclipse.imp.smapifier org.eclipse.imp.analysis org.eclipse.imp.lpg.runtime org.eclipse.imp.runtime org.eclipse.imp org.eclipse.imp.lpg.metatooling"
     safariProjects="$updateProject $featureProjects $pluginProjects"
 
     # TODO Extract this info from a CVS repo descriptor (e.g. ":ext:user@host:path")

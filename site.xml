@@ -14,22 +14,6 @@
    <feature url="features/org.eclipse.imp.lpg_3.2.64.jar" id="org.eclipse.imp.lpg" version="3.2.64">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.64.jar" id="org.eclipse.imp.x10dt" version="3.2.64">
-      <category name="Language Meta-Tools"/>
-   </feature>
-
-   <feature url="features/org.eclipse.imp.runtime_3.2.69.jar" id="org.eclipse.imp.runtime" version="3.2.69">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp_3.2.69.jar" id="org.eclipse.imp" version="3.2.69">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_3.2.69.jar" id="org.eclipse.imp.lpg" version="3.2.69">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.69.jar" id="org.eclipse.imp.x10dt" version="3.2.69">
-      <category name="Language Meta-Tools"/>
-   </feature>
 
    <feature url="features/org.eclipse.imp.runtime_3.2.68.jar" id="org.eclipse.imp.runtime" version="3.2.68">
       <category name="Language Meta-Tools"/>
@@ -40,9 +24,6 @@
    <feature url="features/org.eclipse.imp.lpg_3.2.68.jar" id="org.eclipse.imp.lpg" version="3.2.68">
       <category name="Language Meta-Tools"/>
    </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.68.jar" id="org.eclipse.imp.x10dt" version="3.2.68">
-      <category name="Language Meta-Tools"/>
-   </feature>
 
    <feature url="features/org.eclipse.imp.runtime_3.2.70.jar" id="org.eclipse.imp.runtime" version="3.2.70">
       <category name="Language Meta-Tools"/>
@@ -51,9 +32,6 @@
       <category name="Language Meta-Tools"/>
    </feature>
    <feature url="features/org.eclipse.imp.lpg_3.2.70.jar" id="org.eclipse.imp.lpg" version="3.2.70">
-      <category name="Language Meta-Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.x10dt_3.2.70.jar" id="org.eclipse.imp.x10dt" version="3.2.70">
       <category name="Language Meta-Tools"/>
    </feature>
 </site>
