@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
-    <provider id="org.eclipse.team.cvs.core.cvsnature">
-        <project reference="1.0,:extssh:eclipse-imp.cvs.sourceforge.net:/cvsroot/eclipse-imp,org.eclipse.imp.feature,org.eclipse.imp.feature"/>
-        <project reference="1.0,:extssh:eclipse-imp.cvs.sourceforge.net:/cvsroot/eclipse-imp,org.eclipse.imp.runtime.feature,org.eclipse.imp.runtime.feature"/>
-        <project reference="1.0,:extssh:eclipse-imp.cvs.sourceforge.net:/cvsroot/eclipse-imp,org.eclipse.imp.lpg.feature,org.eclipse.imp.lpg.feature"/>
+    <provider id="org.tigris.subversion.subclipse.core.svnnature">
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.runtime.feature/trunk,org.eclipse.imp.runtime.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.lpg.feature/trunk,org.eclipse.imp.lpg.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.feature/trunk,org.eclipse.imp.feature"/>
     </provider>
 </psf>
