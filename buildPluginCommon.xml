@@ -87,7 +87,7 @@
 				<replaceregex pattern="org\.eclipse\.ui[^,]*,?"      replace="" flags="g"/>
 				<replaceregex pattern="org\.junit[^,]*,?"            replace="" flags="g"/>
 				<!-- Make dependencies on "local" (non-Eclipse) plugins use a relative path -->
-				<replaceregex pattern="lpg.runtime,?" replace="lpg.runtime.java,"/>
+				<replaceregex pattern=",lpg.runtime,?" replace=",lpg.runtime.java,"/>
 				<replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
 			</filterchain>
 		</loadfile>
