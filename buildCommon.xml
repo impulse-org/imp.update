@@ -11,18 +11,38 @@
     <property name="javacVerbose" value="false"/>
 
     <echo message="java.home = ${java.home}"/>
+    <echo message="java.class.path = ${java.class.path}"/>
     <echo message="ant.home = ${ant.home}"/>
 
+    <condition property="mac.jre.path" value="${java.home}/../Classes">
+        <os family="mac"/>
+    </condition>
+
+    <echo message="mac.jre.path = ${mac.jre.path}"/>
+
     <path id="path_bootclasspath">
+    	<pathelement path="${java.class.path}"/>
+        <fileset dir="${mac.jre.path}">
+            <include name="*.jar"/>
+        </fileset>
         <fileset dir="${java.home}/lib">
             <include name="*.jar"/>
         </fileset>
-	<fileset dir="${ant.home}/lib">
+        <fileset dir="${ant.home}/lib">
             <include name="*.jar"/>
         </fileset>
     </path>
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
+
+    <condition property="eclipse.home" value="/Developer/eclipse-3.3.2">
+        <and>
+            <not>
+	        <isset property="eclipse.home"/>
+	    </not>
+            <os family="mac"/>
+	</and>
+    </condition>
 
     <condition property="eclipse.home" value="/usr/lib/eclipse-3.2">
         <and>
