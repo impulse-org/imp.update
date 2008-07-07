@@ -6,63 +6,15 @@
 
   <category-def name="Language Meta-Tools" label="Language Development Tools"/>
 
-  <feature url="features/org.eclipse.imp.runtime_3.2.64.jar" id="org.eclipse.imp.runtime" version="3.2.64">
+  <feature url="features/org.eclipse.imp.runtime_0.1.75.jar" id="org.eclipse.imp.runtime" version="0.1.75">
     <category name="Language Meta-Tools"/>
   </feature>
 
-  <feature url="features/org.eclipse.imp_3.2.64.jar" id="org.eclipse.imp" version="3.2.64">
+  <feature url="features/org.eclipse.imp.lpg_0.1.75.jar" id="org.eclipse.imp.lpg" version="0.1.75">
     <category name="Language Meta-Tools"/>
   </feature>
 
-  <feature url="features/org.eclipse.imp.lpg_3.2.64.jar" id="org.eclipse.imp.lpg" version="3.2.64">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.runtime_3.2.68.jar" id="org.eclipse.imp.runtime" version="3.2.68">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp_3.2.68.jar" id="org.eclipse.imp" version="3.2.68">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.lpg_3.2.68.jar" id="org.eclipse.imp.lpg" version="3.2.68">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.runtime_3.2.70.jar" id="org.eclipse.imp.runtime" version="3.2.70">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp_3.2.70.jar" id="org.eclipse.imp" version="3.2.70">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.lpg_3.2.70.jar" id="org.eclipse.imp.lpg" version="3.2.70">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.runtime_3.2.72.jar" id="org.eclipse.imp.runtime" version="3.2.72">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.lpg_3.2.72.jar" id="org.eclipse.imp.lpg" version="3.2.72">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp_3.2.72.jar" id="org.eclipse.imp" version="3.2.72">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.runtime_3.2.73.jar" id="org.eclipse.imp.runtime" version="3.2.73">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp.lpg_3.2.73.jar" id="org.eclipse.imp.lpg" version="3.2.73">
-    <category name="Language Meta-Tools"/>
-  </feature>
-
-  <feature url="features/org.eclipse.imp_3.2.73.jar" id="org.eclipse.imp" version="3.2.73">
+  <feature url="features/org.eclipse.imp_0.1.75.jar" id="org.eclipse.imp" version="0.1.75">
     <category name="Language Meta-Tools"/>
   </feature>
 
