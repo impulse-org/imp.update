@@ -12,7 +12,7 @@
 
 	<property name="feature.list"       value="org.eclipse.imp.runtime,org.eclipse.imp.lpg,org.eclipse.imp"/>
 
-	<target name="deploy.zip" description="Copies the update archive to the update server.">
+	<target name="publish.zip" description="Copies the update archive to the update server.">
 		<echo message="Copying update zip file to update server ${update.server}"/>
 		<scp file="${zip.file}" keyfile="${user.home}/.ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
 	</target>
