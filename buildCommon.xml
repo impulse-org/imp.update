@@ -18,6 +18,10 @@
         <os family="mac"/>
     </condition>
 
+    <condition property="mac.jre.path" value="">
+        <not> <os family="mac"/> </not>
+    </condition>
+
     <echo message="mac.jre.path = ${mac.jre.path}"/>
 
     <path id="path_bootclasspath">
@@ -35,37 +39,12 @@
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
 
-    <condition property="eclipse.home" value="/Developer/eclipse-3.3.2">
-        <and>
-            <not>
-	        <isset property="eclipse.home"/>
-	    </not>
-            <os family="mac"/>
-	</and>
-    </condition>
+    <fail unless="imp.eclipse.target" message="You must define imp.eclipse.target as the location of the Eclipse installation against which IMP should be built."/>
 
-    <condition property="eclipse.home" value="/usr/lib/eclipse-3.2">
-        <and>
-            <not>
-	        <isset property="eclipse.home"/>
-	    </not>
-            <os family="unix"/>
-	</and>
-    </condition>
-
-    <condition property="eclipse.home" value="f:/eclipse-3.2.2">
-        <and>
-            <not>
-	        <isset property="eclipse.home"/>
-	    </not>
-            <os family="windows"/>
-	</and>
-    </condition>
-
-    <echo message="eclipse.home = ${eclipse.home}"/>
+    <echo message="imp.eclipse.target = ${imp.eclipse.target}"/>
 
     <path id="path_eclipse.build.path">
-        <fileset dir="${eclipse.home}/plugins">
+        <fileset dir="${imp.eclipse.target}/plugins">
             <include name="**/*.jar"/>
         </fileset>
     </path>
