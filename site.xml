@@ -18,4 +18,16 @@
     <category name="Language Meta-Tools"/>
   </feature>
 
+  <feature url="features/org.eclipse.imp.runtime_0.1.79.jar" id="org.eclipse.imp.runtime" version="0.1.79">
+    <category name="Language Meta-Tools"/>
+  </feature>
+
+  <feature url="features/org.eclipse.imp.lpg_0.1.77.jar" id="org.eclipse.imp.lpg" version="0.1.77">
+    <category name="Language Meta-Tools"/>
+  </feature>
+
+  <feature url="features/org.eclipse.imp_0.1.77.jar" id="org.eclipse.imp" version="0.1.77">
+    <category name="Language Meta-Tools"/>
+  </feature>
+
 </site>
