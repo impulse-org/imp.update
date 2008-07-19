@@ -23,7 +23,8 @@
 			<fileset dir="${basedir}">
 				<include name="feature.xml"/>
 				<include name="feature.properties"/>
-				<include name="cpl-v10.html"/>
+				<include name="epl-v10.html"/>
+	            <include name="license.html"/>
 				<include name="eclipse_update_120.jpg"/>
 			</fileset>
 		</copy>
