@@ -18,6 +18,9 @@
    <feature url="features/org.eclipse.imp.runtime_0.1.79.jar" id="org.eclipse.imp.runtime" version="0.1.79">
       <category name="IMP IDE Runtime"/>
    </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.80.jar" id="org.eclipse.imp.runtime" version="0.1.80">
+      <category name="IMP IDE Runtime"/>
+   </feature>
    <feature url="features/org.eclipse.imp.lpg_0.1.77.jar" id="org.eclipse.imp.lpg" version="0.1.77">
       <category name="Language-Specific Development Environments"/>
    </feature>
