@@ -3,9 +3,6 @@
    <description url="http://eclipse-imp.sourceforge.net/updates/">
       This Eclipse update site hosts the distribution for the IMP IDE, analysis and refactoring framework, and related components.
    </description>
-   <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
-   <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
-   <category-def name="Language-Specific Development Environments" label="Language-Specific Development Environments"/>
    <feature url="features/org.eclipse.imp.lpg_0.1.76.jar" id="org.eclipse.imp.lpg" version="0.1.76">
       <category name="Language-Specific Development Environments"/>
    </feature>
@@ -30,4 +27,16 @@
    <feature url="features/sdf_eclipse_installer_feature_1.0.9.jar" id="sdf_eclipse_installer_feature" version="1.0.9">
       <category name="IMP IDE Runtime"/>
    </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.81.jar" id="org.eclipse.imp.runtime" version="0.1.81">
+      <category name="IMP IDE Runtime"/>
+   </feature>
+   <feature url="features/org.eclipse.imp_0.1.78.jar" id="org.eclipse.imp" version="0.1.78">
+      <category name="IMP IDE Development Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_0.1.78.jar" id="org.eclipse.imp.lpg" version="0.1.78">
+      <category name="Language-Specific Development Environments"/>
+   </feature>
+   <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
+   <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
+   <category-def name="Language-Specific Development Environments" label="Language-Specific Development Environments"/>
 </site>
