@@ -3,7 +3,7 @@
 	<import file="../org.eclipse.imp.feature/buildCommon.xml"/>
 
 	<property name="update.name"        value="org.eclipse.imp.update"/>
-	<property name="update.version"     value="0.1.85"/>
+	<property name="update.version"     value="0.1.86"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 	<property name="update.server"      value="orquesta.watson.ibm.com"/>
