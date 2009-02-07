@@ -3,14 +3,14 @@
 	<import file="../org.eclipse.imp.feature/buildCommon.xml"/>
 
 	<property name="update.name"        value="org.eclipse.imp.update"/>
-	<property name="update.version"     value="0.1.88"/>
+	<property name="update.version"     value="0.1.89"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 	<property name="update.server"      value="orquesta.watson.ibm.com"/>
 	<property name="update.server.dir"  value="/usr/src/imp"/>
 	<property name="zip.file"           value="${update.destination}/${update.name}_${update.version}.zip"/>
 
-	<property name="feature.list"       value="org.eclipse.imp.runtime,org.eclipse.imp.lpg,org.eclipse.imp"/>
+	<property name="feature.list"       value="org.eclipse.imp.runtime,org.eclipse.imp.lpg,org.eclipse.imp,org.eclipse.imp.analysis,org.eclipse.imp.analysis.ui"/>
 
 	<target name="publish.zip" description="Copies the update archive to the update server.">
 		<echo message="Copying update zip file to update server ${update.server}"/>
