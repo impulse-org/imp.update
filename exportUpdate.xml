@@ -38,7 +38,11 @@
             <fileset dir="${basedir}/web" includes="site.xsl"/>
         </copy>
 
+        <antcall target="get.lpg.artifacts"/>
+        <antcall target="get.polyglot.artifacts"/>
+
         <zip destfile="${zip.file}" basedir="${update.temp.folder}" filesonly="false" whenempty="skip" update="false"/>
+
         <delete dir="${update.temp.folder}"/>
     </target>
 
@@ -58,7 +62,37 @@
 		</copy>
 	</target>
 
-	<target name="export.features">
+    <target name="get.lpg.artifacts">
+        <delete dir="../lpg.update/plugins" includes="*.jar"/>
+        <delete dir="../lpg.update/features" includes="*.jar"/>
+
+        <ant antfile="../lpg.update/exportUpdate.xml" target="build.plugins"/>
+        <ant antfile="../lpg.update/exportUpdate.xml" target="build.features"/>
+
+        <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
+           <fileset dir="../lpg.update/plugins" includes="*.jar"/>
+        </copy>
+        <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
+            <fileset dir="../lpg.update/features" includes="*.jar"/>
+        </copy>
+    </target>
+
+    <target name="get.polyglot.artifacts">
+        <delete dir="../polyglot/eclipseUpdates/plugins" includes="*.jar"/>
+        <delete dir="../polyglot/eclipseUpdates/features" includes="*.jar"/>
+
+        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-plugin"/>
+        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-features"/>
+
+        <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
+           <fileset dir="../polyglot/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
+        </copy>
+        <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
+           <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
+        </copy>
+    </target>
+
+    <target name="export.features">
 		<echo message="Building feature jars for ${feature.list}..."/>
 		<for param="feature" values="${feature.list}">
 		    <echo message="*** Building feature ${feature} ***"/>
