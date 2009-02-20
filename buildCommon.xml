@@ -39,7 +39,7 @@
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
 
-    <fail unless="imp.eclipse.target" message="You must define imp.eclipse.target as the location of the Eclipse installation against which IMP should be built."/>
+    <fail unless="imp.eclipse.target" message="You must define the imp.eclipse.target property (in the Ant runtime preferences) as the location of the Eclipse installation against which IMP should be built."/>
 
     <echo message="imp.eclipse.target = ${imp.eclipse.target}"/>
 
