@@ -79,17 +79,17 @@
 
     <target name="get.polyglot.artifacts">
         <!-- The name of the IMP project containing the Polyglot source snapshot is "polyglot2". -->
-        <delete dir="../polyglot2/eclipseUpdates/plugins" includes="*.jar"/>
-        <delete dir="../polyglot2/eclipseUpdates/features" includes="*.jar"/>
+        <delete dir="../polyglot/eclipseUpdates/plugins" includes="*.jar"/>
+        <delete dir="../polyglot/eclipseUpdates/features" includes="*.jar"/>
 
-        <ant antfile="../polyglot2/build.xml" dir="../polyglot2" target="build-plugin"/>
-        <ant antfile="../polyglot2/build.xml" dir="../polyglot2" target="build-features"/>
+        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-plugin"/>
+        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-features"/>
 
         <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot2/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
+           <fileset dir="../polyglot/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
         </copy>
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot2/eclipseUpdates/features" includes="polyglot_*.jar"/>
+           <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
         </copy>
     </target>
 
