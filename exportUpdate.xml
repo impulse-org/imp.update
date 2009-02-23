@@ -3,7 +3,7 @@
 	<import file="../org.eclipse.imp.feature/buildCommon.xml"/>
 
 	<property name="update.name"        value="org.eclipse.imp.update"/>
-	<property name="update.version"     value="0.1.90"/>
+	<property name="update.version"     value="0.1.91"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
 	<property name="update.server"      value="orquesta.watson.ibm.com"/>
@@ -78,17 +78,18 @@
     </target>
 
     <target name="get.polyglot.artifacts">
-        <delete dir="../polyglot/eclipseUpdates/plugins" includes="*.jar"/>
-        <delete dir="../polyglot/eclipseUpdates/features" includes="*.jar"/>
+        <!-- The name of the IMP project containing the Polyglot source snapshot is "polyglot2". -->
+        <delete dir="../polyglot2/eclipseUpdates/plugins" includes="*.jar"/>
+        <delete dir="../polyglot2/eclipseUpdates/features" includes="*.jar"/>
 
-        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-plugin"/>
-        <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-features"/>
+        <ant antfile="../polyglot2/build.xml" dir="../polyglot2" target="build-plugin"/>
+        <ant antfile="../polyglot2/build.xml" dir="../polyglot2" target="build-features"/>
 
         <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
+           <fileset dir="../polyglot2/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
         </copy>
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
+           <fileset dir="../polyglot2/eclipseUpdates/features" includes="polyglot_*.jar"/>
         </copy>
     </target>
 
