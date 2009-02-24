@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description url="http://eclipse-imp.sourceforge.net/updates/">
+   <description url="http://download.eclipse.org/technology/imp/updates/">
       This Eclipse update site hosts the distribution for the IMP IDE, analysis and refactoring framework, and related components.
    </description>
    <feature url="features/sdf_eclipse_installer_feature_1.0.10.jar" id="sdf_eclipse_installer_feature" version="1.0.10">
