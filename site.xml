@@ -6,26 +6,20 @@
    <feature url="features/sdf_eclipse_installer_feature_1.0.10.jar" id="sdf_eclipse_installer_feature" version="1.0.10">
       <category name="SDF"/>
    </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.80.jar" id="org.eclipse.imp.lpg" version="0.1.80">
-      <category name="IMP Language-Specific Development Environments"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.88.jar" id="org.eclipse.imp.runtime" version="0.1.88">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp_0.1.81.jar" id="org.eclipse.imp" version="0.1.81">
+   <feature url="features/org.eclipse.imp_0.1.83.jar" id="org.eclipse.imp" version="0.1.83">
       <category name="IMP IDE Development Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.89.jar" id="org.eclipse.imp.runtime" version="0.1.89">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.81.jar" id="org.eclipse.imp.lpg" version="0.1.81">
-      <category name="IMP Language-Specific Development Environments"/>
    </feature>
    <feature url="features/org.eclipse.imp.analysis_0.1.1.jar" id="org.eclipse.imp.analysis" version="0.1.1">
       <category name="IMP Analysis"/>
    </feature>
    <feature url="features/org.eclipse.imp.analysis.ui_0.1.1.jar" id="org.eclipse.imp.analysis.ui" version="0.1.1">
       <category name="IMP Analysis"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_0.1.83.jar" id="org.eclipse.imp.lpg" version="0.1.83">
+      <category name="IMP Language-Specific Development Environments"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.91.jar" id="org.eclipse.imp.runtime" version="0.1.91">
+      <category name="IMP IDE Runtime"/>
    </feature>
    <feature url="features/lpg.generator_2.0.16.jar" id="lpg.generator" version="2.0.16">
       <category name="LPG"/>
@@ -35,15 +29,6 @@
    </feature>
    <feature url="features/polyglot_2.4.0.jar" id="polyglot" version="2.4.0">
       <category name="Polyglot"/>
-   </feature>
-   <feature url="features/org.eclipse.imp_0.1.82.jar" id="org.eclipse.imp" version="0.1.82">
-      <category name="IMP IDE Development Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.90.jar" id="org.eclipse.imp.runtime" version="0.1.90">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.82.jar" id="org.eclipse.imp.lpg" version="0.1.82">
-      <category name="IMP Language-Specific Development Environments"/>
    </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
    <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
