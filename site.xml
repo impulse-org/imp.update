@@ -30,6 +30,21 @@
    <feature url="features/polyglot_2.4.0.jar" id="polyglot" version="2.4.0">
       <category name="Polyglot"/>
    </feature>
+   <feature url="features/org.eclipse.imp_0.1.84.jar" id="org.eclipse.imp" version="0.1.84">
+      <category name="IMP IDE Development Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.92.jar" id="org.eclipse.imp.runtime" version="0.1.92">
+      <category name="IMP IDE Runtime"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_0.1.84.jar" id="org.eclipse.imp.lpg" version="0.1.84">
+      <category name="IMP Language-Specific Development Environments"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis_0.1.2.jar" id="org.eclipse.imp.analysis" version="0.1.2">
+      <category name="IMP Analysis"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis.ui_0.1.2.jar" id="org.eclipse.imp.analysis.ui" version="0.1.2">
+      <category name="IMP Analysis"/>
+   </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
    <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
    <category-def name="IMP Language-Specific Development Environments" label="IMP Language-Specific Development Environments"/>
