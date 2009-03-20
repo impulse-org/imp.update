@@ -36,6 +36,15 @@
    <feature url="features/org.eclipse.imp.runtime_0.1.94.jar" id="org.eclipse.imp.runtime" version="0.1.94">
       <category name="IMP IDE Runtime"/>
    </feature>
+   <feature url="features/org.eclipse.imp_0.1.88.jar" id="org.eclipse.imp" version="0.1.88">
+      <category name="IMP IDE Development Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.95.jar" id="org.eclipse.imp.runtime" version="0.1.95">
+      <category name="IMP IDE Runtime"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_0.1.87.jar" id="org.eclipse.imp.lpg" version="0.1.87">
+      <category name="IMP Language-Specific Development Environments"/>
+   </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
    <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
    <category-def name="IMP Language-Specific Development Environments" label="IMP Language-Specific Development Environments"/>
