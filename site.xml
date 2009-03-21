@@ -24,11 +24,11 @@
    <feature url="features/org.eclipse.imp.lpg_0.1.87.jar" id="org.eclipse.imp.lpg" version="0.1.87">
       <category name="IMP Language-Specific Development Environments"/>
    </feature>
-   <feature url="features/org.eclipse.imp_0.1.90.jar" id="org.eclipse.imp" version="0.1.90">
-      <category name="IMP IDE Development Tools"/>
-   </feature>
    <feature url="features/org.eclipse.imp.runtime_0.1.96.jar" id="org.eclipse.imp.runtime" version="0.1.96">
       <category name="IMP IDE Runtime"/>
+   </feature>
+   <feature url="features/org.eclipse.imp_0.1.91.jar" id="org.eclipse.imp" version="0.1.91">
+      <category name="IMP IDE Development Tools"/>
    </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
    <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
