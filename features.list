@@ -1,3 +1,6 @@
-org.eclipse.imp.runtime
-org.eclipse.imp
+org.eclipse.imp.analysis
+org.eclipse.imp.analysis.ui
+org.eclipse.imp.formatting
 org.eclipse.imp.lpg
+org.eclipse.imp.metatooling
+org.eclipse.imp.runtime
