@@ -22,10 +22,18 @@
 			</filterchain>
 		</loadfile>
 		<!-- <echo message="Plugin version = ${plugin.version}"/> -->
+        <loadfile property="plugin.name" srcfile="META-INF/MANIFEST.MF">
+            <filterchain>
+                <containsregex pattern="Bundle-Name:"/>
+                <replaceregex pattern="Bundle-Name: (.*)" replace="\1"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+        <!-- <echo message="Plugin name = ${plugin.name}"/> -->
 
 		<property name="plugin.jar.name" value="${plugin.id}_${plugin.version}.jar"/>
 		<property name="plugin.zip.name" value="${plugin.id}_${plugin.version}.zip"/>
-		<property name="plugin.src.zip" value="${plugin.id}src.zip"/>
+		<property name="plugin.src.jar" value="${plugin.id}.source_${plugin.version}.jar"/>
 		<property name="plugin.destination" value="${basedir}"/>
 		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
 			<isset property="buildTempFolder"/>
@@ -105,7 +113,7 @@
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
-<!--		<antcall target="build.sources"/> -->
+		<antcall target="build.source.plugin"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
@@ -118,16 +126,19 @@
 		<copy todir="../../artifacts" file="${plugin.name}_${plugin.version}.jar"/>
 	</target>
 
-	<target name="build.sources" depends="init">
-		<available property="${plugin.src.zip}" file="${build.result.folder}/${plugin.src.zip}"/>
-		<antcall target="pluginsrc.zip"/>
-	</target>
-
-	<target name="pluginsrc.zip" depends="init" unless="${plugin.src.zip}">
+	<target name="build.source.plugin" depends="init">
 		<mkdir dir="${build.result.folder}"/>
-		<zip destfile="${build.result.folder}/${plugin.src.zip}" filesonly="false" whenempty="skip" update="false">
-			<fileset dir="src/" includes="**/*.java"/>
-		</zip>
+		<filter token="plugin.id" value="${plugin.id}"/>
+		<filter token="plugin.version" value="${plugin.version}"/>
+		<filter token="plugin.name" value="${plugin.name}"/>
+        <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
+		<copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${temp.folder}/MANIFEST.MF" filtering="true"/>
+		<concat>
+			<fileset file="${temp.folder}/MANIFEST.MF"/>
+		</concat>
+		<jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
+			<fileset dir="src/" includes="**/*.java,**/*.properties,**/*.exsd"/>
+		</jar>
 	</target>
 
 	<target name="gather.sources" depends="init" if="destination.temp.folder">
@@ -138,22 +149,12 @@
 		</copy>
 	</target>
 
-	<target name="gather.logs" depends="init" if="destination.temp.folder">
-		<mkdir dir="${destination.temp.folder}/${plugin.name}_${plugin.version}"/>
-		<copy file="${temp.folder}/${plugin.jar.name}.bin.log" todir="${destination.temp.folder}/${plugin.name}_${plugin.version}" failonerror="false" overwrite="false"/>
-	</target>
-
 	<target name="clean" depends="init" description="Clean the plug-in: ${plugin.name} of all the zips, jars and logs created.">
 		<delete file="${build.result.folder}/${plugin.jar.name}"/>
 		<delete file="${build.result.folder}/${plugin.src.zip}"/>
 		<delete file="${plugin.destination}/${plugin.name}_${plugin.version}.jar"/>
 		<delete file="${plugin.destination}/${plugin.name}_${plugin.version}.zip"/>
 		<delete dir="${temp.folder}"/>
-	</target>
-
-	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="e:/rmf/eclipse/workspaces/safari/${plugin.name}" property="resourcePath"/>
-		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
 	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${plugin.name}.">
