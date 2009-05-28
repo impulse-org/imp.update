@@ -5,13 +5,14 @@
 		<delete dir="${feature.temp.folder}"/>
 		<mkdir dir="${feature.temp.folder}"/>
 		<antcall target="gather.bin.parts" inheritAll="false">
-			<param name="arch" value="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64"/>
-			<param name="ws" value="carbon,gtk,motif,photon,win32"/>
+			<param name="arch" value="*"/>
+			<param name="ws" value="*"/>
 			<param name="nl" value="*"/>
-			<param name="os" value="aix,hpux,linux,macosx,qnx,solaris,win32"/>
+			<param name="os" value="*"/>
 			<param name="feature.base" value="${feature.temp.folder}"/>
 		</antcall>
 		<jar destfile="${feature.destination}/${feature.name}_${feature.version}.jar" basedir="${feature.temp.folder}/features/${feature.name}_${feature.version}"/>
+        <antcall target="build.source.feature"/>
 		<delete dir="${feature.temp.folder}"/>
 		<antcall target="gather.plugin.jars"/>
 		<echo message="Feature jar build complete."/>
@@ -50,6 +51,43 @@
 		</loadfile>
 		<echo message="Copying ${plugin.id} version ${plugin.version}"/>
 		<copy todir="plugins" file="../${plugin.id}/${plugin.id}_${plugin.version}.jar"/>
+		<copy todir="plugins" file="../${plugin.id}/${plugin.id}.source_${plugin.version}.jar"/>
+	</target>
+
+    <target name="build.source.feature" depends="init">
+        <filter token="feature.id" value="${feature.name}"/>
+        <filter token="feature.version" value="${feature.version}"/>
+        <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
+    	<filter token="plugin.list" value=""/>
+    	<property name="feature.manifest.file" value="${feature.temp.folder}/feature.xml"/>
+        <copy file="../org.eclipse.imp.update/SourceFeatureManifest.in" tofile="${feature.manifest.file}" filtering="true"/>
+    	<for param="plugin.id" values="${plugins.list}">
+    		<antcall target="gen.plugin.source.line">
+    		    <param name="plugin.id" value="${plugin.id}"/>
+    			<param name="file" value="${feature.manifest.file}"/>
+    	    </antcall>
+    	</for>
+    	<echo message="&lt;/feature&gt;" file="${feature.manifest.file}" append="true"/>
+        <concat>
+            <fileset file="${feature.temp.folder}/feature.xml"/>
+        </concat>
+        <jar destfile="${feature.destination}/${feature.name}.source_${feature.version}.jar">
+        	<fileset dir="${feature.temp.folder}" includes="feature.xml"/>
+        	<fileset dir="." includes="feature.properties"/>
+        </jar>
+    </target>
+
+	<target name="gen.plugin.source.line">
+        <loadfile property="plugin.version" srcfile="../${plugin.id}/META-INF/MANIFEST.MF">
+            <filterchain>
+                <containsregex pattern="Bundle-Version:"/>
+                <replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+		<echo file="${file}" append="true"
+		   message="    &lt;plugin id=&quot;${plugin.id}.source&quot; version=&quot;${plugin.version}&quot; unpack=&quot;false&quot;/&gt;
+"/>
 	</target>
 	<!-- ========================================================================================= -->
 
@@ -57,8 +95,8 @@
 		<delete dir="${feature.temp.folder}"/>
 		<mkdir dir="${feature.temp.folder}"/>
 		<antcall target="gather.bin.parts">
-			<param name="arch" value="ia64,ia64_32,PA_RISC,ppc,sparc,x86,x86_64"/>
-			<param name="ws" value="carbon,gtk,motif,photon,win32"/>
+			<param name="arch" value="*"/>
+			<param name="ws" value="*"/>
 			<param name="nl" value="*"/>
 			<param name="include.children" value="true"/>
 			<param name="feature.base" value="${feature.temp.folder}"/>
@@ -80,18 +118,6 @@
 		<delete dir="${feature.temp.folder}"/>
 	</target>
 
-	<target name="zip.logs" depends="init">
-		<delete dir="${feature.temp.folder}"/>
-		<mkdir dir="${feature.temp.folder}"/>
-		<antcall target="all.children" inheritAll="false">
-			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins"/>
-			<param name="include.children" value="true"/>
-			<param name="target" value="gather.logs"/>
-		</antcall>
-		<zip destfile="${feature.destination}/${feature.name}_${feature.version}.log.zip" basedir="${feature.temp.folder}" filesonly="true" whenempty="skip" update="false"/>
-		<delete dir="${feature.temp.folder}"/>
-	</target>
-
 	<target name="clean" depends="init" description="Clean the feature: ${feature.name} of all the zips, jars and logs created.">
 		<delete file="${feature.destination}/${feature.name}_${feature.version}.jar"/>
 		<delete file="${feature.destination}/${feature.name}_${feature.version}.bin.dist.zip"/>
@@ -103,28 +129,12 @@
 		</antcall>
 	</target>
 
-	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="E:/RMF/Eclipse/Workspaces/safari/${feature.name}/" property="resourcePath"/>
-		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
-		<antcall target="all.children">
-			<param name="target" value="refresh"/>
-		</antcall>
-	</target>
-
 	<!-- ========================================================================================= -->
 
 	<target name="gather.sources">
 		<antcall target="children">
 			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins/${feature.name}.source_${feature.version}/src"/>
 			<param name="target" value="gather.sources"/>
-		</antcall>
-	</target>
-
-	<target name="gather.logs" depends="init">
-		<mkdir dir="${feature.temp.folder}"/>
-		<antcall target="all.children" inheritAll="false">
-			<param name="destination.temp.folder" value="${feature.temp.folder}/plugins"/>
-			<param name="target" value="gather.logs"/>
 		</antcall>
 	</target>
 </project>
