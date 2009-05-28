@@ -3,11 +3,11 @@
 	<import file="../org.eclipse.imp.metatooling.feature/buildCommon.xml"/>
 
 	<property name="update.name"        value="org.eclipse.imp.update"/>
-	<property name="update.version"     value="0.1.102"/>
+	<property name="update.version"     value="0.1.103"/>
 	<property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
 	<property name="update.destination" value="${basedir}"/>
-	<property name="update.server"      value="orquesta.watson.ibm.com"/>
-	<property name="update.server.dir"  value="/usr/src/imp"/>
+	<property name="update.server"      value="dev.eclipse.org"/>
+	<property name="update.server.dir"  value=""/>
 	<property name="zip.file"           value="${update.destination}/${update.name}_${update.version}.zip"/>
 
 	<property
@@ -26,7 +26,6 @@
         <for param="feature" values="${feature.list}">
             <antcall target="copy.feature">
                 <param name="feature.name"    value="${feature}"/>
-<!--            <param name="feature.version" value="${${feature}.feature(version)}"/> -->
                 <param name="feature.dir"     value="../${feature}.feature"/>
             </antcall>
         </for>
@@ -55,7 +54,7 @@
 
 		<mkdir dir="${update.temp.folder}/features"/>
 		<copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-			<fileset dir="${feature.dir}" includes="${feature.name}_${f.feature(version)}.jar"/>
+			<fileset dir="${feature.dir}" includes="${feature.name}_${f.feature(version)}.jar,${feature.name}.source_${f.feature(version)}.jar"/>
 		</copy>
 
 		<mkdir dir="${update.temp.folder}/plugins"/>
