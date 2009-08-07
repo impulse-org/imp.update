@@ -27,9 +27,6 @@
    <feature url="features/org.eclipse.imp.runtime_0.1.96.jar" id="org.eclipse.imp.runtime" version="0.1.96">
       <category name="IMP IDE Runtime"/>
    </feature>
-   <feature url="features/org.eclipse.imp_0.1.91.jar" id="org.eclipse.imp" version="0.1.91">
-      <category name="IMP IDE Development Tools"/>
-   </feature>
    <feature url="features/org.eclipse.imp.metatooling_0.1.92.jar" id="org.eclipse.imp.metatooling" version="0.1.92">
       <category name="IMP IDE Development Tools"/>
    </feature>
