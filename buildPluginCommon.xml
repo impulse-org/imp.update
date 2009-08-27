@@ -56,6 +56,9 @@
 	</target>
 
 	<target name="javaInit" description="Initializes compiler settings from bundle meta-data">
+		<available file=".settings/org.eclipse.jdt.core.prefs" property="jdtSettings"/>
+		<fail unless="jdtSettings" message="Each project must have project-specific JDT compiler settings."/>
+
 		<loadfile property="javacSource" srcfile=".settings/org.eclipse.jdt.core.prefs">
 			<filterchain>
 				<containsregex pattern="org.eclipse.jdt.core.compiler.source"/>
@@ -73,6 +76,9 @@
 			</filterchain>
 		</loadfile>
 		<echo message="Java target compatibility = ${javacTarget}"/>
+
+        <fail unless="javacSource" message="Each project must specify the JDT compiler's source compatibility."/>
+        <fail unless="javacTarget" message="Each project must specify the JDT compiler's target compatibility."/>
 
 		<property name="compilerArg" value=""/>
 
@@ -133,10 +139,11 @@
 		<filter token="plugin.name" value="${plugin.name}"/>
         <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
 		<copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${temp.folder}/MANIFEST.MF" filtering="true"/>
-		<concat>
+<!--	<concat>
 			<fileset file="${temp.folder}/MANIFEST.MF"/>
 		</concat>
-		<jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
+  -->
+ 		<jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
 			<fileset dir="src/" includes="**/*.java,**/*.properties,**/*.exsd"/>
 		</jar>
 	</target>
