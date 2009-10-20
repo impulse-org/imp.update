@@ -72,7 +72,6 @@
    <feature url="features/org.eclipse.imp.analysis.ui_0.1.6.jar" id="org.eclipse.imp.analysis.ui" version="0.1.6">
       <category name="IMP Analysis"/>
    </feature>
-
    <feature url="features/org.eclipse.imp.analysis.source_0.1.7.jar" id="org.eclipse.imp.analysis.source" version="0.1.7">
       <category name="IMP Source"/>
    </feature>
@@ -91,7 +90,12 @@
    <feature url="features/org.eclipse.imp.runtime.source_0.1.101.jar" id="org.eclipse.imp.runtime.source" version="0.1.101">
       <category name="IMP Source"/>
    </feature>
-
+   <feature url="features/org.eclipse.imp.analysis_0.1.9.jar" id="org.eclipse.imp.analysis" version="0.1.9">
+      <category name="IMP Analysis"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis.ui_0.1.8.jar" id="org.eclipse.imp.analysis.ui" version="0.1.8">
+      <category name="IMP Analysis"/>
+   </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
    <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
    <category-def name="IMP Language-Specific Development Environments" label="IMP Language-Specific Development Environments"/>
