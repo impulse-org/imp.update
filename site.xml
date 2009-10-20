@@ -93,7 +93,7 @@
    <feature url="features/org.eclipse.imp.analysis_0.1.9.jar" id="org.eclipse.imp.analysis" version="0.1.9">
       <category name="IMP Analysis"/>
    </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui_0.1.8.jar" id="org.eclipse.imp.analysis.ui" version="0.1.8">
+   <feature url="features/org.eclipse.imp.analysis.ui_0.1.9.jar" id="org.eclipse.imp.analysis.ui" version="0.1.9">
       <category name="IMP Analysis"/>
    </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
