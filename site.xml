@@ -75,7 +75,13 @@
    <feature url="features/org.eclipse.imp.analysis.source_0.1.7.jar" id="org.eclipse.imp.analysis.source" version="0.1.7">
       <category name="IMP Source"/>
    </feature>
+   <feature url="features/org.eclipse.imp.analysis.source_0.1.11.jar" id="org.eclipse.imp.analysis.source" version="0.1.11">
+      <category name="IMP Source"/>
+   </feature>
    <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.6.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.6">
+      <category name="IMP Source"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.10.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.10">
       <category name="IMP Source"/>
    </feature>
    <feature url="features/org.eclipse.imp.formatting.source_0.1.5.jar" id="org.eclipse.imp.formatting.source" version="0.1.5">
@@ -84,10 +90,19 @@
    <feature url="features/org.eclipse.imp.lpg.source_0.1.91.jar" id="org.eclipse.imp.lpg.source" version="0.1.91">
       <category name="IMP Source"/>
    </feature>
+   <feature url="features/org.eclipse.imp.lpg.source_0.1.92.jar" id="org.eclipse.imp.lpg.source" version="0.1.92">
+      <category name="IMP Source"/>
+   </feature>
    <feature url="features/org.eclipse.imp.metatooling.source_0.1.95.jar" id="org.eclipse.imp.metatooling.source" version="0.1.95">
       <category name="IMP Source"/>
    </feature>
+   <feature url="features/org.eclipse.imp.metatooling.source_0.1.96.jar" id="org.eclipse.imp.metatooling.source" version="0.1.96">
+      <category name="IMP Source"/>
+   </feature>
    <feature url="features/org.eclipse.imp.runtime.source_0.1.101.jar" id="org.eclipse.imp.runtime.source" version="0.1.101">
+      <category name="IMP Source"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime.source_0.1.102.jar" id="org.eclipse.imp.runtime.source" version="0.1.102">
       <category name="IMP Source"/>
    </feature>
    <feature url="features/org.eclipse.imp.analysis_0.1.9.jar" id="org.eclipse.imp.analysis" version="0.1.9">
@@ -97,6 +112,21 @@
       <category name="IMP Analysis"/>
    </feature>
    <feature url="features/org.eclipse.imp.analysis_0.1.10.jar" id="org.eclipse.imp.analysis" version="0.1.10">
+      <category name="IMP Analysis"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.metatooling_0.1.96.jar" id="org.eclipse.imp.metatooling" version="0.1.96">
+      <category name="IMP IDE Development Tools"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.runtime_0.1.102.jar" id="org.eclipse.imp.runtime" version="0.1.102">
+      <category name="IMP IDE Runtime"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg_0.1.92.jar" id="org.eclipse.imp.lpg" version="0.1.92">
+      <category name="IMP Language-Specific Development Environments"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis_0.1.11.jar" id="org.eclipse.imp.analysis" version="0.1.11">
+      <category name="IMP Analysis"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis.ui_0.1.10.jar" id="org.eclipse.imp.analysis.ui" version="0.1.10">
       <category name="IMP Analysis"/>
    </feature>
    <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
