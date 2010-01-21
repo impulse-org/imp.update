@@ -16,6 +16,18 @@
         <property name="update.server"      value="dev.eclipse.org"/>
         <property name="update.server.dir"  value=""/>
         <property name="zip.file"           value="${update.destination}/${update.name}_${update.version}.zip"/>
+
+        <property name="sdf.update.version" value="1.0.10"/>
+
+        <fail unless="sdf.update.cache">
+            You must define the Ant property sdf.update.cache to be the location of an SDF update site directory for IMP.
+            It should have sub-directories 'features' and 'plugins'.
+        </fail>
+        <available file="${sdf.update.cache}/${sdf.update.version}/features" property="sdf.update.verified"/>
+        <fail unless="sdf.update.verified">
+            The Ant property sdf.update.cache exists, but does not point to a valid SDF update site directory for IMP.
+            It should have sub-directories 'features' and 'plugins'.
+        </fail>
     </target>
 
 	<property
@@ -57,6 +69,7 @@
 
         <antcall target="get.lpg.artifacts"/>
         <antcall target="get.polyglot.artifacts"/>
+        <antcall target="get.sdf.artifacts"/>
     </target>
 
     <target name="build.site.xml" depends="init">
@@ -92,7 +105,7 @@
     <target name="add.features.sdf">
         <antcall target="add.feature">
             <param name="feature.id"      value="sdf_eclipse_installer_feature"/>
-            <param name="feature.version" value="1.0.10"/>
+            <param name="feature.version" value="${sdf.update.version}"/>
             <param name="category"        value="Prereqs"/>
         </antcall>
     </target>
@@ -120,14 +133,21 @@
 
     <target name="add.features.imp">
         <for param="feature.id" values="${feature.list}" separator=",">
-            <xmlproperty file="../${feature.id}.feature/feature.xml"/>
-            <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${imp.build.qualifier}"/>
-            <antcall target="add.bin.src.features">
-                <param name="feature.id"      value="${feature.id}"/>
-                <param name="feature.version" value="${feature.version}"/>
-                <param name="category"        value="IMP"/>
-            </antcall>
+            <!-- The following, when inlined, fails to set a new feature.version for each iteration (why???) -->
+            <antcall target="add.imp.feature"/>
         </for>
+    </target>
+
+    <target name="add.imp.feature">
+        <xmlproperty file="../${feature.id}.feature/feature.xml"/>
+        <echo message="feature id = ${feature.id}"/>
+        <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${imp.build.qualifier}"/>
+        <echo message="feature version = ${feature(version)}"/>
+        <antcall target="add.bin.src.features">
+            <param name="feature.id"      value="${feature.id}"/>
+            <param name="feature.version" value="${feature.version}"/>
+            <param name="category"        value="IMP"/>
+        </antcall>
     </target>
 
     <target name="add.bin.src.features">
@@ -144,11 +164,13 @@
     </target>
 
     <target name="add.feature">
-        <echo file="${site}" append="true" message="    &lt;feature url=&quot;features/${feature.id}_${feature.version}.jar&quot;${line.separator}"/>
-        <echo file="${site}" append="true" message="        id=&quot;${feature.id}&quot;${line.separator}"/>
-        <echo file="${site}" append="true" message="        version=&quot;${feature.version}&quot;>${line.separator}"/>
-        <echo file="${site}" append="true" message="        &lt;category name=&quot;${category}&quot;/>${line.separator}"/>
-        <echo file="${site}" append="true" message="    &lt;/feature>${line.separator}"/>
+        <echo file="${site}" append="true">
+    &lt;feature url=&quot;features/${feature.id}_${feature.version}.jar&quot;
+        id=&quot;${feature.id}&quot;
+        version=&quot;${feature.version}&quot;>
+        &lt;category name=&quot;${category}&quot;/>
+    &lt;/feature>
+        </echo>
     </target>
 
     <target name="zip.update" depends="init" description="Creates the update site archive from the components collected by collect.update">
@@ -197,7 +219,6 @@
     </target>
 
     <target name="get.polyglot.artifacts">
-        <!-- The name of the IMP project containing the Polyglot source snapshot is "polyglot2". -->
         <delete dir="../polyglot/eclipseUpdates/plugins" includes="*.jar"/>
         <delete dir="../polyglot/eclipseUpdates/features" includes="*.jar"/>
 
@@ -209,6 +230,15 @@
         </copy>
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
            <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
+        </copy>
+    </target>
+
+    <target name="get.sdf.artifacts">
+        <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
+            <fileset dir="${sdf.update.cache}/${sdf.update.version}/features" includes="sdf_eclipse_installer_feature_${sdf.update.version}.jar"/>
+        </copy>
+        <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
+            <fileset dir="${sdf.update.cache}/${sdf.update.version}/plugins" includes="sdf_eclipse_installer*_${sdf.update.version}.jar"/>
         </copy>
     </target>
 
