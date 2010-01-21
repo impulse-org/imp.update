@@ -46,7 +46,7 @@
 
     <fail unless="imp.eclipse.target" message="You must define the property 'imp.eclipse.target' (in the Ant runtime preferences) as the location of the Eclipse installation against which IMP should be built."/>
 
-    <echo message="imp.eclipse.target = ${imp.eclipse.target}"/>
+<!-- <echo message="imp.eclipse.target = ${imp.eclipse.target}"/> -->
 
     <path id="path_eclipse.build.path">
         <fileset dir="${imp.eclipse.target}/plugins">
