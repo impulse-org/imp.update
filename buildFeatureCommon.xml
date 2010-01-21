@@ -141,6 +141,7 @@
 	</target>
 
     <target name="build.source.feature" depends="init">
+        <filter token="feature.id" value="${feature.id}"/>
         <filter token="feature.version" value="${feature.version}"/>
         <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
     	<filter token="plugin.list" value=""/>
@@ -152,7 +153,7 @@
     			<param name="file" value="${feature.manifest.file}"/>
     	    </antcall>
     	</for>
-    	<echo message="&lt;/feature&gt;" file="${feature.manifest.file}" append="true"/>
+    	<echo message="&lt;/feature&gt;${line.separator}" file="${feature.manifest.file}" append="true"/>
         <concat>
             <fileset file="${feature.temp.folder}/feature.xml"/>
         </concat>
@@ -167,12 +168,12 @@
             <filterchain>
                 <containsregex pattern="Bundle-Version:"/>
                 <replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
+                <replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
                 <striplinebreaks/>
             </filterchain>
         </loadfile>
 		<echo file="${file}" append="true"
-		   message="    &lt;plugin id=&quot;${plugin.id}.source&quot; version=&quot;${plugin.version}&quot; unpack=&quot;false&quot;/&gt;
-"/>
+		   message="    &lt;plugin id=&quot;${plugin.id}.source&quot; version=&quot;${plugin.version}&quot; unpack=&quot;false&quot;/&gt;${line.separator}"/>
 	</target>
 	<!-- ========================================================================================= -->
 
