@@ -57,9 +57,6 @@
 
         <antcall target="get.lpg.artifacts"/>
         <antcall target="get.polyglot.artifacts"/>
-
-        <!-- save the build qualifier to be used in the zip.update target -->
-        <echo message="${imp.build.qualifier}" file=".build.qualifier"/>
     </target>
 
     <target name="build.site.xml" depends="init">
