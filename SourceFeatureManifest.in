@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<feature id="@feature.id@.source" version="@feature.version@" label="@feature.id@ Source" provider-name="@provider.name@" image="eclipse_update_120.jpg">
+<feature id="@feature.id@.source"
+         version="@feature.version@"
+         label="@feature.id@ Source"
+         provider-name="@provider.name@"
+         image="eclipse_update_120.jpg">
     <description >
         %description
     </description>
