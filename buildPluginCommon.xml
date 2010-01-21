@@ -207,6 +207,11 @@
                 <replaceregex pattern="(.*)," replace="\1"/>
             </filterchain>
         </loadfile>
+        <condition property="plugin.bin.files" value="">
+            <not>
+                <isset property="plugin.bin.files"/>
+            </not>
+        </condition>
         <echo message="plugin.bin.files = ${plugin.bin.files}"/>
 
         <loadfile property="plugin.bin.dirs" srcfile="build.properties">
