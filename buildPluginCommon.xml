@@ -99,7 +99,7 @@
                 <striplinebreaks/>
 			</filterchain>
 		</loadfile>
-        <echo message="plugin.src.path = ${plugin.src.path}"/>
+<!--    <echo message="plugin.src.path = ${plugin.src.path}"/> -->
 
         <loadfile property="plugin.bin.path" srcfile=".classpath">
             <filterchain>
@@ -108,7 +108,7 @@
                 <striplinebreaks/>
             </filterchain>
         </loadfile>
-        <echo message="plugin.bin.path = ${plugin.bin.path}"/>
+<!--    <echo message="plugin.bin.path = ${plugin.bin.path}"/> -->
 
 		<loadfile property="plugin.dependencies" srcfile="META-INF/MANIFEST.MF">
 			<filterchain>
@@ -139,8 +139,9 @@
 				<replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
 			</filterchain>
 		</loadfile>
-		<echo message="Non-Eclipse Plugin dependencies:"/>
+<!--    <echo message="Non-Eclipse Plugin dependencies:"/>
 		<echo message="${plugin.dependencies}"/>
+  -->
 	</target>
 
     <target name="plugin.jar" depends="init,javaInit,munge.manifest" unless="${plugin.jar.name}" description="Create jar: ${plugin.jar.name}.">
