@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="org.eclipse.imp.update" default="build.update.zip" basedir=".">
-
     <target name="init.custom">
         <fail unless="sdf.update.cache">
             You must define the Ant property sdf.update.cache to be the location of an SDF update site directory for IMP.
@@ -104,12 +103,13 @@
     <target name="add.imp.feature">
         <xmlproperty file="../${feature.id}.feature/feature.xml"/>
         <echo message="feature id = ${feature.id}"/>
-        <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${imp.build.qualifier}"/>
+        <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
         <echo message="feature version = ${feature(version)}"/>
         <antcall target="add.bin.src.features">
             <param name="feature.id"      value="${feature.id}"/>
             <param name="feature.version" value="${feature.version}"/>
-            <param name="category"        value="IMP"/>
+            <param name="bin.category"    value="IMP"/>
+            <param name="src.category"    value="IMP Source"/>
         </antcall>
     </target>
 
