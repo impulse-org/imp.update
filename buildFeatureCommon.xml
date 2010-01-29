@@ -5,7 +5,7 @@
 
         <echo message="Building ${ant.project.name} version ${feature(version)}"/>
 
-        <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${imp.build.qualifier}"/>
+        <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
         <echo message="Building for feature version ${feature.version}"/>
 
     	<property name="feature.id"          value="${feature(id)}"/>
@@ -72,7 +72,7 @@
 			<param name="feature.base" value="${feature.temp.folder}"/>
 		</antcall>
 
-		<propertyRegexp name="all.builds.for.version" input="${feature.version}" regexp="(.*).${imp.build.qualifier}" value="\1.*"/>
+		<propertyRegexp name="all.builds.for.version" input="${feature.version}" regexp="(.*).${build.qualifier}" value="\1.*"/>
         <echo message="Deleting old builds of feature ${feature.id} for version ${all.builds.for.version}"/>
         <delete>
             <fileset dir="${feature.destination}" includes="${feature.id}_${all.builds.for.version}.jar"/>
@@ -102,7 +102,7 @@
 
 		<copy todir="${feature.base}/features/${feature.id}_${feature.version}" file="feature.xml">
             <filterchain>
-                <replaceregex pattern="version=\&quot;(.*)\.qualifier&quot;" replace="version=&quot;\1.${imp.build.qualifier}&quot;"/>
+                <replaceregex pattern="version=\&quot;(.*)\.qualifier&quot;" replace="version=&quot;\1.${build.qualifier}&quot;"/>
             </filterchain>
         </copy>
 	</target>
@@ -121,9 +121,9 @@
         <tstamp>
             <format property="build.time" pattern="yyyyMMddHHmm"/> 
         </tstamp>
-        <condition property="imp.build.qualifier" value="v${build.time}">
+        <condition property="build.qualifier" value="v${build.time}">
             <not>
-                <isset property="imp.build.qualifier"/>
+                <isset property="build.qualifier"/>
             </not>
         </condition>
 
@@ -131,7 +131,7 @@
 			<filterchain>
 				<containsregex pattern="Bundle-Version:"/>
 				<replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
-                <replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
+                <replaceregex pattern="(.*)\.qualifier" replace="\1.${build.qualifier}"/>
 				<striplinebreaks/>
 			</filterchain>
 		</loadfile>
@@ -168,7 +168,7 @@
             <filterchain>
                 <containsregex pattern="Bundle-Version:"/>
                 <replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
-                <replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
+                <replaceregex pattern="(.*)\.qualifier" replace="\1.${build.qualifier}"/>
                 <striplinebreaks/>
             </filterchain>
         </loadfile>
