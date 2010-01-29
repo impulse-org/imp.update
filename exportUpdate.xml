@@ -9,10 +9,10 @@
         <tstamp>
             <format property="build.time" pattern="yyyyMMddHHmm"/> 
         </tstamp>
-        <property name="imp.build.qualifier" value="v${build.time}"/>
-        <echo message="Build qualifier is ${imp.build.qualifier}"/>
+        <property name="build.qualifier" value="v${build.time}"/>
+        <echo message="Build qualifier is ${build.qualifier}"/>
 
-        <property name="update.version"     value="${update.base.version}.${imp.build.qualifier}"/>
+        <property name="update.version"     value="${update.base.version}.${build.qualifier}"/>
         <property name="update.temp.folder" value="${basedir}/update.temp.folder"/>
         <property name="update.destination" value="${basedir}"/>
         <property name="zip.file"           value="${update.destination}/${update.name}_${update.version}.zip"/>
@@ -55,11 +55,12 @@
     <target name="build.site.xml" depends="init">
     	<property name="site" value="${update.temp.folder}/site.xml"/>
 
-    	<echo file="${site}" append="false" message="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>${line.separator}"/>
-    	<echo file="${site}" append="true" message="&lt;site>${line.separator}" />
-        <echo file="${site}" append="true" message="    &lt;description url=&quot;${update.site.url}&quot;>${line.separator}"/>
-    	<echo file="${site}" append="true" message="        ${update.site.description}${line.separator}"/>
-        <echo file="${site}" append="true" message="    &lt;/description>${line.separator}"/>
+    	<echo file="${site}" append="false">&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;site>
+    &lt;description url="${update.site.url}">
+        ${update.site.description}
+    &lt;/description>
+    	</echo>
 
         <antcall target="add.site.categories"/>
         <antcall target="add.all.features"/>
@@ -69,7 +70,7 @@
 
     <target name="add.site.categories">
         <for param="category" values="${update.site.categories}" separator=",">
-            <echo file="${site}" append="true" message="&lt;category-def name=&quot;${category}&quot; label=&quot;${category}&quot;/>"/>
+            <echo file="${site}" append="true" message="&lt;category-def name=&quot;${category}&quot; label=&quot;${category}&quot;/>${line.separator}"/>
         </for>
     </target>
 
@@ -77,12 +78,12 @@
         <antcall target="add.feature">
             <param name="feature.id"      value="${feature.id}"/>
             <param name="feature.version" value="${feature.version}"/>
-            <param name="category"        value="${category}"/>
+            <param name="category"        value="${bin.category}"/>
         </antcall>
         <antcall target="add.feature">
             <param name="feature.id"      value="${feature.id}.source"/>
             <param name="feature.version" value="${feature.version}"/>
-            <param name="category"        value="${category} Source"/>
+            <param name="category"        value="${src.category}"/>
         </antcall>
     </target>
 
@@ -109,7 +110,7 @@
 
 		<echo message="  ** Copying contents of feature ${feature.name} version ${f.feature(version)} from directory ${feature.dir}"/>
 
-		<propertyRegexp name="feature.version" input="${f.feature(version)}" regexp="(.*).qualifier" value="\1.${imp.build.qualifier}"/>
+		<propertyRegexp name="feature.version" input="${f.feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
 
 		<mkdir dir="${update.temp.folder}/features"/>
 		<copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
@@ -127,7 +128,7 @@
 		<for param="feature" values="${feature.list}">
 		    <echo message="*** Building feature ${feature} ***"/>
 			<ant antfile="../${feature}.feature/exportFeature.xml" target="build.feature.jar" dir="../${feature}.feature">
-                <property name="imp.build.qualifier" value="${imp.build.qualifier}"/>
+                <property name="build.qualifier" value="${build.qualifier}"/>
 			</ant>
 		</for>
 		<echo message="Done building feature jars."/>
