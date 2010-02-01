@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="org.eclipse.imp.update" default="build.update.zip" basedir=".">
     <target name="init.custom">
+        <property name="global.plugin.script" value="../org.eclipse.imp.update/exportPlugin.xml"/>
+
         <fail unless="sdf.update.cache">
-            You must define the Ant property sdf.update.cache to be the location of an SDF update site directory for IMP.
-            It should have sub-directories 'features' and 'plugins'.
+            You must define the Ant property sdf.update.cache to be the location of an
+        	SDF update site directory for IMP with the proper structure.
+            It should have a sub-directory for each SDF version, each of which should
+        	have sub-directories 'features' and 'plugins'.
+        	For example: $${sdf.update.cache}/1.0.10/features should exist.
         </fail>
         <available file="${sdf.update.cache}/${sdf.update.version}/features" property="sdf.update.verified"/>
         <fail unless="sdf.update.verified">
-            The Ant property sdf.update.cache exists, but does not point to a valid SDF update site directory for IMP.
-            It should have sub-directories 'features' and 'plugins'.
+            The Ant property sdf.update.cache exists, but does not point to an
+        	SDF update site directory for IMP with the proper structure.
+            It should have a sub-directory for each SDF version, each of which should
+            have sub-directories 'features' and 'plugins'.
+            For example: $${sdf.update.cache}/1.0.10/features should exist.
         </fail>
     </target>
 
