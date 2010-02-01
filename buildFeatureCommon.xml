@@ -4,6 +4,7 @@
         <xmlproperty file="./feature.xml"/>
 
         <property name="global.plugin.script" value="../org.eclipse.imp.update/exportPlugin.xml"/>
+        <property name="default.feature.script" value="../org.eclipse.imp.update/exportFeature.xml"/>
 
         <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
         <echo message="Building feature ${ant.project.name} for version ${feature.version}"/>

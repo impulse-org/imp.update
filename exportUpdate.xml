@@ -125,9 +125,16 @@
 
     <target name="build.features">
 		<echo message="Building feature jars for ${feature.list}..."/>
-		<for param="feature" values="${feature.list}">
-		    <echo message="*** Building feature ${feature} ***"/>
-			<ant antfile="../${feature}.feature/exportFeature.xml" target="build.feature.jar" dir="../${feature}.feature">
+		<for param="feature.id" values="${feature.list}">
+		    <echo message="*** Building feature ${feature.id} ***"/>
+	        <available file="../${feature.id}.feature/exportFeature.xml" property="feature.script" value="./exportFeature.xml"/>
+	        <condition property="feature.script" value="${default.feature.script}">
+	            <not>
+	                <isset property="feature.script"/>
+	            </not>
+	        </condition>
+	        <echo message="Using feature build script ${feature.script} for ${feature.id}"/>
+			<ant antfile="${feature.script}" target="build.feature.jar" dir="../${feature.id}.feature">
                 <property name="build.qualifier" value="${build.qualifier}"/>
 			</ant>
 		</for>

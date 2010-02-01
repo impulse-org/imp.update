@@ -2,6 +2,7 @@
 <project name="org.eclipse.imp.update" default="build.update.zip" basedir=".">
     <target name="init.custom">
         <property name="global.plugin.script" value="../org.eclipse.imp.update/exportPlugin.xml"/>
+        <property name="default.feature.script" value="../org.eclipse.imp.update/exportFeature.xml"/>
 
         <fail unless="sdf.update.cache">
             You must define the Ant property sdf.update.cache to be the location of an
