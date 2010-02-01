@@ -3,10 +3,10 @@
     <target name="init">
         <xmlproperty file="./feature.xml"/>
 
-        <echo message="Building ${ant.project.name} version ${feature(version)}"/>
+        <property name="global.plugin.script" value="../org.eclipse.imp.update/exportPlugin.xml"/>
 
         <propertyRegexp name="feature.version" input="${feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
-        <echo message="Building for feature version ${feature.version}"/>
+        <echo message="Building feature ${ant.project.name} for version ${feature.version}"/>
 
     	<property name="feature.id"          value="${feature(id)}"/>
         <property name="feature.temp.folder" value="${basedir}/feature.temp.folder"/>
@@ -114,8 +114,15 @@
 	<!-- ========================================================================================= -->
 
 	<target name="build.child">
-		<ant antfile="../${plugin.id}/exportPlugin.xml" dir="../${plugin.id}" target="build.update.jar"/>
-	</target>
+        <available file="../${plugin.id}/exportPlugin.xml" property="plugin.script" value="./exportPlugin.xml"/>
+        <condition property="plugin.script" value="${global.plugin.script}">
+            <not>
+                <isset property="plugin.script"/>
+            </not>
+        </condition>
+	    <echo message="Using plugin build script ${plugin.script} for ${plugin.id}"/>
+        <ant antfile="${plugin.script}" dir="../${plugin.id}" target="build.update.jar"/>
+    </target>
 
 	<target name="copy.child">
         <tstamp>
@@ -154,9 +161,6 @@
     	    </antcall>
     	</for>
     	<echo message="&lt;/feature&gt;${line.separator}" file="${feature.manifest.file}" append="true"/>
-        <concat>
-            <fileset file="${feature.temp.folder}/feature.xml"/>
-        </concat>
         <jar destfile="${feature.destination}/${feature.id}.source_${feature.version}.jar">
         	<fileset dir="${feature.temp.folder}" includes="feature.xml"/>
         	<fileset dir="." includes="feature.properties"/>
