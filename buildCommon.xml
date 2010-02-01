@@ -3,9 +3,9 @@
     <tstamp>
         <format property="build.time" pattern="yyyyMMddHHmm"/> 
     </tstamp>
-    <condition property="imp.build.qualifier" value="v${build.time}">
+    <condition property="build.qualifier" value="v${build.time}">
         <not>
-            <isset property="imp.build.qualifier"/>
+            <isset property="build.qualifier"/>
         </not>
     </condition>
 
