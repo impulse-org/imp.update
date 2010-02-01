@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="pluginCommon" basedir=".">
-	<target name="properties" if="eclipse.running">
-		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-	</target>
+    <target name="properties" if="eclipse.running">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+    </target>
 
-	<target name="init" depends="properties">
-		<tstamp>
-			<format property="build.time" pattern="yyyyMMddHHmm"/>
-		</tstamp>
-		<condition property="imp.build.qualifier" value="v${build.time}">
-			<not>
-				<isset property="imp.build.qualifier"/>
-			</not>
-		</condition>
+    <target name="init" depends="properties">
+        <tstamp>
+            <format property="build.time" pattern="yyyyMMddHHmm"/>
+        </tstamp>
+        <condition property="imp.build.qualifier" value="v${build.time}">
+            <not>
+                <isset property="imp.build.qualifier"/>
+            </not>
+        </condition>
 
-		<loadfile property="plugin.id" srcfile="META-INF/MANIFEST.MF">
-			<filterchain>
-				<containsregex pattern="Bundle-SymbolicName:"/>
-				<replaceregex pattern="Bundle-SymbolicName: ([^;]*)(;.*)?" replace="\1"/>
-				<striplinebreaks/>
-			</filterchain>
-		</loadfile>
-		<!-- <echo message="Plugin ID = ${plugin.id}"/> -->
+        <loadfile property="plugin.id" srcfile="META-INF/MANIFEST.MF">
+            <filterchain>
+                <containsregex pattern="Bundle-SymbolicName:"/>
+                <replaceregex pattern="Bundle-SymbolicName: ([^;]*)(;.*)?" replace="\1"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+        <!-- <echo message="Plugin ID = ${plugin.id}"/> -->
 
-		<loadfile property="plugin.version" srcfile="META-INF/MANIFEST.MF">
-			<filterchain>
-				<containsregex pattern="Bundle-Version:"/>
-				<replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
-				<replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
-				<striplinebreaks/>
-			</filterchain>
-		</loadfile>
-		<!-- <echo message="Plugin version = ${plugin.version}"/> -->
+        <loadfile property="plugin.version" srcfile="META-INF/MANIFEST.MF">
+            <filterchain>
+                <containsregex pattern="Bundle-Version:"/>
+                <replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
+                <replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+        <!-- <echo message="Plugin version = ${plugin.version}"/> -->
         <loadfile property="plugin.name" srcfile="META-INF/MANIFEST.MF">
             <filterchain>
                 <containsregex pattern="Bundle-Name:"/>
@@ -41,64 +41,64 @@
         </loadfile>
         <!-- <echo message="Plugin name = ${plugin.name}"/> -->
 
-		<property name="plugin.jar.name" value="${plugin.id}_${plugin.version}.jar"/>
-		<property name="plugin.zip.name" value="${plugin.id}_${plugin.version}.zip"/>
-		<property name="plugin.src.jar" value="${plugin.id}.source_${plugin.version}.jar"/>
-		<property name="plugin.destination" value="${basedir}"/>
-		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
-			<isset property="buildTempFolder"/>
-		</condition>
-		<property name="pluginTemp" value="${basedir}"/>
-		<condition property="build.result.folder" value="${pluginTemp}/${plugin.id}">
-			<isset property="buildTempFolder"/>
-		</condition>
-		<property name="build.result.folder" value="${basedir}"/>
-		<property name="temp.folder" value="${basedir}/temp.folder"/>
+        <property name="plugin.jar.name" value="${plugin.id}_${plugin.version}.jar"/>
+        <property name="plugin.zip.name" value="${plugin.id}_${plugin.version}.zip"/>
+        <property name="plugin.src.jar" value="${plugin.id}.source_${plugin.version}.jar"/>
+        <property name="plugin.destination" value="${basedir}"/>
+        <condition property="pluginTemp" value="${buildTempFolder}/plugins">
+            <isset property="buildTempFolder"/>
+        </condition>
+        <property name="pluginTemp" value="${basedir}"/>
+        <condition property="build.result.folder" value="${pluginTemp}/${plugin.id}">
+            <isset property="buildTempFolder"/>
+        </condition>
+        <property name="build.result.folder" value="${basedir}"/>
+        <property name="temp.folder" value="${basedir}/temp.folder"/>
 
-		<!-- LPG-related properties for plugins with grammar files -->
+        <!-- LPG-related properties for plugins with grammar files -->
         <fail unless="os" message="You must define the property 'os' (in the Ant runtime properties) as the name of the operating system on which you're running. This is used to locate the appropriate LPG executable."/>
         <fail unless="arch" message="You must define the property 'arch' (in the Ant runtime properties) as the name of the architecture on which you're running. This is used to locate the appropriate LPG executable."/>
         <property name="lpg.runtime.location" value="../lpg.runtime.java"/>
-		<property name="lpg.executable" location="../lpg.generator.${os}_${arch}/lpgexe/lpg-${os}_${arch}"/>
+        <property name="lpg.executable" location="../lpg.generator.${os}_${arch}/lpgexe/lpg-${os}_${arch}"/>
         <property name="lpg.generator.location" value="../lpg.generator"/>
-		<property name="lpg.templates" location="${lpg.generator.location}/templates/java"/>
+        <property name="lpg.templates" location="${lpg.generator.location}/templates/java"/>
         <property name="lpg.include" location="${lpg.generator.location}/include/java"/>
-	</target>
+    </target>
 
-	<target name="javaInit" description="Initializes compiler settings from bundle meta-data">
-		<available file=".settings/org.eclipse.jdt.core.prefs" property="jdtSettings"/>
-		<fail unless="jdtSettings" message="Each project must have project-specific JDT compiler settings."/>
+    <target name="javaInit" description="Initializes compiler settings from bundle meta-data">
+        <available file=".settings/org.eclipse.jdt.core.prefs" property="jdtSettings"/>
+        <fail unless="jdtSettings" message="Each project must have project-specific JDT compiler settings."/>
 
-		<loadfile property="javacSource" srcfile=".settings/org.eclipse.jdt.core.prefs">
-			<filterchain>
-				<containsregex pattern="org.eclipse.jdt.core.compiler.source"/>
-				<replaceregex pattern="org.eclipse.jdt.core.compiler.source=(.*)" replace="\1"/>
-				<striplinebreaks/>
-			</filterchain>
-		</loadfile>
-<!--	<echo message="Java source compatibility = ${javacSource}"/> -->
+        <loadfile property="javacSource" srcfile=".settings/org.eclipse.jdt.core.prefs">
+            <filterchain>
+                <containsregex pattern="org.eclipse.jdt.core.compiler.source"/>
+                <replaceregex pattern="org.eclipse.jdt.core.compiler.source=(.*)" replace="\1"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+<!--    <echo message="Java source compatibility = ${javacSource}"/> -->
 
-		<loadfile property="javacTarget" srcfile=".settings/org.eclipse.jdt.core.prefs">
-			<filterchain>
-				<containsregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform"/>
-				<replaceregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform=(.*)" replace="\1"/>
-				<striplinebreaks/>
-			</filterchain>
-		</loadfile>
-<!--	<echo message="Java target compatibility = ${javacTarget}"/> -->
+        <loadfile property="javacTarget" srcfile=".settings/org.eclipse.jdt.core.prefs">
+            <filterchain>
+                <containsregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform"/>
+                <replaceregex pattern="org.eclipse.jdt.core.compiler.codegen.targetPlatform=(.*)" replace="\1"/>
+                <striplinebreaks/>
+            </filterchain>
+        </loadfile>
+<!--    <echo message="Java target compatibility = ${javacTarget}"/> -->
 
         <fail unless="javacSource" message="Each project must specify the JDT compiler's source compatibility."/>
         <fail unless="javacTarget" message="Each project must specify the JDT compiler's target compatibility."/>
 
-		<property name="compilerArg" value=""/>
+        <property name="compilerArg" value=""/>
 
-		<loadfile property="plugin.src.path" srcfile=".classpath">
-			<filterchain>
-				<containsregex pattern="kind=&quot;src&quot;"/>
-				<replaceregex pattern="[ \t]*&lt;classpathentry .* path=&quot;(.*)&quot;/&gt;" replace="\1"/>
+        <loadfile property="plugin.src.path" srcfile=".classpath">
+            <filterchain>
+                <containsregex pattern="kind=&quot;src&quot;"/>
+                <replaceregex pattern="[ \t]*&lt;classpathentry .* path=&quot;(.*)&quot;/&gt;" replace="\1"/>
                 <striplinebreaks/>
-			</filterchain>
-		</loadfile>
+            </filterchain>
+        </loadfile>
 <!--    <echo message="plugin.src.path = ${plugin.src.path}"/> -->
 
         <loadfile property="plugin.bin.path" srcfile=".classpath">
@@ -110,39 +110,39 @@
         </loadfile>
 <!--    <echo message="plugin.bin.path = ${plugin.bin.path}"/> -->
 
-		<loadfile property="plugin.dependencies" srcfile="META-INF/MANIFEST.MF">
-			<filterchain>
-				<tokenfilter>
-					<filetokenizer/>
-					<replaceregex pattern=",[\r\n]* *" replace="," flags="gs"/>
-				</tokenfilter>
-				<containsregex pattern="Require-Bundle: "/>
-				<replaceregex pattern="Require-Bundle: (.*)" replace="\1"/>
-				<!-- Filter out Eclipse plugins that are handled by eclipse.build.path -->
+        <loadfile property="plugin.dependencies" srcfile="META-INF/MANIFEST.MF">
+            <filterchain>
+                <tokenfilter>
+                    <filetokenizer/>
+                    <replaceregex pattern=",[\r\n]* *" replace="," flags="gs"/>
+                </tokenfilter>
+                <containsregex pattern="Require-Bundle: "/>
+                <replaceregex pattern="Require-Bundle: (.*)" replace="\1"/>
+                <!-- Filter out Eclipse plugins that are handled by eclipse.build.path -->
                 <replaceregex pattern="com\.ibm\.icu[^,]*,?"         replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.compare[^,]*,?" replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.core[^,]*,?"    replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.compare[^,]*,?" replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.core[^,]*,?"    replace="" flags="g"/>
                 <replaceregex pattern="org\.eclipse\.debug[^,]*,?"   replace="" flags="g"/>
                 <replaceregex pattern="org\.eclipse\.help[^,]*,?"    replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.jdt[^,]*,?"     replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.jface[^,]*,?"   replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.ltk[^,]*,?"     replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.pde[^,]*,?"     replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.search[^,]*,?"  replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.team[^,]*,?"    replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.text[^,]*,?"    replace="" flags="g"/>
-				<replaceregex pattern="org\.eclipse\.ui[^,]*,?"      replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.jdt[^,]*,?"     replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.jface[^,]*,?"   replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.ltk[^,]*,?"     replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.pde[^,]*,?"     replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.search[^,]*,?"  replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.team[^,]*,?"    replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.text[^,]*,?"    replace="" flags="g"/>
+                <replaceregex pattern="org\.eclipse\.ui[^,]*,?"      replace="" flags="g"/>
                 <replaceregex pattern="org\.eclipse\.zest[^,]*,?"    replace="" flags="g"/>
-				<replaceregex pattern="org\.junit[^,]*,?"            replace="" flags="g"/>
-				<!-- Make dependencies on "local" (non-Eclipse) plugins use a relative path -->
-				<replaceregex pattern="(,)?lpg.runtime,?" replace="\1lpg.runtime.java,"/>
-				<replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
-			</filterchain>
-		</loadfile>
+                <replaceregex pattern="org\.junit[^,]*,?"            replace="" flags="g"/>
+                <!-- Make dependencies on "local" (non-Eclipse) plugins use a relative path -->
+                <replaceregex pattern="(,)?lpg.runtime,?" replace="\1lpg.runtime.java,"/>
+                <replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
+            </filterchain>
+        </loadfile>
 <!--    <echo message="Non-Eclipse Plugin dependencies:"/>
-		<echo message="${plugin.dependencies}"/>
+        <echo message="${plugin.dependencies}"/>
   -->
-	</target>
+    </target>
 
     <target name="plugin.jar" depends="init,javaInit,munge.manifest" unless="${plugin.jar.name}" description="Create jar: ${plugin.jar.name}.">
         <property name="plugin.temp" value="${temp.folder}/${plugin.jar.name}.bin"/>
@@ -164,7 +164,7 @@
         <delete dir="${plugin.temp}"/>
     </target>
 
-	<target name="plugin.compile" depends="init,javaInit">
+    <target name="plugin.compile" depends="init,javaInit">
         <javac destdir="${temp.folder}/${plugin.jar.name}.bin" failonerror="${javacFailOnError}"
                verbose="${javacVerbose}" debug="${javacDebugInfo}"
                includeAntRuntime="no" bootclasspath="${bootclasspath}"
@@ -176,7 +176,7 @@
             </classpath>
             <src path="${plugin.src.path}/"/>
         </javac>
-	</target>
+    </target>
 
     <target name="plugin.copy.bin.parts">
 <!--    <loadfile property="bin.includes" srcfile="build.properties">
@@ -244,7 +244,7 @@
         </for>
     </target>
 
-	<target name="munge.manifest" depends="init" description="Rewrite the plug-in manifest to perform build qualifier substitution on the version number.">
+    <target name="munge.manifest" depends="init" description="Rewrite the plug-in manifest to perform build qualifier substitution on the version number.">
        <copy file="META-INF/MANIFEST.MF" tofile="${temp.folder}/MANIFEST.MF">
            <filterchain>
                <replaceregex pattern="Bundle-Version: (.*)\.qualifier" replace="Bundle-Version: \1.${imp.build.qualifier}"/>
@@ -252,16 +252,16 @@
        </copy>
    </target>
 
-	<target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin.name} for an update site.">
-		<delete dir="${temp.folder}"/>
-		<mkdir dir="${temp.folder}"/>
-		<antcall target="build.jars"/>
-		<antcall target="build.source.plugin"/>
-		<delete dir="${temp.folder}"/>
-	</target>
+    <target name="build.update.jar" depends="init" description="Build the plug-in: ${plugin.name} for an update site.">
+        <delete dir="${temp.folder}"/>
+        <mkdir dir="${temp.folder}"/>
+        <antcall target="build.jars"/>
+        <antcall target="build.source.plugin"/>
+        <delete dir="${temp.folder}"/>
+    </target>
 
-	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${plugin.name}.">
-		<available property="plugin.jar" file="${build.result.folder}/${plugin.jar.name}"/>
+    <target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${plugin.name}.">
+        <available property="plugin.jar" file="${build.result.folder}/${plugin.jar.name}"/>
         <propertyRegexp name="all.builds.for.version" input="${plugin.version}" regexp="(.*).${imp.build.qualifier}" value="\1.*"/>
         <echo message="Deleting old builds of plugin ${plugin.id} for version ${all.builds.for.version}"/>
         <delete>
@@ -271,60 +271,74 @@
         <delete>
             <fileset dir="${build.result.folder}" includes="${plugin.id}.source_${all.builds.for.version}.jar"/>
         </delete>           
-		<antcall target="plugin.jar"/>
-	</target>
+        <antcall target="plugin.jar"/>
+    </target>
 
-	<target name="publish" depends="init">
-		<copy todir="../../artifacts" file="${plugin.name}_${plugin.version}.jar"/>
-	</target>
-
-	<target name="build.source.plugin" depends="init">
-		<mkdir dir="${build.result.folder}"/>
-		<filter token="plugin.id" value="${plugin.id}"/>
-		<filter token="plugin.version" value="${plugin.version}"/>
-		<filter token="plugin.name" value="${plugin.name}"/>
+    <target name="build.source.plugin" depends="init">
+        <mkdir dir="${build.result.folder}"/>
+        <filter token="plugin.id" value="${plugin.id}"/>
+        <filter token="plugin.version" value="${plugin.version}"/>
+        <filter token="plugin.name" value="${plugin.name}"/>
         <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
-		<copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${temp.folder}/MANIFEST.MF" filtering="true"/>
-<!--	<concat>
-			<fileset file="${temp.folder}/MANIFEST.MF"/>
-		</concat>
+        <copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${temp.folder}/MANIFEST.MF" filtering="true"/>
+<!--    <concat>
+            <fileset file="${temp.folder}/MANIFEST.MF"/>
+        </concat>
   -->
- 		<jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
-			<fileset dir="src/" includes="**/*.java,**/*.properties,**/*.exsd"/>
-		</jar>
-	</target>
+         <jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
+            <fileset dir="src/" includes="**/*.java,**/*.properties,**/*.exsd"/>
+        </jar>
+    </target>
 
-	<target name="gather.sources" depends="init" if="destination.temp.folder">
-		<mkdir dir="${destination.temp.folder}/${plugin.name}_${plugin.version}"/>
-		<copy file="${build.result.folder}/${plugin.src.zip}" todir="${destination.temp.folder}/${plugin.name}_${plugin.version}" failonerror="false" overwrite="false"/>
-		<copy todir="${destination.temp.folder}/${plugin.name}_${plugin.version}" failonerror="false" overwrite="false">
-			<fileset dir="${basedir}" includes="icons/,plugin.xml,src/,build.properties,.project,.cvsignore,.classpath"			/>
-		</copy>
-	</target>
+    <!-- The following should be rewritten to use the src.includes property from build.properties -->
+    <target name="gather.sources" depends="init" if="destination.temp.folder">
+        <mkdir dir="${destination.temp.folder}/${plugin.name}_${plugin.version}"/>
+        <copy file="${build.result.folder}/${plugin.src.zip}" todir="${destination.temp.folder}/${plugin.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+        <copy todir="${destination.temp.folder}/${plugin.name}_${plugin.version}" failonerror="false" overwrite="false">
+            <fileset dir="${basedir}" includes="icons/,plugin.xml,src/,build.properties,.project,.cvsignore,.classpath"/>
+        </copy>
+    </target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: ${plugin.name} of all the zips, jars and logs created.">
-		<delete file="${build.result.folder}/${plugin.jar.name}"/>
-		<delete file="${build.result.folder}/${plugin.src.zip}"/>
-		<delete file="${plugin.destination}/${plugin.name}_${plugin.version}.jar"/>
-		<delete file="${plugin.destination}/${plugin.name}_${plugin.version}.zip"/>
-		<delete dir="${temp.folder}"/>
-	</target>
+    <target name="clean" depends="init" description="Clean the plug-in: ${plugin.name} of all the zips, jars and logs created.">
+        <delete file="${build.result.folder}/${plugin.jar.name}"/>
+        <delete file="${build.result.folder}/${plugin.src.zip}"/>
+        <delete file="${plugin.destination}/${plugin.name}_${plugin.version}.jar"/>
+        <delete file="${plugin.destination}/${plugin.name}_${plugin.version}.zip"/>
+        <delete dir="${temp.folder}"/>
+    </target>
 
-	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${plugin.name}.">
-		<delete dir="${temp.folder}"/>
-		<mkdir dir="${temp.folder}"/>
-		<antcall target="build.jars"/>
-		<antcall target="build.sources"/>
-		<antcall target="gather.bin.parts">
-			<param name="destination.temp.folder" value="${temp.folder}/"/>
-		</antcall>
-		<antcall target="gather.sources">
-			<param name="destination.temp.folder" value="${temp.folder}/"/>
-		</antcall>
-		<delete>
-			<fileset dir="${temp.folder}" includes="**/*.bin.log"			/>
-		</delete>
-		<zip destfile="${plugin.destination}/${plugin.name}_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
-		<delete dir="${temp.folder}"/>
-	</target>
+    <target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: ${plugin.name}.">
+        <delete dir="${temp.folder}"/>
+        <mkdir dir="${temp.folder}"/>
+        <antcall target="build.jars"/>
+        <antcall target="build.sources"/>
+        <antcall target="gather.bin.parts">
+            <param name="destination.temp.folder" value="${temp.folder}/"/>
+        </antcall>
+        <antcall target="gather.sources">
+            <param name="destination.temp.folder" value="${temp.folder}/"/>
+        </antcall>
+        <delete>
+            <fileset dir="${temp.folder}" includes="**/*.bin.log"/>
+        </delete>
+        <zip destfile="${plugin.destination}/${plugin.name}_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+        <delete dir="${temp.folder}"/>
+    </target>
+
+    <!-- ===================== -->
+    <!-- CruiseControl targets -->
+    <!-- ===================== -->
+
+    <!-- Used by cruisecontrol config to collect artifacts (jars) in one place -->
+    <target name="cruise.publish" depends="init">
+        <copy todir="../../artifacts" file="${plugin.name}_${plugin.version}.jar"/>
+    </target>
+
+    <target name="cruise.compile">
+      <cvs command="update -d -P -A"/>
+      <antcall target="build.update.jar"/>
+    </target>
+
+    <target name="cruise.test">
+    </target>
 </project>
