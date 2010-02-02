@@ -2,6 +2,7 @@
 <project name="build.cruise.config" default="build.config.xml" basedir=".">
     <property file="./update.properties"/>
     <property name="config.file" value="cruiseconfig.xml"/>
+    <property name="eclipse.install.location" value="/usr/lib/eclipse-3.5"/>
 
     <target name="build.config.xml">
         <antcall target="build.prologue"/>
@@ -14,6 +15,7 @@
     &lt;!-- ============================================= -->
     &lt;!-- THIS FILE IS GENERATED; DO NOT EDIT!!!        -->
     &lt;!-- ============================================= -->
+    &lt;property name="cruise.home" value="/usr/src/cruisecontrol"/>
     &lt;system>
         &lt;configuration>
             &lt;threads count="3"/>
@@ -48,10 +50,12 @@
         &lt;/modificationset>
 
         &lt;schedule interval="900">
-            &lt;ant buildfile="projects/$${project.name}/cruise-build.xml"
+            &lt;ant buildfile="projects/org.eclipse.imp.update/exportFeature.xml"
                     tempfile="logs/${project.name}/log-$${project.name}.xml"
                     saveLogDir="logs/$${project.name}"
-                    target="build"/>
+                    target="build.feature.jar">
+                &lt;property name="imp.eclipse.target" value="${eclipse.install.location}"/>
+            &lt;/ant>
         &lt;/schedule>
 
         &lt;publishers>
@@ -153,15 +157,15 @@
 
     &lt;project name="${plugin.id}">
         &lt;listeners>
-            &lt;currentbuildstatuslistener file="logs/$${project.name}/status.txt"/>
+            &lt;currentbuildstatuslistener file="logs/${plugin.id}/status.txt"/>
         &lt;/listeners>
 
         &lt;bootstrappers>
-            &lt;svnbootstrapper localWorkingCopy="projects/$${project.name}" />
+            &lt;svnbootstrapper localWorkingCopy="projects/${plugin.id}" />
         &lt;/bootstrappers>
 
         &lt;modificationset quietperiod="30">
-            &lt;svn localWorkingCopy="projects/$${project.name}"/>
+            &lt;svn localWorkingCopy="projects/${plugin.id}"/>
             </echo>
 
             <for param="dep.plugin.id" values="${plugin.dependencies}" separator=",">
@@ -172,10 +176,17 @@
             <echo file="${config.file}" append="true">&lt;/modificationset>
 
         &lt;schedule interval="900">
-            &lt;ant buildfile="projects/$${project.name}/exportPlugin.xml"
-                    tempfile="logs/${project.name}/log-$${project.name}.xml"
-                    saveLogDir="logs/$${project.name}"
-                    target="cruise.build"/>
+            &lt;ant antWorkingDir="projects/${plugin.id}"
+                    buildfile="../org.eclipse.imp.update/exportPlugin.xml"
+                    tempfile="logs/${plugin.id}/log-${plugin.id}.xml"
+                    saveLogDir="logs/${plugin.id}"
+                    target="cruise.update.and.compile">
+                &lt;property name="imp.eclipse.target" value="${eclipse.install.location}"/>
+                &lt;lib searchPath="${cruise.home}/lib/ant-imp.jar"/>
+                &lt;lib searchPath="${cruise.home}/lib/ant-apache-regexp.jar"/>
+                &lt;lib searchPath="${cruise.home}/lib/ant-svn.jar"/>
+                &lt;lib searchPath="${cruise.home}/lib/jakarta-oro-2.0.8.jar"/>
+            &lt;/ant>
         &lt;/schedule>
 
         &lt;publishers>
