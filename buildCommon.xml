@@ -9,6 +9,9 @@
         </not>
     </condition>
 
+    <taskdef name="for" classname="org.eclipse.imp.ant.ForTask"/>
+    <taskdef name="propertyRegexp" classname="org.eclipse.imp.ant.PropertyRegexpTask"/>
+
     <!-- Global Java compiler settings -->
     <property name="javacFailOnError" value="true"/>
     <property name="javacDebugInfo" value="on"/>
