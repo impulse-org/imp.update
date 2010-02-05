@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="build.cruise.config" default="build.config.xml" basedir=".">
-    <property file="./update.properties"/>
+    <property file="../update.properties"/>
     <property name="config.file" value="cruiseconfig.xml"/>
     <property name="eclipse.install.location" value="/usr/lib/eclipse-3.5"/>
 
@@ -78,7 +78,7 @@
     </target>
 
     <target name="build.plugin.descriptors.for.feature">
-        <loadfile property="plugins.ids" srcfile="../${feature.id}.feature/feature.xml">
+        <loadfile property="plugins.ids" srcfile="../../${feature.id}.feature/feature.xml">
             <filterchain>
                 <!-- Sometimes the PDE splits <plugin> elements into several lines, but the
                      subsequent filters assume the entire <plugin> element is all on one line. -->
@@ -113,7 +113,8 @@
     </target>
 
     <target name="build.plugin.descriptor">
-        <loadfile property="plugin.dependencies" srcfile="../${plugin.id}/META-INF/MANIFEST.MF">
+        <echo message="plugin.id = ${plugin.id}"/>
+        <loadfile property="plugin.dependencies" srcfile="../../${plugin.id}/META-INF/MANIFEST.MF">
             <filterchain>
                 <tokenfilter>
                     <filetokenizer/>
