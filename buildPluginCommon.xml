@@ -334,9 +334,11 @@
         <copy todir="../../artifacts" file="${plugin.name}_${plugin.version}.jar"/>
     </target>
 
-    <target name="cruise.update.and.compile">
-      <svn command="update"/>
-      <antcall target="build.update.jar"/>
+    <target name="cruise.update.and.build">
+        <svn>
+            <update dir="." revision="HEAD"/>
+        </svn>
+        <antcall target="build.update.jar"/>
     </target>
 
     <target name="cruise.test">
