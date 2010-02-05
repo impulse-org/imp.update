@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="build.cruise.config" default="build.config.xml" basedir=".">
+    <taskdef resource="antlib.xml" classpath="../ant-imp.jar"/>
+
     <property file="../update.properties"/>
     <property name="config.file" value="cruiseconfig.xml"/>
     <property name="eclipse.install.location" value="/usr/lib/eclipse-3.5"/>
@@ -50,9 +52,9 @@
         &lt;/modificationset>
 
         &lt;schedule interval="900">
-            &lt;ant buildfile="projects/org.eclipse.imp.update/exportFeature.xml"
-                    tempfile="logs/${project.name}/log-$${project.name}.xml"
-                    saveLogDir="logs/$${project.name}"
+            &lt;ant antWorkingDir="projects/${project.name}"
+                    buildfile="projects/org.eclipse.imp.update/exportFeature.xml"
+                    saveLogDir="logs/${project.name}"
                     target="build.feature.jar">
                 &lt;property name="imp.eclipse.target" value="${eclipse.install.location}"/>
             &lt;/ant>
@@ -179,14 +181,9 @@
         &lt;schedule interval="900">
             &lt;ant antWorkingDir="projects/${plugin.id}"
                     buildfile="../org.eclipse.imp.update/exportPlugin.xml"
-                    tempfile="logs/${plugin.id}/log-${plugin.id}.xml"
                     saveLogDir="logs/${plugin.id}"
-                    target="cruise.update.and.compile">
+                    target="cruise.update.and.build">
                 &lt;property name="imp.eclipse.target" value="${eclipse.install.location}"/>
-                &lt;lib searchPath="${cruise.home}/lib/ant-imp.jar"/>
-                &lt;lib searchPath="${cruise.home}/lib/ant-apache-regexp.jar"/>
-                &lt;lib searchPath="${cruise.home}/lib/ant-svn.jar"/>
-                &lt;lib searchPath="${cruise.home}/lib/jakarta-oro-2.0.8.jar"/>
             &lt;/ant>
         &lt;/schedule>
 
