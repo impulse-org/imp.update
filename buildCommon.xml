@@ -9,8 +9,7 @@
         </not>
     </condition>
 
-    <taskdef name="for" classname="org.eclipse.imp.ant.ForTask"/>
-    <taskdef name="propertyRegexp" classname="org.eclipse.imp.ant.PropertyRegexpTask"/>
+    <taskdef resource="antlib.xml" classpath="../org.eclipse.imp.update/ant-imp.jar"/>
 
     <!-- Global Java compiler settings -->
     <property name="javacFailOnError" value="true"/>
@@ -22,7 +21,7 @@
     <echo message="ant.home = ${ant.home}"/>
   -->
 
-	<condition property="mac.jre.path" value="${java.home}/../Classes">
+    <condition property="mac.jre.path" value="${java.home}/../Classes">
         <os family="mac"/>
     </condition>
 
@@ -33,7 +32,7 @@
 <!-- <echo message="mac.jre.path = ${mac.jre.path}"/> -->
 
     <path id="path_bootclasspath">
-    	<pathelement path="${java.class.path}"/>
+        <pathelement path="${java.class.path}"/>
         <fileset dir="${mac.jre.path}">
             <include name="*.jar"/>
         </fileset>
