@@ -47,7 +47,11 @@
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
 
-    <fail unless="eclipse.target.platform" message="You must define the property 'eclipse.target.platform' (in the Ant runtime preferences) as the location of the Eclipse installation against which plugins should be compiled."/>
+    <fail unless="eclipse.target.platform">
+        You must define the property 'eclipse.target.platform' (in the Ant runtime preferences or
+        via a "-D" option) to be the location of the Eclipse installation against which plugins
+        should be compiled.
+    </fail>
 
 <!-- <echo message="eclipse.target.platform = ${eclipse.target.platform}"/> -->
 
