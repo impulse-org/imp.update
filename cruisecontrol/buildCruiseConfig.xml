@@ -183,7 +183,9 @@
                     buildfile="../org.eclipse.imp.update/exportPlugin.xml"
                     saveLogDir="logs/${plugin.id}"
                     target="cruise.update.and.build">
+                &lt;property name="ant.regexp.regexpimpl" value="org.apache.tools.ant.util.regexp.JakartaOroRegexp"/>
                 &lt;property name="imp.eclipse.target" value="${eclipse.install.location}"/>
+                &lt;property name="basedir" value="."/>
             &lt;/ant>
         &lt;/schedule>
 
