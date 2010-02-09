@@ -47,12 +47,12 @@
 
     <property name="bootclasspath" refid="path_bootclasspath"/>
 
-    <fail unless="imp.eclipse.target" message="You must define the property 'imp.eclipse.target' (in the Ant runtime preferences) as the location of the Eclipse installation against which IMP should be built."/>
+    <fail unless="eclipse.target.platform" message="You must define the property 'eclipse.target.platform' (in the Ant runtime preferences) as the location of the Eclipse installation against which plugins should be compiled."/>
 
-<!-- <echo message="imp.eclipse.target = ${imp.eclipse.target}"/> -->
+<!-- <echo message="eclipse.target.platform = ${eclipse.target.platform}"/> -->
 
     <path id="path_eclipse.build.path">
-        <fileset dir="${imp.eclipse.target}/plugins">
+        <fileset dir="${eclipse.target.platform}/plugins">
             <include name="**/*.jar"/>
         </fileset>
     </path>
