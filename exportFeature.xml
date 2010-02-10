@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.imp.feature" default="build.feature.jar" basedir=".">
+<project name="org.eclipse.imp.feature" default="build.feature" basedir=".">
 	<import file="../org.eclipse.imp.update/buildCommon.xml"/>
 	<import file="../org.eclipse.imp.update/buildFeatureCommon.xml"/>
 </project>
