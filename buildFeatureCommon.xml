@@ -35,20 +35,42 @@
         </loadfile>
         <echo message="Feature contains the following plugins: ${plugins.ids}"/>
     </target>
-    
-    <target name="build.all.plugins" depends="init">
-        <for param="plugin.id" values="${plugins.ids}">
-            <antcall target="build.child">
-                <param name="plugin.id" value="${plugin.id}"/>
-            </antcall>
-        </for>
+
+    <!-- This is the main target -->
+    <target name="build.feature" depends="init" description="Build the feature jar and all of the feature's constituent plugins">
+        <antcall target="build.feature.jar"/>
+        <antcall target="gather.plugin.jars"/>
     </target>
 
-    <target name="echo.child">
-        <echo message="Processing ${plugin.id}"/>
+    <target name="build.feature.jar" depends="init" description="Build the feature jar for IMP for an update site.">
+        <property name="feature.base" value="${feature.temp.folder}"/>
+        <delete dir="${feature.temp.folder}"/>
+        <mkdir dir="${feature.temp.folder}"/>
+        <antcall target="gather.feature.parts" inheritAll="false">
+<!--        <param name="arch" value="*"/>
+            <param name="ws" value="*"/>
+            <param name="nl" value="*"/>
+            <param name="os" value="*"/> -->
+            <param name="feature.base" value="${feature.temp.folder}"/>
+        </antcall>
+
+        <propertyRegexp name="all.builds.for.version" input="${feature.version}" regexp="(.*).${build.qualifier}" value="\1.*"/>
+        <echo message="Deleting old builds of feature ${feature.id} for version ${all.builds.for.version}"/>
+        <delete>
+            <fileset dir="${feature.destination}" includes="${feature.id}_${all.builds.for.version}.jar"/>
+        </delete>           
+        <echo message="Deleting old builds of source feature ${feature.id} for version ${all.builds.for.version}"/>
+        <delete>
+            <fileset dir="${feature.destination}" includes="${feature.id}.source_${all.builds.for.version}.jar"/>
+        </delete>           
+
+        <jar destfile="${feature.destination}/${feature.id}_${feature.version}.jar" basedir="${feature.temp.folder}/features/${feature.id}_${feature.version}"/>
+        <antcall target="build.source.feature"/>
+        <delete dir="${feature.temp.folder}"/>
+        <echo message="Feature jar build complete."/>
     </target>
 
-    <!-- RMF Copy the plugin jars to the 'plugins' folder so that exportUpdate script can see it -->
+    <!-- Copy the plugin jars to the 'plugins' folder so that exportUpdate script can see it -->
     <target name="gather.plugin.jars" depends="build.all.plugins">
         <delete failonerror="false">
             <fileset dir="plugins" includes="*.jar"/>
@@ -61,38 +83,22 @@
         </for>
     </target>
 
-	<target name="build.feature.jar" depends="init" description="Build the feature jar for IMP for an update site.">
-		<property name="feature.base" value="${feature.temp.folder}"/>
-		<delete dir="${feature.temp.folder}"/>
-		<mkdir dir="${feature.temp.folder}"/>
-		<antcall target="gather.bin.parts" inheritAll="false">
-			<param name="arch" value="*"/>
-			<param name="ws" value="*"/>
-			<param name="nl" value="*"/>
-			<param name="os" value="*"/>
-			<param name="feature.base" value="${feature.temp.folder}"/>
-		</antcall>
+    <target name="build.all.plugins" depends="init">
+        <for param="plugin.id" values="${plugins.ids}">
+            <antcall target="build.child">
+                <param name="plugin.id" value="${plugin.id}"/>
+            </antcall>
+        </for>
+    </target>
 
-		<propertyRegexp name="all.builds.for.version" input="${feature.version}" regexp="(.*).${build.qualifier}" value="\1.*"/>
-        <echo message="Deleting old builds of feature ${feature.id} for version ${all.builds.for.version}"/>
-        <delete>
-            <fileset dir="${feature.destination}" includes="${feature.id}_${all.builds.for.version}.jar"/>
-        </delete>           
-        <echo message="Deleting old builds of source feature ${feature.id} for version ${all.builds.for.version}"/>
-        <delete>
-            <fileset dir="${feature.destination}" includes="${feature.id}.source_${all.builds.for.version}.jar"/>
-        </delete>           
+    <target name="echo.child">
+        <echo message="Processing ${plugin.id}"/>
+    </target>
 
-		<jar destfile="${feature.destination}/${feature.id}_${feature.version}.jar" basedir="${feature.temp.folder}/features/${feature.id}_${feature.version}"/>
-        <antcall target="build.source.feature"/>
-		<delete dir="${feature.temp.folder}"/>
-		<antcall target="gather.plugin.jars"/>
-		<echo message="Feature jar build complete."/>
-	</target>
-
-	<target name="gather.bin.parts" depends="init" if="feature.base">
-		<mkdir dir="${feature.base}/features/${feature.id}_${feature.version}"/>
-		<copy todir="${feature.base}/features/${feature.id}_${feature.version}" failonerror="true" overwrite="false">
+	<target name="gather.feature.parts" depends="init" if="feature.base">
+	    <property name="target.dir" value="${feature.base}/features/${feature.id}_${feature.version}"/>
+		<mkdir dir="${target.dir}"/>
+		<copy todir="${target.dir}" failonerror="true" overwrite="false">
 			<fileset dir="${basedir}">
 				<include name="feature.properties"/>
 				<include name="epl-v10.html"/>
@@ -101,7 +107,7 @@
 			</fileset>
 		</copy>
 
-		<copy todir="${feature.base}/features/${feature.id}_${feature.version}" file="feature.xml">
+		<copy todir="${target.dir}" file="feature.xml">
             <filterchain>
                 <replaceregex pattern="version=\&quot;(.*)\.qualifier&quot;" replace="version=&quot;\1.${build.qualifier}&quot;"/>
             </filterchain>
@@ -185,7 +191,7 @@
 	<target name="zip.distribution" depends="init" description="Create a zip containing all the plug-ins and features for the feature: ${feature.id}.">
 		<delete dir="${feature.temp.folder}"/>
 		<mkdir dir="${feature.temp.folder}"/>
-		<antcall target="gather.bin.parts">
+		<antcall target="gather.feature.parts">
 			<param name="arch" value="*"/>
 			<param name="ws" value="*"/>
 			<param name="nl" value="*"/>
