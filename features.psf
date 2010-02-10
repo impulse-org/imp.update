@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
     <provider id="org.tigris.subversion.subclipse.core.svnnature">
-        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.runtime.feature/trunk,org.eclipse.imp.runtime.feature"/>
-        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.lpg.feature/trunk,org.eclipse.imp.lpg.feature"/>
-        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/org.eclipse.imp.feature/trunk,org.eclipse.imp.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.analysis.feature,org.eclipse.imp.analysis.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.analysis.ui.feature,org.eclipse.imp.analysis.ui.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.formatting.feature,org.eclipse.imp.formatting.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.java.hosted.feature,org.eclipse.imp.java.hosted.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.lpg.feature,org.eclipse.imp.lpg.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.metatooling.feature,org.eclipse.imp.metatooling.feature"/>
+        <project reference="0.9.3,https://dev.eclipse.org/svnroot/technology/org.eclipse.imp/trunk/org.eclipse.imp.runtime.feature,org.eclipse.imp.runtime.feature"/>
+    </provider>
+    <provider id="org.eclipse.team.cvs.core.cvsnature">
+        <project reference="1.0,:extssh:lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.generator.feature,lpg.generator.feature"/>
+        <project reference="1.0,:extssh:lpg.cvs.sourceforge.net:/cvsroot/lpg,lpg.runtime.feature,lpg.runtime.feature"/>
     </provider>
 </psf>
