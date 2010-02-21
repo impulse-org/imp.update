@@ -4,57 +4,89 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>@import url("web/site.css");</style>
 <script type="text/javascript">
-	var returnval = 0;
-	var stylesheet, xmlFile, cache, doc;
-	function init(){
-		// NSCP 7.1+ / Mozilla 1.4.1+ / Safari
-		// Use the standard DOM Level 2 technique, if it is supported
-		if (document.implementation && document.implementation.createDocument) {
-			xmlFile = document.implementation.createDocument("", "", null);
-			stylesheet = document.implementation.createDocument("", "", null);
-			if (xmlFile.load){
-				xmlFile.load("site.xml");
-				stylesheet.load("web/site.xsl");
-			} else {
-				alert("Document could not be loaded by browser.");
-			}
-			xmlFile.addEventListener("load", transform, false);
-			stylesheet.addEventListener("load", transform, false);
-		}
-		//IE 6.0+ solution
-		else if (window.ActiveXObject) {
-			xmlFile = new ActiveXObject("msxml2.DOMDocument.3.0");
-			xmlFile.async = false;
-			xmlFile.load("site.xml");
-			stylesheet = new ActiveXObject("msxml2.FreeThreadedDOMDocument.3.0");
-			stylesheet.async = false;
-			stylesheet.load("web/site.xsl");
-			cache = new ActiveXObject("msxml2.XSLTemplate.3.0");
-			cache.stylesheet = stylesheet;
-			transformData();
-		}
-	}
-	// separate transformation function for IE 6.0+
-	function transformData(){
-		var processor = cache.createProcessor();
-		processor.input = xmlFile;
-		processor.transform();
-		data.innerHTML = processor.output;
-	}
-	// separate transformation function for NSCP 7.1+ and Mozilla 1.4.1+ 
-	function transform(){
-		returnval+=1;
-		if (returnval==2){
-			var processor = new XSLTProcessor();
-			processor.importStylesheet(stylesheet); 
-			doc = processor.transformToDocument(xmlFile);
-			document.getElementById("data").innerHTML = doc.documentElement.innerHTML;
-		}
-	}
+    var transformDone = false;
+    var stylesheet, xmlFile;
+
+    function loadXMLDoc(url, callback) {
+        if (window.XMLHttpRequest) {
+            var req = new XMLHttpRequest();
+
+            function processReqChange() {
+                if (req.readyState == 4) {    // only if req shows "loaded"
+                    if (req.status == 200) {  // only if "OK"
+                        callback(req.responseXML);
+                    } else {
+                        alert("There was a problem retrieving the XML data:\n" + req.statusText);
+                    }
+                }
+            }
+
+            req.onreadystatechange = processReqChange;
+            req.open("GET", url, true);
+            req.send(null);
+        }
+    }
+
+    function init() {
+        if (window.ActiveXObject) { // IE-only version
+            xmlFile = new ActiveXObject("msxml2.DOMDocument.3.0");
+            xmlFile.async = false;
+            xmlFile.load("site.xml");
+            stylesheet = new ActiveXObject("msxml2.FreeThreadedDOMDocument.3.0");
+            stylesheet.async = false;
+            stylesheet.load("web/site.xsl");
+            cache = new ActiveXObject("msxml2.XSLTemplate.3.0");
+            cache.stylesheet = stylesheet;
+            transformDataIE();
+        } else { // Safari and FireFox version
+            xmlFile = stylesheet = null;
+            transformDone = false;
+            loadXMLDoc("site.xml",
+                function(result) {
+                    xmlFile = result;
+                    transform();
+                }
+            );
+            loadXMLDoc("web/site.xsl",
+                function(result) {
+                    stylesheet = result;
+                    transform();
+                }
+            );
+        }
+    }
+    function transform() {
+        if (!transformDone && xmlFile && stylesheet) {
+            var processor = new XSLTProcessor();
+            processor.importStylesheet(stylesheet);
+            var doc = processor.transformToDocument(xmlFile);
+            var dataDivBody = document.getElementById("data");
+//          alert(new XMLSerializer().serializeToString(doc.documentElement.innerHTML));
+            dataDivBody.innerHTML = doc.documentElement.innerHTML;
+            transformDone = true;
+        }
+    }
+    function transformDataIE() { // separate transformation function for IE 6.0+
+        var processor = cache.createProcessor();
+        processor.input = xmlFile;
+        processor.transform();
+        data.innerHTML = processor.output;
+    }
 </script>
 </head>
 <body onload="init();">
-<!--[insert static HTML here]-->
+<h2>IMP Project Update Site</h2>
+ <p>This Eclipse update site hosts the distribution for the IMP IDE framework, and related components.<p><br>
+ <p>The IMP project page is located at <a href="http://www.eclipse.org/imp">http://www.eclipse.org/imp</a>.
+<hr>
+
+<h2>Using this Update Site</h2>
+
+Simply go to the Eclipse Update Manager, create a new update site and enter this site's URL:<br>
+
+<a HREF="http://download.eclipse.org/technology/imp/updates/">http://download.eclipse.org/technology/imp/updates/</a>
+
 <div id="data"><!-- this is where the transformed data goes --></div>
+
 </body>
 </html>
