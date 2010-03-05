@@ -53,9 +53,9 @@
     </target>
 
     <target name="build.site.xml" depends="init">
-    	<property name="site" value="${update.temp.folder}/site.xml"/>
+    	<property name="site.xml" value="${update.temp.folder}/site.xml"/>
 
-    	<echo file="${site}" append="false">&lt;?xml version="1.0" encoding="UTF-8"?>
+    	<echo file="${site.xml}" append="false">&lt;?xml version="1.0" encoding="UTF-8"?>
 &lt;site>
     &lt;description url="${update.site.url}">
         ${update.site.description}
@@ -65,12 +65,12 @@
         <antcall target="add.site.categories"/>
         <antcall target="add.all.features"/>
 
-    	<echo file="${site}" append="true" message="&lt;/site>${line.separator}"/>
+    	<echo file="${site.xml}" append="true" message="&lt;/site>${line.separator}"/>
     </target>
 
     <target name="add.site.categories">
         <for param="category" values="${update.site.categories}" separator=",">
-            <echo file="${site}" append="true" message="&lt;category-def name=&quot;${category}&quot; label=&quot;${category}&quot;/>${line.separator}"/>
+            <echo file="${site.xml}" append="true" message="&lt;category-def name=&quot;${category}&quot; label=&quot;${category}&quot;/>${line.separator}"/>
         </for>
     </target>
 
@@ -88,7 +88,7 @@
     </target>
 
     <target name="add.feature">
-        <echo file="${site}" append="true">
+        <echo file="${site.xml}" append="true">
     &lt;feature url="features/${feature.id}_${feature.version}.jar"
         id="${feature.id}"
         version="${feature.version}">
@@ -134,7 +134,7 @@
 	            </not>
 	        </condition>
 	        <echo message="Using feature build script ${feature.script} for ${feature.id}"/>
-			<ant antfile="${feature.script}" target="build.feature.jar" dir="../${feature.id}.feature">
+			<ant antfile="${feature.script}" target="build.feature" dir="../${feature.id}.feature">
                 <property name="build.qualifier" value="${build.qualifier}"/>
 			</ant>
 		</for>
