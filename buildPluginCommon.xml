@@ -8,9 +8,9 @@
         <tstamp>
             <format property="build.time" pattern="yyyyMMddHHmm"/>
         </tstamp>
-        <condition property="imp.build.qualifier" value="v${build.time}">
+        <condition property="build.qualifier" value="v${build.time}">
             <not>
-                <isset property="imp.build.qualifier"/>
+                <isset property="build.qualifier"/>
             </not>
         </condition>
 
@@ -27,7 +27,7 @@
             <filterchain>
                 <containsregex pattern="Bundle-Version:"/>
                 <replaceregex pattern="Bundle-Version: (.*)" replace="\1"/>
-                <replaceregex pattern="(.*)\.qualifier" replace="\1.${imp.build.qualifier}"/>
+                <replaceregex pattern="(.*)\.qualifier" replace="\1.${build.qualifier}"/>
                 <striplinebreaks/>
             </filterchain>
         </loadfile>
@@ -115,6 +115,7 @@
             <filterchain>
                 <tokenfilter>
                     <filetokenizer/>
+                    <replaceregex pattern=";bundle-version=&quot;[.0-9]+&quot;" replace="" flags="gs"/>
                     <replaceregex pattern=",[\r\n]* *" replace="," flags="gs"/>
                 </tokenfilter>
                 <containsregex pattern="Require-Bundle: "/>
@@ -137,7 +138,7 @@
                 <replaceregex pattern="org\.junit[^,]*,?"            replace="" flags="g"/>
                 <!-- Make dependencies on "local" (non-Eclipse) plugins use a relative path -->
                 <replaceregex pattern="(,)?lpg.runtime,?" replace="\1lpg.runtime.java,"/>
-                <replaceregex pattern="([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
+                <replaceregex pattern="([-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)*),?" replace="../\1/bin;../\1/classes;" flags="g"/>
             </filterchain>
         </loadfile>
 <!--    <echo message="Non-Eclipse Plugin dependencies:"/>
@@ -265,7 +266,7 @@
     <target name="munge.manifest" depends="init" description="Rewrite the plug-in manifest to perform build qualifier substitution on the version number.">
        <copy file="META-INF/MANIFEST.MF" tofile="${temp.folder}/MANIFEST.MF">
            <filterchain>
-               <replaceregex pattern="Bundle-Version: (.*)\.qualifier" replace="Bundle-Version: \1.${imp.build.qualifier}"/>
+               <replaceregex pattern="Bundle-Version: (.*)\.qualifier" replace="Bundle-Version: \1.${build.qualifier}"/>
            </filterchain>
        </copy>
    </target>
@@ -280,7 +281,7 @@
 
     <target name="build.jars" depends="init" description="Build all the jars for the plug-in: ${plugin.name}.">
         <available property="plugin.jar" file="${build.result.folder}/${plugin.jar.name}"/>
-        <propertyRegexp name="all.builds.for.version" input="${plugin.version}" regexp="(.*).${imp.build.qualifier}" value="\1.*"/>
+        <propertyRegexp name="all.builds.for.version" input="${plugin.version}" regexp="(.*).${build.qualifier}" value="\1.*"/>
         <echo message="Deleting old builds of plugin ${plugin.id} for version ${all.builds.for.version}"/>
         <delete>
             <fileset dir="${build.result.folder}" includes="${plugin.id}_${all.builds.for.version}.jar"/>
@@ -292,7 +293,7 @@
         <antcall target="plugin.jar"/>
     </target>
 
-    <target name="build.source.plugin" depends="init">
+    <target name="build.source.plugin" depends="init,javaInit">
         <mkdir dir="${build.result.folder}"/>
         <filter token="plugin.id" value="${plugin.id}"/>
         <filter token="plugin.version" value="${plugin.version}"/>
