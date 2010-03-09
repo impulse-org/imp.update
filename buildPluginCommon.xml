@@ -234,7 +234,7 @@
                 <striplinebreaks/>
                 <replaceregex pattern="bin.includes = (.*)" replace="\1"/>
                 <replaceregex pattern="(.*)" replace="\1,"/>
-                <replaceregex pattern="[^/,]+," replace="" flags="gs"/>
+                <replaceregex pattern="[^,]+[^/]," replace="" flags="gs"/>
                 <!-- We'll take care of the "./" entry separately -->
                 <replaceregex pattern="\.," replace=""/>
                 <replaceregex pattern="(.*)," replace="\1"/>
@@ -295,16 +295,18 @@
 
     <target name="build.source.plugin" depends="init,javaInit">
         <mkdir dir="${build.result.folder}"/>
-        <filter token="plugin.id" value="${plugin.id}"/>
+        <filter token="plugin.id" value="${plugin.id}.source"/>
         <filter token="plugin.version" value="${plugin.version}"/>
         <filter token="plugin.name" value="${plugin.name}"/>
         <filter token="provider.name" value="rfuhrer@watson.ibm.com"/>
-        <copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${temp.folder}/MANIFEST.MF" filtering="true"/>
+        <property name="src.manifest" value="${temp.folder}/MANIFEST.MF"/>
+<!--    <echo message="src.manifest = ${src.manifest}"/> -->
+        <copy file="../org.eclipse.imp.update/SourcePluginManifest.in" tofile="${src.manifest}" filtering="true" overwrite="true"/>
 <!--    <concat>
             <fileset file="${temp.folder}/MANIFEST.MF"/>
         </concat>
   -->
-         <jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${temp.folder}/MANIFEST.MF">
+        <jar destfile="${build.result.folder}/${plugin.src.jar}" filesonly="false" whenempty="skip" update="false" manifest="${src.manifest}">
             <fileset dir="src/" includes="**/*.java,**/*.properties,**/*.exsd"/>
         </jar>
     </target>
