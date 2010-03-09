@@ -2,7 +2,7 @@
 <project name="export.update" default="build.update.zip" basedir=".">
     <property file="./update.properties"/>
 
-	<import file="./buildCommon.xml"/>
+    <import file="./buildCommon.xml"/>
     <import file="./exportUpdateCustom.xml"/>
 
     <target name="init" depends="init.custom">
@@ -18,18 +18,18 @@
         <property name="zip.file"           value="${update.destination}/${update.name}_${update.version}.zip"/>
     </target>
 
-	<target name="publish.zip" depends="init" description="Copies the update archive to the update server.">
-		<echo message="Copying update zip file to update server ${update.server}"/>
-		<scp file="${zip.file}" keyfile="${user.home}/.ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
-	</target>
+    <target name="publish.zip" depends="init" description="Copies the update archive to the update server.">
+        <echo message="Copying update zip file to update server ${update.server}"/>
+        <scp file="${zip.file}" keyfile="${user.home}/.ssh/id_dsa" passphrase="" todir="${user.name}@${update.server}:${update.server.dir}"></scp>
+    </target>
 
     <target name="build.update.zip">
-        <antcall target="collect.update"/>
-    	<antcall target="build.site.xml"/>
+        <antcall target="build.and.collect.features"/>
+        <antcall target="build.site.xml"/>
         <antcall target="zip.update"/>
     </target>
 
-   <target name="collect.update" depends="init" description="Builds and collects all the feature and plugin components for the update site.">
+    <target name="build.and.collect.features" depends="init" description="Builds and collects all features and their constituent plugin components for the update site.">
         <delete dir="${update.temp.folder}"/>
         <mkdir dir="${update.temp.folder}"/>
         <antcall target="build.features"/>
@@ -40,7 +40,7 @@
             </antcall>
         </for>
 
-        <copy file="site.xml" todir="${update.temp.folder}" failonerror="true" overwrite="false"/>
+<!--    <copy file="site.xml" todir="${update.temp.folder}" failonerror="true" overwrite="false"/> -->
         <copy file="index.html" todir="${update.temp.folder}" failonerror="true" overwrite="false"/>
 
         <mkdir dir="${update.temp.folder}/web"/>
@@ -53,19 +53,19 @@
     </target>
 
     <target name="build.site.xml" depends="init">
-    	<property name="site.xml" value="${update.temp.folder}/site.xml"/>
+        <property name="site.xml" value="${update.temp.folder}/site.xml"/>
 
-    	<echo file="${site.xml}" append="false">&lt;?xml version="1.0" encoding="UTF-8"?>
+        <echo file="${site.xml}" append="false">&lt;?xml version="1.0" encoding="UTF-8"?>
 &lt;site>
     &lt;description url="${update.site.url}">
         ${update.site.description}
     &lt;/description>
-    	</echo>
+        </echo>
 
         <antcall target="add.site.categories"/>
         <antcall target="add.all.features"/>
 
-    	<echo file="${site.xml}" append="true" message="&lt;/site>${line.separator}"/>
+        <echo file="${site.xml}" append="true" message="&lt;/site>${line.separator}"/>
     </target>
 
     <target name="add.site.categories">
@@ -108,36 +108,36 @@
     <target name="copy.feature">
         <xmlproperty file="${feature.dir}/feature.xml" prefix="f"/>
 
-		<echo message="  ** Copying contents of feature ${feature.name} version ${f.feature(version)} from directory ${feature.dir}"/>
+        <echo message="  ** Copying contents of feature ${feature.name} version ${f.feature(version)} from directory ${feature.dir}"/>
 
-		<propertyRegexp name="feature.version" input="${f.feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
+        <propertyRegexp name="feature.version" input="${f.feature(version)}" regexp="(.*).qualifier" value="\1.${build.qualifier}"/>
 
-		<mkdir dir="${update.temp.folder}/features"/>
-		<copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-			<fileset dir="${feature.dir}" includes="${feature.name}_${feature.version}.jar,${feature.name}.source_${feature.version}.jar"/>
-		</copy>
+        <mkdir dir="${update.temp.folder}/features"/>
+        <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
+            <fileset dir="${feature.dir}" includes="${feature.name}_${feature.version}.jar,${feature.name}.source_${feature.version}.jar"/>
+        </copy>
 
-		<mkdir dir="${update.temp.folder}/plugins"/>
-		<copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-			<fileset dir="${feature.dir}/plugins" includes="*.jar"/>
-		</copy>
-	</target>
+        <mkdir dir="${update.temp.folder}/plugins"/>
+        <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
+            <fileset dir="${feature.dir}/plugins" includes="*.jar"/>
+        </copy>
+    </target>
 
     <target name="build.features">
-		<echo message="Building feature jars for ${feature.list}..."/>
-		<for param="feature.id" values="${feature.list}">
-		    <echo message="*** Building feature ${feature.id} ***"/>
-	        <available file="../${feature.id}.feature/exportFeature.xml" property="feature.script" value="./exportFeature.xml"/>
-	        <condition property="feature.script" value="${default.feature.script}">
-	            <not>
-	                <isset property="feature.script"/>
-	            </not>
-	        </condition>
-	        <echo message="Using feature build script ${feature.script} for ${feature.id}"/>
-			<ant antfile="${feature.script}" target="build.feature" dir="../${feature.id}.feature">
+        <echo message="Building feature jars for ${feature.list}..."/>
+        <for param="feature.id" values="${feature.list}">
+            <echo message="*** Building feature ${feature.id} ***"/>
+            <available file="../${feature.id}.feature/exportFeature.xml" property="feature.script" value="./exportFeature.xml"/>
+            <condition property="feature.script" value="${default.feature.script}">
+                <not>
+                    <isset property="feature.script"/>
+                </not>
+            </condition>
+            <echo message="Using feature build script ${feature.script} for ${feature.id}"/>
+            <ant antfile="${feature.script}" target="build.feature" dir="../${feature.id}.feature">
                 <property name="build.qualifier" value="${build.qualifier}"/>
-			</ant>
-		</for>
-		<echo message="Done building feature jars."/>
-	</target>
+            </ant>
+        </for>
+        <echo message="Done building feature jars."/>
+    </target>
 </project>
