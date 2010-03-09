@@ -35,7 +35,7 @@
         <ant antfile="../lpg.update/exportUpdate.xml" target="build.features"/>
 
         <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-           <fileset dir="../lpg.update/plugins" includes="*.jar"/>
+            <fileset dir="../lpg.update/plugins" includes="*.jar"/>
         </copy>
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
             <fileset dir="../lpg.update/features" includes="*.jar"/>
@@ -50,10 +50,10 @@
         <ant antfile="../polyglot/build.xml" dir="../polyglot" target="build-features"/>
 
         <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
+            <fileset dir="../polyglot/eclipseUpdates/plugins" includes="polyglot_*.jar"/>
         </copy>
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-           <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
+            <fileset dir="../polyglot/eclipseUpdates/features" includes="polyglot_*.jar"/>
         </copy>
     </target>
 
@@ -84,12 +84,12 @@
     <target name="add.features.lpg">
         <antcall target="add.feature">
             <param name="feature.id"      value="lpg.generator"/>
-            <param name="feature.version" value="2.0.17"/>
+            <param name="feature.version" value="${lpg.version}"/>
             <param name="category"        value="IMP Prerequisites"/>
         </antcall>
         <antcall target="add.feature">
             <param name="feature.id"      value="lpg.runtime"/>
-            <param name="feature.version" value="2.0.17"/>
+            <param name="feature.version" value="${lpg.version}"/>
             <param name="category"        value="IMP Prerequisites"/>
         </antcall>
     </target>
@@ -97,7 +97,7 @@
     <target name="add.features.polyglot">
         <antcall target="add.feature">
             <param name="feature.id"      value="polyglot"/>
-            <param name="feature.version" value="2.4.0"/>
+            <param name="feature.version" value="${polyglot.version}"/>
             <param name="category"        value="IMP Prerequisites"/>
         </antcall>
     </target>
