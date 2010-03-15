@@ -4,21 +4,24 @@
         <property name="global.plugin.script" value="../org.eclipse.imp.update/exportPlugin.xml"/>
         <property name="default.feature.script" value="../org.eclipse.imp.update/exportFeature.xml"/>
 
-        <fail unless="sdf.update.cache">
-            You must define the Ant property sdf.update.cache to be the location of an
-        	SDF update site directory for IMP with the proper structure.
-            It should have a sub-directory for each SDF version, each of which should
-        	have sub-directories 'features' and 'plugins'.
-        	For example: $${sdf.update.cache}/1.0.10/features should exist.
-        </fail>
-        <available file="${sdf.update.cache}/${sdf.update.version}/features" property="sdf.update.verified"/>
-        <fail unless="sdf.update.verified">
-            The Ant property sdf.update.cache exists, but does not point to an
-        	SDF update site directory for IMP with the proper structure.
-            It should have a sub-directory for each SDF version, each of which should
-            have sub-directories 'features' and 'plugins'.
-            For example: $${sdf.update.cache}/1.0.10/features should exist.
-        </fail>
+        <property name="sdf.update.url" value="http://download.eclipse.org/technology/imp/sdf.update_${sdf.update.version}.zip"/>
+
+        <property name="cache.dir" value="./cache"/>
+        <mkdir dir="${cache.dir}"/>
+
+        <property name="sdf.update.cache.zip" value="${cache.dir}/sdf.update_${sdf.update.version}.zip"/>
+
+        <property name="sdf.update.cache.dir" value="${cache.dir}/sdf.update/${sdf.update.version}"/>
+
+        <available property="sdf.update.cache.present" file="${cache.dir}/${sdf.update.cache.dir}"/>
+
+        <available file="${sdf.update.cache.dir}/features" property="sdf.update.cache.verified"/>
+    </target>
+
+    <target name="retrieve.sdf" depends="init.custom" unless="sdf.update.cache.verified">
+        <echo message="Retrieving SDF from ${sdf.update.url}..."/>
+        <get src="${sdf.update.url}" dest="${sdf.update.cache.zip}"/>
+        <unzip src="${sdf.update.cache.zip}" dest="${sdf.update.cache.dir}"/>
     </target>
 
     <target name="collect.extra.artifacts">
@@ -57,12 +60,12 @@
         </copy>
     </target>
 
-    <target name="collect.sdf.artifacts">
+    <target name="collect.sdf.artifacts" depends="retrieve.sdf">
         <copy todir="${update.temp.folder}/features" failonerror="true" overwrite="false">
-            <fileset dir="${sdf.update.cache}/${sdf.update.version}/features" includes="sdf_eclipse_installer_feature_${sdf.update.version}.jar"/>
+            <fileset dir="${sdf.update.cache.dir}/features" includes="sdf_eclipse_installer_feature_${sdf.update.version}.jar"/>
         </copy>
         <copy todir="${update.temp.folder}/plugins" failonerror="true" overwrite="false">
-            <fileset dir="${sdf.update.cache}/${sdf.update.version}/plugins" includes="sdf_eclipse_installer*_${sdf.update.version}.jar"/>
+            <fileset dir="${sdf.update.cache.dir}/plugins" includes="sdf_eclipse_installer*_${sdf.update.version}.jar"/>
         </copy>
     </target>
 
