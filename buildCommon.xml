@@ -10,7 +10,7 @@
     </condition>
 
     <taskdef resource="antlib.xml" classpath="../org.eclipse.imp.update/lib/ant-imp.jar"/>
-    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpath="./lib/svnant.jar;./lib/svnClientAdapter.jar"/>
+    <typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpath="../org.eclipse.imp.update/lib/svnant.jar;../org.eclipse.imp.update/lib/svnClientAdapter.jar"/>
 
     <!-- Global Java compiler settings -->
     <property name="javacFailOnError" value="true"/>
