@@ -4,137 +4,63 @@
       This Eclipse update site hosts the distribution for the IMP IDE, analysis and refactoring framework, and related components.
    </description>
    <feature url="features/sdf_eclipse_installer_feature_1.0.10.jar" id="sdf_eclipse_installer_feature" version="1.0.10">
-      <category name="SDF"/>
+      <category name="IMP Prerequisites"/>
    </feature>
-   <feature url="features/lpg.generator_2.0.16.jar" id="lpg.generator" version="2.0.16">
-      <category name="LPG"/>
+   <feature url="features/lpg.generator_2.0.18.jar" id="lpg.generator" version="2.0.18">
+      <category name="IMP Prerequisites"/>
    </feature>
-   <feature url="features/lpg.runtime_2.0.16.jar" id="lpg.runtime" version="2.0.16">
-      <category name="LPG"/>
+   <feature url="features/lpg.runtime_2.0.18.jar" id="lpg.runtime" version="2.0.18">
+      <category name="IMP Prerequisites"/>
    </feature>
    <feature url="features/polyglot_2.4.0.jar" id="polyglot" version="2.4.0">
-      <category name="Polyglot"/>
+      <category name="IMP Prerequisites"/>
    </feature>
-   <feature url="features/org.eclipse.imp.metatooling_0.1.94.jar" id="org.eclipse.imp.metatooling" version="0.1.94">
-      <category name="IMP IDE Development Tools"/>
+   <feature url="features/org.eclipse.imp.analysis_0.1.13.v201004212015.jar" id="org.eclipse.imp.analysis" version="0.1.13.v201004212015">
+      <category name="IMP"/>
    </feature>
-   <feature url="features/org.eclipse.imp.formatting_0.1.4.jar" id="org.eclipse.imp.formatting" version="0.1.4">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.90.jar" id="org.eclipse.imp.lpg" version="0.1.90">
-      <category name="IMP Language-Specific Development Environments"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis_0.1.6.jar" id="org.eclipse.imp.analysis" version="0.1.6">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui_0.1.5.jar" id="org.eclipse.imp.analysis.ui" version="0.1.5">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.source_0.1.6.jar" id="org.eclipse.imp.analysis.source" version="0.1.6">
+   <feature url="features/org.eclipse.imp.analysis.source_0.1.13.v201004212015.jar" id="org.eclipse.imp.analysis.source" version="0.1.13.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.5.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.5">
+   <feature url="features/org.eclipse.imp.analysis.ui_0.1.11.v201004212015.jar" id="org.eclipse.imp.analysis.ui" version="0.1.11.v201004212015">
+      <category name="IMP"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.11.v201004212015.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.11.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.formatting.source_0.1.4.jar" id="org.eclipse.imp.formatting.source" version="0.1.4">
+   <feature url="features/org.eclipse.imp.formatting_0.1.6.v201004212015.jar" id="org.eclipse.imp.formatting" version="0.1.6.v201004212015">
+      <category name="IMP"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.formatting.source_0.1.6.v201004212015.jar" id="org.eclipse.imp.formatting.source" version="0.1.6.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.lpg.source_0.1.90.jar" id="org.eclipse.imp.lpg.source" version="0.1.90">
+   <feature url="features/org.eclipse.imp.java.hosted_0.1.3.v201004212015.jar" id="org.eclipse.imp.java.hosted" version="0.1.3.v201004212015">
+      <category name="IMP"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.java.hosted.source_0.1.3.v201004212015.jar" id="org.eclipse.imp.java.hosted.source" version="0.1.3.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.metatooling.source_0.1.94.jar" id="org.eclipse.imp.metatooling.source" version="0.1.94">
+   <feature url="features/org.eclipse.imp.lpg_0.1.95.v201004212015.jar" id="org.eclipse.imp.lpg" version="0.1.95.v201004212015">
+      <category name="IMP"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.lpg.source_0.1.95.v201004212015.jar" id="org.eclipse.imp.lpg.source" version="0.1.95.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.runtime.source_0.1.99.jar" id="org.eclipse.imp.runtime.source" version="0.1.99">
+   <feature url="features/org.eclipse.imp.metatooling_0.1.99.v201004212015.jar" id="org.eclipse.imp.metatooling" version="0.1.99.v201004212015">
+      <category name="IMP"/>
+   </feature>
+   <feature url="features/org.eclipse.imp.metatooling.source_0.1.99.v201004212015.jar" id="org.eclipse.imp.metatooling.source" version="0.1.99.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.metatooling_0.1.95.jar" id="org.eclipse.imp.metatooling" version="0.1.95">
-      <category name="IMP IDE Development Tools"/>
+   <feature url="features/org.eclipse.imp.runtime_0.1.106.v201004212015.jar" id="org.eclipse.imp.runtime" version="0.1.106.v201004212015">
+      <category name="IMP"/>
    </feature>
-   <feature url="features/org.eclipse.imp.formatting_0.1.5.jar" id="org.eclipse.imp.formatting" version="0.1.5">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.java.hosted_0.1.1.jar" id="org.eclipse.imp.java.hosted" version="0.1.1">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.101.jar" id="org.eclipse.imp.runtime" version="0.1.101">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.91.jar" id="org.eclipse.imp.lpg" version="0.1.91">
-      <category name="IMP Language-Specific Development Environments"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis_0.1.7.jar" id="org.eclipse.imp.analysis" version="0.1.7">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui_0.1.6.jar" id="org.eclipse.imp.analysis.ui" version="0.1.6">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.source_0.1.7.jar" id="org.eclipse.imp.analysis.source" version="0.1.7">
+   <feature url="features/org.eclipse.imp.runtime.source_0.1.106.v201004212015.jar" id="org.eclipse.imp.runtime.source" version="0.1.106.v201004212015">
       <category name="IMP Source"/>
    </feature>
-   <feature url="features/org.eclipse.imp.analysis.source_0.1.11.jar" id="org.eclipse.imp.analysis.source" version="0.1.11">
-      <category name="IMP Source"/>
+   <feature url="features/org.eclipse.imp.analysis_0.1.14.qualifier.jar" id="org.eclipse.imp.analysis" version="0.1.14.qualifier">
+      <category name="IMP"/>
    </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.6.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.6">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui.source_0.1.10.jar" id="org.eclipse.imp.analysis.ui.source" version="0.1.10">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.formatting.source_0.1.5.jar" id="org.eclipse.imp.formatting.source" version="0.1.5">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg.source_0.1.91.jar" id="org.eclipse.imp.lpg.source" version="0.1.91">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg.source_0.1.92.jar" id="org.eclipse.imp.lpg.source" version="0.1.92">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.metatooling.source_0.1.95.jar" id="org.eclipse.imp.metatooling.source" version="0.1.95">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.metatooling.source_0.1.96.jar" id="org.eclipse.imp.metatooling.source" version="0.1.96">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime.source_0.1.101.jar" id="org.eclipse.imp.runtime.source" version="0.1.101">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime.source_0.1.102.jar" id="org.eclipse.imp.runtime.source" version="0.1.102">
-      <category name="IMP Source"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis_0.1.9.jar" id="org.eclipse.imp.analysis" version="0.1.9">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui_0.1.9.jar" id="org.eclipse.imp.analysis.ui" version="0.1.9">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis_0.1.10.jar" id="org.eclipse.imp.analysis" version="0.1.10">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.metatooling_0.1.96.jar" id="org.eclipse.imp.metatooling" version="0.1.96">
-      <category name="IMP IDE Development Tools"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.102.jar" id="org.eclipse.imp.runtime" version="0.1.102">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.lpg_0.1.92.jar" id="org.eclipse.imp.lpg" version="0.1.92">
-      <category name="IMP Language-Specific Development Environments"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis_0.1.11.jar" id="org.eclipse.imp.analysis" version="0.1.11">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.analysis.ui_0.1.10.jar" id="org.eclipse.imp.analysis.ui" version="0.1.10">
-      <category name="IMP Analysis"/>
-   </feature>
-   <feature url="features/org.eclipse.imp.runtime_0.1.103.jar" id="org.eclipse.imp.runtime" version="0.1.103">
-      <category name="IMP IDE Runtime"/>
-   </feature>
-   <category-def name="IMP IDE Development Tools" label="IMP IDE Development Tools"/>
-   <category-def name="IMP IDE Runtime" label="IMP IDE Runtime"/>
-   <category-def name="IMP Language-Specific Development Environments" label="IMP Language-Specific Development Environments"/>
-   <category-def name="IMP Analysis" label="IMP Analysis"/>
-   <category-def name="LPG" label="LPG Parser Generator"/>
-   <category-def name="Polyglot" label="Polyglot Compiler Framework"/>
-   <category-def name="SDF" label="SDF and Box Runtime"/>
+   <category-def name="IMP" label="IMP"/>
    <category-def name="IMP Source" label="IMP Source"/>
+   <category-def name="IMP Prerequisites" label="IMP Prerequisites"/>
 </site>
